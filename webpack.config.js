@@ -13,7 +13,7 @@ module.exports = {
   ],
   output: {
     path: DIST_DIR,
-    publicPath: './', // replace with '/' (GH-P)
+    publicPath: '~/',
     filename: 'bundle.js'
   },
   module: {
