@@ -19,6 +19,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ico$|\.svg$/,
+        loader: 'file-loader?name=[name].[ext]'
+      },
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {

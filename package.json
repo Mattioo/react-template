@@ -1,5 +1,5 @@
 {
-  "homepage": "https://Mattioo.github.io/react-template",
+  "homepage": "https://mattioo.github.io/react-template",
   "name": "react-template",
   "version": "1.0.0",
   "description": "",
@@ -7,9 +7,8 @@
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "./node_modules/.bin/webpack -p --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Mateusz Korolow",
@@ -24,6 +23,7 @@
     "@babel/runtime": "^7.10.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
     "mini-css-extract-plugin": "^0.9.0",
