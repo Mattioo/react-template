@@ -13,7 +13,7 @@ module.exports = {
   ],
   output: {
     path: DIST_DIR,
-    publicPath: '/',
+    publicPath: 'https://raw.githubusercontent.com/Mattioo/react-template/master/dist/', // replace with '/' (GH-P)
     filename: 'bundle.js'
   },
   module: {
