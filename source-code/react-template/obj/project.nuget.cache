@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "4LZQuAs43FJBmNPRuHUQgPjg5AlWZxYIMZJe8XS37esC6G5T75dWDKWjKZP/BYZeEqQzxMmnub/9Pr3imXf9wg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\m_korolow\\Desktop\\react-template\\source-code\\react-template\\react-template.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\m_korolow\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
