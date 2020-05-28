@@ -1,14 +1,14 @@
-import './favicon.ico';
+require('./favicon.ico');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from "./components/app/default";
+import App from "./components/app";
 
 ReactDOM.render(
     <App />,
     document.getElementById('root')
 );
  
-if (module.hot) {
+if (module && module.hot) {
   module.hot.accept();
 }

@@ -1,20 +1,17 @@
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+function isDevelopment(mode) {
+    return mode !== 'production';
+}
 
-const SRC_DIR = __dirname + '/src';
-const DIST_DIR = __dirname + '/dist';
-
-module.exports = {
-  entry: [
-    SRC_DIR + '/index.jsx'
-  ],
+module.exports = (env, argv) => (
+{
+  entry: './src/index.jsx',
   output: {
-    path: DIST_DIR,
-    publicPath: './',
-    filename: 'bundle.js'
+    filename: isDevelopment(argv.mode) ? '[name].bundle.js' : '[name].[hash].bundle.js'
   },
   module: {
     rules: [
@@ -33,14 +30,14 @@ module.exports = {
         test: /\.(scss|sass|css)$/,
         exclude: /node_modules/,
         loaders: [
-          MiniCssExtractPlugin.loader,
+          isDevelopment(argv.mode) ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
               modules: {
-                  localIdentName: "[name]__[local]___[hash:base64:5]",
+                  localIdentName: "[name]_[local]_[hash]",
               },														
-              sourceMap: isDevelopment
+              sourceMap: isDevelopment(argv.mode)
             }
           },
           'sass-loader'
@@ -51,7 +48,9 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'html-loader',
-          options: {minimize: true}
+            options: {
+                minimize: !isDevelopment(argv.mode)
+            }
         }
       }
     ]
@@ -62,17 +61,17 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: SRC_DIR + '/index.html',
-      filename: './index.html',
+        template: './src/index.html',
+        filename: './index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css',
+        filename: isDevelopment(argv.mode) ? '[name].css' : '[name].[hash].css',
+        chunkFilename: isDevelopment(argv.mode) ? '[id].css' : '[id].[hash].css',
     })
   ],
   devServer: {
-    contentBase: DIST_DIR,
+    contentBase: './dist',
     hot: true,
     port: 9000
   }
-};
+});
