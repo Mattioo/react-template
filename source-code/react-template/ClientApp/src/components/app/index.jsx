@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
-
-library.add(faCheck);
-dom.watch();
-
 class App extends Component {
 
     constructor(props) {
@@ -18,7 +12,10 @@ class App extends Component {
     render() {
         this.setStyles(this.state.client);
         return (
-            <p>Lorem ipsum..</p>
+            <div>
+                <p>Lorem ipsum..</p>
+                <i className="fas fa-ambulance"></i>
+            </div>
         );
     }
 
@@ -27,12 +24,10 @@ class App extends Component {
         if (response.ok) {
             const stylesName = await response.text();
 
-            var sheet = document.createElement('link');
-            sheet.rel = 'stylesheet';
-            sheet.type = 'text/css';
-            sheet.href = `/clients/${stylesName}/styles.css`;
-
-            document.head.appendChild(sheet);
+            let link = document.head.querySelector('link[rel="stylesheet"]');
+            if (link) {
+                link.setAttribute('href', `/clients/${stylesName}/styles.css`);
+            }
         }
     }
 }
