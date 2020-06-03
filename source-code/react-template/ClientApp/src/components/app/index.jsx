@@ -23,15 +23,19 @@ class App extends Component {
     }
 
     async setStyles(client) {
-        const response = await fetch(`https://localhost:44394/api/app/styles?client=${client}`);
-        if (response.ok) {
-            const stylesName = await response.text();
-
-            let link = document.head.querySelector('link[rel="stylesheet"]');
-            if (link) {
-                link.setAttribute('href', `./styles/${stylesName}.css`);
-            }
-        }
+        fetch(`https://localhost:44394/api/app/styles?client=${client}`)
+            .then(async (response) => {
+                if (response.ok) {
+                    const stylesName = await response.text();
+                    let link = document.head.querySelector('link[rel="stylesheet"]');
+                    if (link) {
+                        link.setAttribute('href', `./styles/${stylesName}.css`);
+                    }
+                }
+        })
+        .catch((err) => {
+            console.log(`Problem: ${err}`);
+        });
     }
 }
 
