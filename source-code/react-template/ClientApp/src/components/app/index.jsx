@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+/* STYLE DO PRZEBUDOWANIA */
+import * as styles from '../../styles';
+
 class App extends Component {
 
     constructor(props) {
@@ -26,7 +29,7 @@ class App extends Component {
 
             let link = document.head.querySelector('link[rel="stylesheet"]');
             if (link) {
-                link.setAttribute('href', `/clients/${stylesName}/styles.css`);
+                link.setAttribute('href', `./styles/${stylesName}.css`);
             }
         }
     }

@@ -8,7 +8,3 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 );
- 
-if (module && module.hot) {
-  module.hot.accept();
-}
