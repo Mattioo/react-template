@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using react_template.Properties.Options;
 
 namespace react_template.Controllers
 {
@@ -11,23 +14,21 @@ namespace react_template.Controllers
     [Route("api/[controller]")]
     public class AppController : ControllerBase
     {
-        private static readonly IDictionary<string, (string dict, string file)> styles = new Dictionary<string, (string dict, string file)>
-        {
-            { "default", ("default", "styles.2GPJa.css") },
-            { "http://localhost:9001", ("other", "styles.3Z37u.css") }
-        };
+        public IConfiguration Configuration { get; }
 
         private readonly ILogger<AppController> _logger;
+        private readonly IDictionary<string, (string dict, string file)> _styles;
 
-        public AppController(ILogger<AppController> logger)
+        public AppController(ILogger<AppController> logger, IOptions<StylesOptions> options)
         {
             _logger = logger;
+            _styles = options.Value.All.ToDictionary(s => s.Url, s => (dict: s.Dict, file: s.File));
         }
 
         [HttpGet("styles")]
         public async Task<IActionResult> Styles(string url)
         {
-            var (dict, file) = !string.IsNullOrWhiteSpace(url) && styles.ContainsKey(url) ? styles[url] : styles["default"];
+            var (dict, file) = !string.IsNullOrWhiteSpace(url) && _styles.ContainsKey(url) ? _styles[url] : _styles["default"];
             return await Task.FromResult(Ok(JsonConvert.SerializeObject(new
             {
                 dict,

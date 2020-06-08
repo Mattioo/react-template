@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using react_template.Properties.Options;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace react_template
 {
@@ -20,12 +23,13 @@ namespace react_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<StylesOptions>(Configuration.GetSection(StylesOptions.Name));
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _frontOfficeCors,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:9000")
+                    builder.WithOrigins(Configuration.GetSection("cors").Get<string[]>())
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 });
