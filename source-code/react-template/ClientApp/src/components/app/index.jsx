@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 /* STYLE DO PRZEBUDOWANIA */
-import * as styles from '../../styles';
+import '../../styles';
+
+function config() {
+    return require("../../config.json");
+}
 
 class App extends Component {
 
@@ -22,19 +26,20 @@ class App extends Component {
         );
     }
 
-    async setStyles(client) {
-        fetch(`https://localhost:44394/api/app/styles?client=${client}`)
+    async setStyles(url) {
+        let conf = config();
+        fetch(`${conf.backoffice.url}/${conf.backoffice.paths.styles}?url=${url}`)
             .then(async (response) => {
                 if (response.ok) {
-                    const stylesName = await response.text();
+                    const styles = await response.json();
                     let link = document.head.querySelector('link[rel="stylesheet"]');
                     if (link) {
-                        link.setAttribute('href', `./styles/${stylesName}.css`);
+                        link.setAttribute('href', `./styles/${styles.dict}/${styles.file}`);
                     }
                 }
         })
         .catch((err) => {
-            console.log(`Problem: ${err}`);
+            console.log(`Error: ${err}`);
         });
     }
 }

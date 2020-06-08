@@ -1,30 +1,27 @@
-const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function isDevelopment(mode) {
-    return mode !== 'production';
+function version() {
+    return require("./package.json").version;
 }
 
 module.exports = (env, argv) => (
     {
         entry: './src/index.jsx',
         output: {
-            filename: '[name].bundle.js',
+            filename: `js/bundle.${version()}.js`,
             publicPath: './'
         },
         module: {
             rules: [
                 {
                     test: /\.(ico|svg)$/,
+                    exclude: /node_modules/,
                     loader: 'file-loader?name=[name].[ext]'
                 },
                 {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader'
-                    }
+                    loader: 'babel-loader'
                 },
                 {
                     test: /\.(scss|sass|css)$/,
@@ -33,7 +30,7 @@ module.exports = (env, argv) => (
                         {
                             loader: 'file-loader',
                             options: {
-                                name: '[name].css',
+                                name: '[name]/styles.[md4:hash:base64:5].css',
                                 outputPath: './styles'
                             }
                         },
@@ -45,12 +42,7 @@ module.exports = (env, argv) => (
                 {
                     test: /\.(html)$/,
                     exclude: /node_modules/,
-                    use: {
-                        loader: 'html-loader',
-                        options: {
-                            minimize: !isDevelopment(argv.mode)
-                        }
-                    }
+                    loader: 'html-loader'
                 }
             ]
         },
@@ -64,8 +56,7 @@ module.exports = (env, argv) => (
             })
         ],
         devServer: {
-            contentBase: path.join(__dirname, 'dist'),
-            compress: !isDevelopment(argv.mode),
+            contentBase: './dist',
             port: 9000
         }
     });
