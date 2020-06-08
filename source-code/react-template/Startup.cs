@@ -8,6 +8,8 @@ namespace react_template
 {
     public class Startup
     {
+        private readonly string _frontOfficeCors = "_frontOfficeCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -18,6 +20,16 @@ namespace react_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: _frontOfficeCors,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:9000")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
             services.AddControllers();
         }
 
@@ -32,6 +44,8 @@ namespace react_template
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(_frontOfficeCors);
 
             app.UseAuthorization();
 
