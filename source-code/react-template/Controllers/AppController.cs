@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using react_template.Properties.Options;
+using react_template_data.Repositories;
 
 namespace react_template.Controllers
 {
@@ -17,23 +15,35 @@ namespace react_template.Controllers
         public IConfiguration Configuration { get; }
 
         private readonly ILogger<AppController> _logger;
-        private readonly IDictionary<string, (string dict, string file)> _styles;
+        private readonly StylesRepository _stylesRepository;
 
-        public AppController(ILogger<AppController> logger, IOptions<StylesOptions> options)
+        public AppController(ILogger<AppController> logger,
+            StylesRepository stylesRepository)
         {
             _logger = logger;
-            _styles = options.Value.All.ToDictionary(s => s.Url, s => (dict: s.Dict, file: s.File));
+            _stylesRepository = stylesRepository;
         }
 
         [HttpGet("styles")]
-        public async Task<IActionResult> Styles(string url)
+        public async Task<IActionResult> Styles(string url, CancellationToken cancellationToken = default)
         {
-            var (dict, file) = !string.IsNullOrWhiteSpace(url) && _styles.ContainsKey(url) ? _styles[url] : _styles["default"];
-            return await Task.FromResult(Ok(JsonConvert.SerializeObject(new
+            var found = await _stylesRepository.Get(u =>
+                u.Active &&
+                u.Path == url &&
+                u.Client.Active &&
+                u.Style.Active,
+                cancellationToken
+            ) ??
+            await _stylesRepository.GetDefault(cancellationToken);
+
+            if (found is null)
+                return NotFound();
+
+            return Ok(JsonConvert.SerializeObject(new
             {
-                dict,
-                file
-            })));
+                dict = found.Dict,
+                file = found.File
+            }));
         }
     }
 }

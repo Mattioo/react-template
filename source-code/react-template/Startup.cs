@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using react_template.Properties.Options;
-using System.Collections;
-using System.Collections.Generic;
+using react_template_data.Data;
+using react_template_data.IoC;
+using Scrutor;
 
 namespace react_template
 {
@@ -23,6 +25,16 @@ namespace react_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(Configuration.GetConnectionString("master")));
+
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW DZIEDZICZ¥CYCH PO BASEREPOSITORY */
+            services.Scan(scan => scan.FromAssemblyOf<IBaseRepository>()
+                .AddClasses()
+                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                .AsSelf()
+                .WithTransientLifetime()
+            );
+
             services.Configure<StylesOptions>(Configuration.GetSection(StylesOptions.Name));
             services.AddCors(options =>
             {
