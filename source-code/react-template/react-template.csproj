@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\dist\" />
+    <Folder Include="ClientApp\dist\styles\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

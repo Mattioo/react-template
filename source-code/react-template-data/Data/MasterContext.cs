@@ -105,12 +105,12 @@ namespace react_template_data.Data
             #endregion
 
             modelBuilder.Entity<Client>().HasData(
-                new Client { Id = 1, Name = "default", Database = "default", LicenceNo = "DEFAULT", Active = true }
+                new Client { Id = 1, Name = "default", Database = "default", LicenceNo = "default", Active = true }
             );
 
             modelBuilder.Entity<Style>().HasData(
-                new Style { Id = 1, Dict = "default", File = "styles.2GPJa.css", Default = true, Active = true },
-                new Style { Id = 2, Dict = "other", File = "styles.3Z37u.css", Active = true }
+                new Style { Id = 1, Dict = "default", File = "styles.11030.css", Default = true, Active = true },
+                new Style { Id = 2, Dict = "other", File = "styles.d46c3.css", Active = true }
             );
 
             modelBuilder.Entity<Url>().HasData(

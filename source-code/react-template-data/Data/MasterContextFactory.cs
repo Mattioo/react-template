@@ -11,6 +11,7 @@ namespace react_template_data.Data
         {
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template", "appsettings.json"))
+                .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template", "appsettings.Development.json"))
                 .Build();
 
             var builder = new DbContextOptionsBuilder<MasterContext>();

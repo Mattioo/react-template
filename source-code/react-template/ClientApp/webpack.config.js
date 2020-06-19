@@ -11,7 +11,7 @@ module.exports = (env, argv) => (
         entry: './src/index.jsx',
         output: {
             filename: `js/bundle.${version()}.js`,
-            publicPath: "/assets/"
+            publicPath: "./"
         },
         module: {
             rules: [
@@ -32,7 +32,7 @@ module.exports = (env, argv) => (
                         {
                             loader: 'file-loader',
                             options: {
-                                name: '[name]/styles.[contenthash].css',
+                                name: '[name]/styles.[contenthash:5].css',
                                 outputPath: './styles'
                             }
                         },
@@ -59,6 +59,9 @@ module.exports = (env, argv) => (
             new webpack.HotModuleReplacementPlugin()
         ],
         devtool: argv.mode === 'production' ? false : 'source-map',
+        optimization: {
+            minimize: argv.mode === 'production'
+        },
         devServer: {
             port: 9000,
             contentBase: path.resolve(__dirname,'dist'),
