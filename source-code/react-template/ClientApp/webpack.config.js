@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 function version() {
     return require("./package.json").version;
@@ -9,7 +11,7 @@ module.exports = (env, argv) => (
         entry: './src/index.jsx',
         output: {
             filename: `js/bundle.${version()}.js`,
-            publicPath: './'
+            publicPath: "/assets/"
         },
         module: {
             rules: [
@@ -30,7 +32,7 @@ module.exports = (env, argv) => (
                         {
                             loader: 'file-loader',
                             options: {
-                                name: '[name]/styles.[md4:hash:base64:5].css',
+                                name: '[name]/styles.[contenthash].css',
                                 outputPath: './styles'
                             }
                         },
@@ -51,12 +53,19 @@ module.exports = (env, argv) => (
         },
         plugins: [
             new HtmlWebpackPlugin({
-                template: './src/index.html',
-                filename: './index.html',
-            })
+                template: 'src/index.html',
+                filename: 'index.html',
+            }),
+            new webpack.HotModuleReplacementPlugin()
         ],
         devServer: {
-            contentBase: './dist',
-            port: 9000
+            port: 9000,
+            contentBase: path.resolve(__dirname,'dist'),
+            stats: {
+                children: false,
+                maxModules: 0
+            },
+            writeToDisk: true,
+            hot: true
         }
     });

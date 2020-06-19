@@ -20,8 +20,7 @@ class App extends Component {
         this.setStyles(this.state.client);
         return (
             <div>
-                <p>Lorem ipsum..</p>
-                <i className="fas fa-ambulance"></i>
+                <p>Lorem ipsum</p>
             </div>
         );
     }
@@ -43,5 +42,4 @@ class App extends Component {
         });
     }
 }
-
 export default App;
