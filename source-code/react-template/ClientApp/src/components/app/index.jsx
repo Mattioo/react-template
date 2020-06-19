@@ -20,7 +20,7 @@ class App extends Component {
         this.setStyles(this.state.client);
         return (
             <div>
-                <p>Lorem ipsum</p>
+                <p className="color">Lorem ipsum</p>
             </div>
         );
     }
@@ -33,7 +33,11 @@ class App extends Component {
                     const styles = await response.json();
                     let link = document.head.querySelector('link[rel="stylesheet"]');
                     if (link) {
-                        link.setAttribute('href', `./styles/${styles.dict}/${styles.file}`);
+                        let href = `./styles/${styles.dict}/${styles.file}`;
+                        if (styles.file === 'bundle.css') {
+                            href += `?v=${new Date().getTime()}`;
+                        }
+                        link.setAttribute('href', href);
                     }
                 }
         })

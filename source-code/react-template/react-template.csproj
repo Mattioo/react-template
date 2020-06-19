@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\dist\styles\" />
+    <Folder Include="ClientApp\dist\styles\default\" />
+    <Folder Include="ClientApp\dist\styles\other\" />
     <Folder Include="Models\" />
   </ItemGroup>
 

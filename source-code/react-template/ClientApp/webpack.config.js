@@ -6,6 +6,10 @@ function version() {
     return require("./package.json").version;
 }
 
+function isDev(mode) {
+    return mode !== 'production';
+}
+
 module.exports = (env, argv) => (
     {
         entry: './src/index.jsx',
@@ -32,7 +36,9 @@ module.exports = (env, argv) => (
                         {
                             loader: 'file-loader',
                             options: {
-                                name: '[name]/styles.[contenthash:5].css',
+                                name: !isDev(argv.mode) ?
+                                    '[name]/styles.[contenthash:5].min.css' :
+                                    '[name]/bundle.css',
                                 outputPath: './styles'
                             }
                         },

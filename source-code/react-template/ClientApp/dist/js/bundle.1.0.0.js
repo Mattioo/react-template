@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a830f03c9f8967e06521";
+/******/ 	var hotCurrentHash = "d6418285d4d00e957e9e";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -40280,7 +40280,9 @@ var App = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       this.setStyles(this.state.client);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", null, "Lorem ipsum"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
+        className: "color"
+      }, "Lorem ipsum"));
     }
   }, {
     key: "setStyles",
@@ -40294,7 +40296,7 @@ var App = /*#__PURE__*/function (_Component) {
                 conf = config();
                 fetch("".concat(conf.backoffice.url, "/").concat(conf.backoffice.paths.styles, "?url=").concat(url)).then( /*#__PURE__*/function () {
                   var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(response) {
-                    var styles, link;
+                    var styles, link, href;
                     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
                       while (1) {
                         switch (_context.prev = _context.next) {
@@ -40312,7 +40314,13 @@ var App = /*#__PURE__*/function (_Component) {
                             link = document.head.querySelector('link[rel="stylesheet"]');
 
                             if (link) {
-                              link.setAttribute('href', "./styles/".concat(styles.dict, "/").concat(styles.file));
+                              href = "./styles/".concat(styles.dict, "/").concat(styles.file);
+
+                              if (styles.file === 'bundle.css') {
+                                href += "?v=".concat(new Date().getTime());
+                              }
+
+                              link.setAttribute('href', href);
                             }
 
                           case 6:
@@ -40427,7 +40435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "styles/default/styles.a938e.css");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "styles/default/bundle.css");
 
 /***/ }),
 
@@ -40440,7 +40448,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "styles/other/styles.fbe3f.css");
+/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "styles/other/bundle.css");
 
 /***/ }),
 
