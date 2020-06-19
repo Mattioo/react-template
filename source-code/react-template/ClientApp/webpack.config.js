@@ -58,6 +58,7 @@ module.exports = (env, argv) => (
             }),
             new webpack.HotModuleReplacementPlugin()
         ],
+        devtool: argv.mode === 'production' ? false : 'source-map',
         devServer: {
             port: 9000,
             contentBase: path.resolve(__dirname,'dist'),
