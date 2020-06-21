@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using react_template.Models.Results;
+using react_template_data.Data.Master;
 using react_template_data.Repositories;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace react_template.Controllers
 {
@@ -25,6 +28,9 @@ namespace react_template.Controllers
         }
 
         [HttpGet("styles")]
+        [SwaggerResponse(404, "Brak informacji o kaskadowym arkuszu styli")]
+        [SwaggerResponse(200, "Informacje o kaskadowym arkuszu styli", Type = typeof(StyleResult))]
+        [SwaggerOperation("Pobiera informacje o kaskadowym arkuszu styli", "Informacje opisują katalog i plik przypisany do konkretnego adresu URL")]
         public async Task<IActionResult> Styles(string url, CancellationToken cancellationToken = default)
         {
             var found = await _stylesRepository.Get(u =>
@@ -39,10 +45,10 @@ namespace react_template.Controllers
             if (found is null)
                 return NotFound();
 
-            return Ok(JsonConvert.SerializeObject(new
+            return Ok(JsonConvert.SerializeObject(new StyleResult
             {
-                dict = found.Dict,
-                file = found.File
+                Dict = found.Dict,
+                File = found.File
             }));
         }
     }
