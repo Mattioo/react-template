@@ -1,3 +1,5 @@
+using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -54,6 +56,10 @@ namespace react_template
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "React-Template API", Version = "v1" });
                 c.EnableAnnotations();
             });
+
+            services.AddHangfire(config =>
+                config.UsePostgreSqlStorage(Configuration.GetConnectionString("master"))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +76,17 @@ namespace react_template
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "React-Template API v1");
+            });
+
+            app.UseHangfireDashboard("/hangfire");
+            app.UseHangfireServer(new BackgroundJobServerOptions
+            {
+                WorkerCount = 1
+            });
+
+            GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute
+            { 
+                Attempts = 0
             });
 
             app.UseRouting();
