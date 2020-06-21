@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using react_template.Helpers.Filters;
 using react_template.Models.Results;
-using react_template_data.Data.Master;
 using react_template_data.Repositories;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace react_template.Controllers
 {
     [ApiController]
+    [AppActionFilter]
     [Route("api/[controller]")]
     public class AppController : ControllerBase
     {
