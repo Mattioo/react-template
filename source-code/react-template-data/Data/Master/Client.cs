@@ -16,5 +16,6 @@ namespace react_template_data.Data.Master
         public bool Active { get; set; }
 
         public List<Url> Urls { get; set; }
+        public List<BackgroundJob> BackgroundJobs { get; set; }
     }
 }

@@ -12,12 +12,14 @@ namespace react_template_data.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<Style> Styles { get; set; }
         public DbSet<Url> Urls { get; set; }
+        public DbSet<BackgroundJob> BackgroundJobs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {     
             builder.ApplyConfiguration(new ClientConfiguration());
             builder.ApplyConfiguration(new StyleConfiguration());
             builder.ApplyConfiguration(new UrlConfiguration());
+            builder.ApplyConfiguration(new BackgroundJobConfiguration());
         }
     }
 }
