@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations
 {
     [DbContext(typeof(MasterContext))]
-    partial class MasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200621191104_AddConfigurationFiles")]
+    partial class AddConfigurationFiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 6, 21, 19, 29, 30, 978, DateTimeKind.Utc).AddTicks(8153));
+                        .HasDefaultValue(new DateTime(2020, 6, 21, 19, 11, 3, 979, DateTimeKind.Utc).AddTicks(7736));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -63,6 +65,17 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Database = "default",
+                            LicenceNo = "default",
+                            LicenceSince = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "default"
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Style", b =>
@@ -139,6 +152,15 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("Urls");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            ClientId = 1,
+                            StyleId = 1
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Url", b =>

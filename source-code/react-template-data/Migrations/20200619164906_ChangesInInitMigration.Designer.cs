@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations
 {
     [DbContext(typeof(MasterContext))]
-    partial class MasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200619164906_ChangesInInitMigration")]
+    partial class ChangesInInitMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +46,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 6, 21, 19, 29, 30, 978, DateTimeKind.Utc).AddTicks(8153));
+                        .HasDefaultValue(new DateTime(2020, 6, 19, 16, 49, 5, 973, DateTimeKind.Utc).AddTicks(2246));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -63,6 +65,17 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Database = "default",
+                            LicenceNo = "default",
+                            LicenceSince = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "default"
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Style", b =>
@@ -106,7 +119,15 @@ namespace react_template_data.Migrations
                             Active = true,
                             Default = true,
                             Dict = "default",
-                            File = "bundle.css"
+                            File = "styles.7188d.min.css"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = true,
+                            Default = false,
+                            Dict = "other",
+                            File = "styles.f550f.min.css"
                         });
                 });
 
@@ -139,6 +160,15 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("Urls");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            ClientId = 1,
+                            StyleId = 1
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Url", b =>
