@@ -34,7 +34,7 @@ namespace react_template
         public void ConfigureServices(IServiceCollection services)
         {
             /* REJESTRACJA W KONTENERZE DI NIEZMIENNEGO KONTEKSTU BAZY MASTER */
-            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(Configuration.GetConnectionString("master")), ServiceLifetime.Singleton);
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(Configuration.GetConnectionString("master")), ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU MASTER */
             services.Scan(scan => scan.FromAssemblyOf<IMasterContextRepository> ()
