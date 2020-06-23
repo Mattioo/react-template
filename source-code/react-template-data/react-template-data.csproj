@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Client\" />
+    <Folder Include="Migrations\Owner\" />
     <Folder Include="Models\Configurations\Client\" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using react_template.Helpers.Filters;
 using react_template.Models.Results;
+using react_template_data.Data;
 using react_template_data.Repositories;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -14,7 +15,7 @@ namespace react_template.Controllers
     [ApiController]
     [AppActionFilter]
     [Route("api/[controller]")]
-    public class AppController : ControllerBase
+    public class AppController : Controller
     {
         public IConfiguration Configuration { get; }
 
@@ -22,7 +23,8 @@ namespace react_template.Controllers
         private readonly StylesRepository _stylesRepository;
 
         public AppController(ILogger<AppController> logger,
-            StylesRepository stylesRepository)
+            PropertiesRepository repository,
+            StylesRepository stylesRepository)      
         {
             _logger = logger;
             _stylesRepository = stylesRepository;

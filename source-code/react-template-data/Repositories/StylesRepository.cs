@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using react_template_data.Data;
 using react_template_data.Data.Master;
+using react_template_data.IoC;
 using System;
 using System.Linq.Expressions;
 using System.Threading;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace react_template_data.Repositories
 {
-    public class StylesRepository : BaseRepository<Style>
+    public class StylesRepository : BaseRepository<Style>, IMasterContextRepository
     {
         public StylesRepository(MasterContext context) : base(context)
         { }
