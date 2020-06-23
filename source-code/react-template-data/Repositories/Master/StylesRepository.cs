@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace react_template_data.Repositories
+namespace react_template_data.Repositories.Master
 {
     public class StylesRepository : BaseRepository<Style>, IMasterContextRepository
     {

@@ -6,8 +6,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using react_template.Helpers.Filters;
 using react_template.Models.Results;
-using react_template_data.Data;
-using react_template_data.Repositories;
+using react_template_data.Repositories.Master;
+using react_template_data.Repositories.Owner;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace react_template.Controllers

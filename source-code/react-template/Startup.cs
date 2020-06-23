@@ -13,7 +13,7 @@ using Npgsql;
 using react_template.Properties.Options;
 using react_template_data.Data;
 using react_template_data.IoC;
-using react_template_data.Repositories;
+using react_template_data.Repositories.Master;
 using Scrutor;
 using System;
 

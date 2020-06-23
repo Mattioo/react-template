@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Configurations\Client\**" />
+    <EmbeddedResource Remove="Models\Configurations\Client\**" />
+    <None Remove="Models\Configurations\Client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
@@ -21,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\Owner\" />
-    <Folder Include="Models\Configurations\Client\" />
   </ItemGroup>
 
 </Project>
