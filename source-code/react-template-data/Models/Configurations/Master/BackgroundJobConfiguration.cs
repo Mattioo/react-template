@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using react_template_data.Data.Master;
-using System;
 
 namespace react_template_data.Models.Configurations.Master
 {

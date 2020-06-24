@@ -78,7 +78,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 6, 21, 21, 48, 58, 154, DateTimeKind.Utc).AddTicks(3613));
+                        .HasDefaultValue(new DateTime(2020, 6, 24, 13, 36, 20, 216, DateTimeKind.Utc).AddTicks(2588));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -97,6 +97,17 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("Clients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Database = "react-template-owner-dev",
+                            LicenceNo = "default",
+                            LicenceSince = new DateTime(2020, 6, 24, 13, 36, 20, 224, DateTimeKind.Utc).AddTicks(2813),
+                            Name = "default"
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Style", b =>

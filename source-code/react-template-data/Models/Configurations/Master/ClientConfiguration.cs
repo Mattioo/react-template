@@ -34,6 +34,10 @@ namespace react_template_data.Models.Configurations.Master
             builder.HasIndex(c => c.LicenceNo)
                 .IsUnique();
             #endregion
+
+            builder.HasData(
+                new Client { Id = 1, Name = "default", Database = "react-template-owner-dev", LicenceNo = "default", LicenceSince = DateTime.UtcNow, Active = true }
+            );
         }
     }
 }

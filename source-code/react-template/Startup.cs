@@ -1,3 +1,5 @@
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +18,8 @@ using react_template_data.IoC;
 using react_template_data.Repositories.Master;
 using Scrutor;
 using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace react_template
 {
@@ -70,7 +74,14 @@ namespace react_template
                 .WithScopedLifetime()
             );
 
-            services.Configure<StylesOptions>(Configuration.GetSection(StylesOptions.Name));
+            #region PDF
+            var pdfOptions = Configuration.GetSection(PdfOptions.Name);
+            services.Configure<PdfOptions>(pdfOptions);
+            NativeLibrary.Load(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",
+                "libs", "libwkhtmltox", pdfOptions.GetValue<string>("OS"), "libwkhtmltox"));
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            #endregion
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _frontOfficeCors,
@@ -81,7 +92,7 @@ namespace react_template
                     .AllowAnyMethod();
                 });
             });
-            services.AddControllers();
+            services.AddControllers().AddControllersAsServices();
 
             services.AddSwaggerGen(c =>
             {
