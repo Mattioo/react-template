@@ -17,7 +17,9 @@ class App extends Component {
     }
 
     render() {
-        this.setStyles(this.state.client);
+        setTimeout(async () =>
+            await this.setStyles(this.state.client), 0
+        );
         return (
             <div>
                 <p className="color">Lorem ipsum</p>
@@ -27,23 +29,21 @@ class App extends Component {
 
     async setStyles(url) {
         let conf = config();
-        fetch(`${conf.backoffice.url}/${conf.backoffice.paths.styles}?url=${url}`)
-            .then(async (response) => {
-                if (response.ok) {
-                    const styles = await response.json();
-                    let link = document.head.querySelector('link[rel="stylesheet"]');
-                    if (link) {
-                        let href = `./styles/${styles.dict}/${styles.file}`;
-                        if (styles.file === 'bundle.css') {
-                            href += `?v=${new Date().getTime()}`;
-                        }
-                        link.setAttribute('href', href);
-                    }
+        let response = await fetch(`${conf.backoffice.url}/${conf.backoffice.paths.styles}?url=${url}`);
+        if (response.ok) {
+            const styles = await response.json();
+            let link = document.head.querySelector('link[rel="stylesheet"]');
+            if (link) {
+                let href = `./styles/${styles.dict}/${styles.file}`;
+                if (styles.file === 'bundle.css') {
+                    href += `?v=${new Date().getTime()}`;
                 }
-        })
-        .catch((err) => {
+                link.setAttribute('href', href);
+            }
+        }
+        else {
             console.log(`Error: ${err}`);
-        });
+        }
     }
 }
 export default App;

@@ -77,8 +77,10 @@ namespace react_template
             #region PDF
             var pdfOptions = Configuration.GetSection(PdfOptions.Name);
             services.Configure<PdfOptions>(pdfOptions);
-            NativeLibrary.Load(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot",
-                "libs", "libwkhtmltox", pdfOptions.GetValue<string>("OS"), "libwkhtmltox"));
+
+            var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
+            NativeLibrary.Load(pdfLibraryPath);
+
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             #endregion
 
@@ -92,6 +94,14 @@ namespace react_template
                     .AllowAnyMethod();
                 });
             });
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication("Bearer", options =>
+                {
+                    options.ApiName = "api";
+                    options.Authority = "https://localhost:44377";
+                });
+
             services.AddControllers().AddControllersAsServices();
 
             services.AddSwaggerGen(c =>
@@ -135,10 +145,10 @@ namespace react_template
             });
             #endregion
 
+            app.UseCors(_frontOfficeCors);
             app.UseRouting();
 
-            app.UseCors(_frontOfficeCors);
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

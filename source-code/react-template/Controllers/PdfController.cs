@@ -1,5 +1,6 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -25,11 +26,12 @@ namespace react_template.Controllers
             _converter = converter;
         }
 
-        [HttpGet]
+        [Authorize]
+        [HttpGet("create")]
         [SwaggerResponse(400, "Problem podczas pobierania informacji o kaskadowym arkuszu styli")]
         [SwaggerResponse(200, "Wygenerowany dokument PDF", Type = typeof(FileContentResult))]
         [SwaggerOperation("Generuje dokument PDF na podstawie przasłanego kodu HTML", "Generator wykorzystuje kaskadowy arkusz styli przypisany do klienta")]
-        public async Task<IActionResult> Create([FromBody] string html, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Create( string html, CancellationToken cancellationToken = default)
         {
             var host = new Uri(HttpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
             var response = await _app.Styles(host, cancellationToken);

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "d6418285d4d00e957e9e";
+/******/ 	var hotCurrentHash = "a682842f5912e4c5ddb2";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -40279,7 +40279,26 @@ var App = /*#__PURE__*/function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_3___default()(App, [{
     key: "render",
     value: function render() {
-      this.setStyles(this.state.client);
+      var _this2 = this;
+
+      setTimeout( /*#__PURE__*/_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _this2.setStyles(_this2.state.client);
+
+              case 2:
+                return _context.abrupt("return", _context.sent);
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      })), 0);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("p", {
         className: "color"
       }, "Lorem ipsum"));
@@ -40288,57 +40307,47 @@ var App = /*#__PURE__*/function (_Component) {
     key: "setStyles",
     value: function () {
       var _setStyles = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(url) {
-        var conf;
+        var conf, response, styles, link, href;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 conf = config();
-                fetch("".concat(conf.backoffice.url, "/").concat(conf.backoffice.paths.styles, "?url=").concat(url)).then( /*#__PURE__*/function () {
-                  var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(response) {
-                    var styles, link, href;
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            if (!response.ok) {
-                              _context.next = 6;
-                              break;
-                            }
+                _context2.next = 3;
+                return fetch("".concat(conf.backoffice.url, "/").concat(conf.backoffice.paths.styles, "?url=").concat(url));
 
-                            _context.next = 3;
-                            return response.json();
+              case 3:
+                response = _context2.sent;
 
-                          case 3:
-                            styles = _context.sent;
-                            link = document.head.querySelector('link[rel="stylesheet"]');
+                if (!response.ok) {
+                  _context2.next = 12;
+                  break;
+                }
 
-                            if (link) {
-                              href = "./styles/".concat(styles.dict, "/").concat(styles.file);
+                _context2.next = 7;
+                return response.json();
 
-                              if (styles.file === 'bundle.css') {
-                                href += "?v=".concat(new Date().getTime());
-                              }
+              case 7:
+                styles = _context2.sent;
+                link = document.head.querySelector('link[rel="stylesheet"]');
 
-                              link.setAttribute('href', href);
-                            }
+                if (link) {
+                  href = "./styles/".concat(styles.dict, "/").concat(styles.file);
 
-                          case 6:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
+                  if (styles.file === 'bundle.css') {
+                    href += "?v=".concat(new Date().getTime());
+                  }
 
-                  return function (_x2) {
-                    return _ref.apply(this, arguments);
-                  };
-                }())["catch"](function (err) {
-                  console.log("Error: ".concat(err));
-                });
+                  link.setAttribute('href', href);
+                }
 
-              case 2:
+                _context2.next = 13;
+                break;
+
+              case 12:
+                console.log("Error: ".concat(err));
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -40459,8 +40468,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\m_korolow\Desktop\react-template\source-code\react-template\ClientApp\node_modules\webpack-dev-server\client\index.js?http://localhost:9000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:9000");
-__webpack_require__(/*! C:\Users\m_korolow\Desktop\react-template\source-code\react-template\ClientApp\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
+__webpack_require__(/*! C:\Repositories\react-template\source-code\react-template\ClientApp\node_modules\webpack-dev-server\client\index.js?http://localhost:9000 */"./node_modules/webpack-dev-server/client/index.js?http://localhost:9000");
+__webpack_require__(/*! C:\Repositories\react-template\source-code\react-template\ClientApp\node_modules\webpack\hot\dev-server.js */"./node_modules/webpack/hot/dev-server.js");
 module.exports = __webpack_require__(/*! ./src/index.jsx */"./src/index.jsx");
 
 
