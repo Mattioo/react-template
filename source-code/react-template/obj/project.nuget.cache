@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KAPLufPmRrt3TkOcvzBneN8AOeEpfuEZfkil2yedvQTSXPlUdUf7VgPyyF5ejWfuhJJIa3gIqIaUA5wUfbYzFw==",
+  "dgSpecHash": "gwfA9rrt+UqsaSYkzyLF3wOgnWl6Ae+xmJuUcsOJ1TKbSNft2sEDFzjogcW+mYRVTVyAeB0jP0FhqRpd8M18XQ==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj",
   "expectedPackageFiles": [
@@ -13,6 +13,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\identitymodel.aspnetcore.oauth2introspection\\4.0.1\\identitymodel.aspnetcore.oauth2introspection.4.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\identityserver4.accesstokenvalidation\\3.0.1\\identityserver4.accesstokenvalidation.3.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.0\\microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\3.1.6\\microsoft.aspnetcore.authentication.openidconnect.3.1.6.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

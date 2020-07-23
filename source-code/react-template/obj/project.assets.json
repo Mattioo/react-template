@@ -160,6 +160,21 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.1.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -1989,6 +2004,21 @@
         "lib/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.1.6": {
+      "sha512": "ZKKtkOdory4CkHobKlEvbeEHFMp9oWHSFwJ+KOLcEaE6iCE7OOHkjXTuJzxoRz18b1pgfVlxCaxtihmxBmuIow==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.openidconnect/3.1.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll",
+        "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.OpenIdConnect.xml",
+        "microsoft.aspnetcore.authentication.openidconnect.3.1.6.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.openidconnect.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -6162,6 +6192,7 @@
       "Hangfire.AspNetCore >= 1.7.11",
       "Hangfire.PostgreSql >= 1.7.0",
       "IdentityServer4.AccessTokenValidation >= 3.0.1",
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 3.1.6",
       "Newtonsoft.Json >= 12.0.3",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 3.1.4",
       "Scrutor >= 3.2.1",
@@ -6228,6 +6259,10 @@
           "IdentityServer4.AccessTokenValidation": {
             "target": "Package",
             "version": "[3.0.1, )"
+          },
+          "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+            "target": "Package",
+            "version": "[3.1.6, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

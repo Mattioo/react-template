@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using react_template.Properties.Options;
@@ -95,12 +96,27 @@ namespace react_template
                 });
             });
 
-            services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication("Bearer", options =>
-                {
-                    options.ApiName = "api";
-                    options.Authority = "https://localhost:44377";
-                });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "cookie";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("cookie")
+            .AddOpenIdConnect("oidc", options =>
+            {
+                options.Authority = "https://localhost:44377";
+                options.ClientId = "react-template";
+                options.ClientSecret = "P@ssw0rd";
+
+                options.ResponseType = "code";
+                options.ResponseMode = "query";
+
+                options.Scope.Add("identity-scope");
+                options.SaveTokens = true;
+                options.UsePkce = true;
+            });
+
+            IdentityModelEventSource.ShowPII = true;
 
             services.AddControllers().AddControllersAsServices();
 
@@ -146,6 +162,8 @@ namespace react_template
             #endregion
 
             app.UseCors(_frontOfficeCors);
+
+            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication();

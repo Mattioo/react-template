@@ -31,7 +31,7 @@ namespace react_template.Controllers
         [SwaggerResponse(400, "Problem podczas pobierania informacji o kaskadowym arkuszu styli")]
         [SwaggerResponse(200, "Wygenerowany dokument PDF", Type = typeof(FileContentResult))]
         [SwaggerOperation("Generuje dokument PDF na podstawie przasłanego kodu HTML", "Generator wykorzystuje kaskadowy arkusz styli przypisany do klienta")]
-        public async Task<IActionResult> Create( string html, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Create(string html, CancellationToken cancellationToken = default)
         {
             var host = new Uri(HttpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
             var response = await _app.Styles(host, cancellationToken);

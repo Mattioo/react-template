@@ -19,6 +19,8 @@ namespace react_template_identity
                 .AddInMemoryApiScopes(Config.Scopes())
                 .AddTestUsers(Config.Users())
                 .AddDeveloperSigningCredential();
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,16 +31,13 @@ namespace react_template_identity
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseIdentityServer();
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Server works!");
-                });
-            });
+            app.UseIdentityServer();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
 }

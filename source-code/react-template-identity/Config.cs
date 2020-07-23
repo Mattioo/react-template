@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 using System.Collections.Generic;
@@ -12,30 +13,37 @@ namespace react_template_identity
 {
     public class Config
     {
+        public static ApiScope IdentityScope { get; } = new ApiScope("identity-scope", "identity access");
+        public static string Role { get; } = "role";
+
         public static IEnumerable<ApiScope> Scopes()
         {
             return new List<ApiScope>
             {
-                new ApiScope("read", "read access"),
-                new ApiScope("write", "write access")
+                IdentityScope
             };
         }
 
         public static IEnumerable<Client> Clients()
         {
-            return new List<Client>
-            {
+            return new List<Client> {
                 new Client
                 {
                     ClientId = "react-template",
                     ClientName = "Front office",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = new List<Secret> {
-                        new Secret("P@ssw0rd".Sha256())
+                    ClientSecrets = new List<Secret> {new Secret("P@ssw0rd".Sha256())},
+    
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = new List<string> {"https://localhost:44394/signin-oidc"},
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityScope.Name
                     },
-                    AllowedScopes = new List<string> {
-                        "read"
-                    }
+                    RequirePkce = true,
+                    AllowPlainTextPkce = false
                 }
             };
         }
@@ -49,9 +57,9 @@ namespace react_template_identity
                 new IdentityResources.Email(),
                 new IdentityResource
                 {
-                    Name = "role",
+                    Name = Role,
                     UserClaims = new List<string> {
-                        "role"
+                        Role
                     }
                 }
             };
@@ -65,16 +73,15 @@ namespace react_template_identity
                 {
                     Name = "api",
                     DisplayName = "API #1",
-                    Description = "Allow the application to access API #1 on your behalf",
+                    Description = "Allow the application to access API #1",
                     Scopes = new List<string> {
-                        "read",
-                        "write"
+                        IdentityScope.Name
                     },
                     ApiSecrets = new List<Secret> {
                         new Secret("ScopeSecret".Sha256())
                     },
                     UserClaims = new List<string> {
-                        "role"
+                        Role
                     }
                 }
             };
@@ -83,16 +90,16 @@ namespace react_template_identity
         public static List<TestUser> Users()
         {
             return new List<TestUser> {
-            new TestUser {
-                SubjectId = "5BE86359-073C-434B-AD2D-A3932222DABE",
-                Username = "scott",
-                Password = "password",
-                Claims = new List<Claim> {
-                    new Claim(JwtClaimTypes.Email, "scott@scottbrady91.com"),
-                    new Claim(JwtClaimTypes.Role, "admin")
+                new TestUser {
+                    SubjectId = "5BE86359-073C-434B-AD2D-A3932222DABE",
+                    Username = "mattioo",
+                    Password = "P@ssw0rd",
+                    Claims = new List<Claim> {
+                        new Claim(JwtClaimTypes.Email, "mattioo@mailinator.com"),
+                        new Claim(JwtClaimTypes.Role, "admin")
+                    }
                 }
-            }
-        };
+            };
         }
     }
 }
