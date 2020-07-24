@@ -20,6 +20,7 @@ using react_template_data.Repositories.Master;
 using Scrutor;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace react_template
@@ -85,6 +86,8 @@ namespace react_template
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             #endregion
 
+            var identityOptions = Configuration.GetSection("IdentityOptions");
+
             services.AddCors(options =>
             {
                 options.AddPolicy(name: _frontOfficeCors,
@@ -104,19 +107,18 @@ namespace react_template
             .AddCookie("cookie")
             .AddOpenIdConnect("oidc", options =>
             {
-                options.Authority = "https://localhost:44377";
-                options.ClientId = "react-template";
-                options.ClientSecret = "P@ssw0rd";
+                options.ClientId = Assembly.GetExecutingAssembly().GetName().Name;
+
+                options.Authority = identityOptions.GetValue<string>("Address");
+                options.Scope.Add(identityOptions.GetValue<string>("Scope"));
+                options.ClientSecret = identityOptions.GetValue<string>("Secret");
 
                 options.ResponseType = "code";
                 options.ResponseMode = "query";
-
-                options.Scope.Add("identity-scope");
+                
                 options.SaveTokens = true;
                 options.UsePkce = true;
             });
-
-            IdentityModelEventSource.ShowPII = true;
 
             services.AddControllers().AddControllersAsServices();
 
@@ -136,6 +138,7 @@ namespace react_template
         {
             if (env.IsDevelopment())
             {
+                IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
 
@@ -162,8 +165,6 @@ namespace react_template
             #endregion
 
             app.UseCors(_frontOfficeCors);
-
-            app.UseStaticFiles();
             app.UseRouting();
 
             app.UseAuthentication();

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -35,8 +34,6 @@ namespace react_template_identity
             app.UseRouting();
 
             app.UseIdentityServer();
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
