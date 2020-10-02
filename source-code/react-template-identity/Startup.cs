@@ -14,7 +14,6 @@ namespace react_template_identity
             services.AddIdentityServer()
                 .AddInMemoryClients(Config.Clients())
                 .AddInMemoryIdentityResources(Config.Resources())
-                .AddInMemoryApiResources(Config.ApiResources())
                 .AddInMemoryApiScopes(Config.Scopes())
                 .AddTestUsers(Config.Users())
                 .AddDeveloperSigningCredential();
@@ -32,6 +31,7 @@ namespace react_template_identity
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseIdentityServer();
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
