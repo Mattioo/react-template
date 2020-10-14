@@ -2,6 +2,8 @@ using DinkToPdf;
 using DinkToPdf.Contracts;
 using Hangfire;
 using Hangfire.PostgreSql;
+using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -109,23 +111,21 @@ namespace react_template
 
             services.AddAuthentication(options =>
             {
-                options.DefaultScheme = "cookie";
+                options.DefaultScheme = "Cookies";
                 options.DefaultChallengeScheme = "oidc";
             })
-            .AddCookie("cookie")
+            .AddCookie("Cookies")
             .AddOpenIdConnect("oidc", options =>
             {
-                options.ClientId = Assembly.GetExecutingAssembly().GetName().Name;
+                options.Authority = "https://localhost:44377";
 
-                options.Authority = identityOptions.GetValue<string>("Address");
-                options.Scope.Add(identityOptions.GetValue<string>("Scope"));
-                options.ClientSecret = identityOptions.GetValue<string>("Secret");
-
+                options.ClientId = "react-template";
+                options.ClientSecret = "P@ssw0rd";
                 options.ResponseType = "code";
-                options.ResponseMode = "query";
-                
+
                 options.SaveTokens = true;
-                options.UsePkce = true;
+
+                options.Scope.Add("identity-scope");
             });
 
             services.AddSwaggerGen(c =>
@@ -172,7 +172,7 @@ namespace react_template
 
             app.UseCors(_frontOfficeCors);
             app.UseRouting();
-
+       
             app.UseAuthentication();
             app.UseAuthorization();
 
