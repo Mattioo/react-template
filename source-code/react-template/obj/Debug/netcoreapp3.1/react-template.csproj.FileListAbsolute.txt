@@ -70,7 +70,6 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\zh\Hangfire.Core.resources.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-data.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-data.pdb
-C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csprojAssemblyReference.cache
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.AssemblyInfoInputs.cache
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.AssemblyInfo.cs
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csproj.CoreCompileInputs.cache

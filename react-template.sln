@@ -18,6 +18,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "react-template-data", "source-code\react-template-data\react-template-data.csproj", "{E27B9F2B-B701-44ED-AC4E-84EBFD1B17AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "react-template-identity", "source-code\react-template-identity\react-template-identity.csproj", "{E17D87BE-1351-4227-B1D3-48E43B74A7EF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E27B9F2B-B701-44ED-AC4E-84EBFD1B17AB} = {E27B9F2B-B701-44ED-AC4E-84EBFD1B17AB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
