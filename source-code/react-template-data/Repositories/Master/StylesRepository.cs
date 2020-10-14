@@ -14,20 +14,18 @@ namespace react_template_data.Repositories.Master
         public StylesRepository(MasterContext context) : base(context)
         { }
 
-        public virtual Task<Style> GetDefault(CancellationToken cancellationToken)
-            => Context.Set<Style>()
+        public async Task<Style> GetDefault(CancellationToken cancellationToken)
+            => await Context.Set<Style>()
                 .AsNoTracking()
                 .SingleOrDefaultAsync(s => s.Default && s.Active, cancellationToken);
 
         public async Task<Style> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
-        {
-            var found = await Context.Set<Url>()
-                .AsNoTracking()
-                .Include(u => u.Client)
-                .Include(u => u.Style)
-                .SingleOrDefaultAsync(filter, cancellationToken);
-
-            return found?.Style;
-        }
+            => (
+                await Context.Set<Url>()
+                 .AsNoTracking()
+                 .Include(u => u.Client)
+                 .Include(u => u.Style)
+                 .SingleOrDefaultAsync(filter, cancellationToken)
+            )?.Style;
     }
 }

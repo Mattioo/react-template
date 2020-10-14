@@ -13,7 +13,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using Npgsql;
+using react_template.IoC;
 using react_template.Properties.Options;
+using react_template.Services;
 using react_template_data.Data;
 using react_template_data.IoC;
 using react_template_data.Repositories.Master;
@@ -47,11 +49,25 @@ namespace react_template
                 .AddClasses()
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                 .AsSelf()
-                .WithScopedLifetime()
+                .WithTransientLifetime()
             );
+
+            #region Rejestracja bilbioteki generuj¹cej pliki PDF
+            var pdfOptions = Configuration.GetSection(PdfOptions.Name);
+            services.Configure<PdfOptions>(pdfOptions);
+
+            var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
+            NativeLibrary.Load(pdfLibraryPath);
+
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+            #endregion
 
             /* REJESTRACJA W KONTENERZE DI SERWISU UMO¯LIWIAJ¥CEGO DOSTÊP DO KONTEKSTU HTTP */
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ STYLI */
+            services.AddTransient<IStylesService, StylesService>();
+            /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
+            services.AddTransient<IPdfService, PdfService>();
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALE¯NEGO OD HOSTA W ADRESIE ¯¥DANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
@@ -66,25 +82,17 @@ namespace react_template
 
                 options.UseNpgsql(builder.ConnectionString);
             },
-            ServiceLifetime.Scoped);
+            ServiceLifetime.Transient);
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
             services.Scan(scan => scan.FromAssemblyOf<IOwnerContextRepository>()
                 .AddClasses()
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                 .AsSelf()
-                .WithScopedLifetime()
+                .WithTransientLifetime()
             );
 
-            #region PDF
-            var pdfOptions = Configuration.GetSection(PdfOptions.Name);
-            services.Configure<PdfOptions>(pdfOptions);
-
-            var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
-            NativeLibrary.Load(pdfLibraryPath);
-
-            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
-            #endregion
+            services.AddControllers();
 
             var identityOptions = Configuration.GetSection("IdentityOptions");
 
@@ -119,8 +127,6 @@ namespace react_template
                 options.SaveTokens = true;
                 options.UsePkce = true;
             });
-
-            services.AddControllers().AddControllersAsServices();
 
             services.AddSwaggerGen(c =>
             {

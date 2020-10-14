@@ -16,19 +16,21 @@
     <PackageReference Include="Scrutor" Version="3.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.5.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ClientApp\dist\styles\" />
     <Folder Include="ClientApp\dist\styles\default\" />
     <Folder Include="ClientApp\dist\styles\other\" />
-    <Folder Include="IoC\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\react-template-data\react-template-data.csproj" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="cd ClientApp&#xD;&#xA;npm run dev&#xD;&#xA;" />
+  </Target>
 
 </Project>
