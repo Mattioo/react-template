@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0B/oRLr2Vvy+XXene0UeaxclRaZ4yVMY4s/aMKPF+7MUEhy733RYgbslYYs1FQ52J6Z5MetxdxrNhHWIqaOBuA==",
+  "dgSpecHash": "1BYC6wSqRRpMq/q/fQusuEU+k40JqNOqXurIBEsvj+h2D0ZliICUxWGkPUhlJhsijcgqKnauw7Im/14rw7XHFA==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\hangfire.aspnetcore\\1.7.11\\hangfire.aspnetcore.1.7.11.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\hangfire.core\\1.7.11\\hangfire.core.1.7.11.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\hangfire.postgresql\\1.7.0\\hangfire.postgresql.1.7.0.nupkg.sha512",
-    "C:\\Users\\m.korolow\\.nuget\\packages\\identitymodel\\4.0.0\\identitymodel.4.0.0.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\identitymodel\\4.3.1\\identitymodel.4.3.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\identitymodel.aspnetcore.oauth2introspection\\4.0.1\\identitymodel.aspnetcore.oauth2introspection.4.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\identityserver4.accesstokenvalidation\\3.0.1\\identityserver4.accesstokenvalidation.3.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.0\\microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",
@@ -121,7 +121,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.security.cryptography.x509certificates\\4.1.0\\system.security.cryptography.x509certificates.4.1.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.text.encoding.extensions\\4.0.11\\system.text.encoding.extensions.4.0.11.nupkg.sha512",
-    "C:\\Users\\m.korolow\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\system.text.encodings.web\\4.7.0\\system.text.encodings.web.4.7.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.text.regularexpressions\\4.1.0\\system.text.regularexpressions.4.1.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",

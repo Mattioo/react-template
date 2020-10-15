@@ -82,3 +82,4 @@ C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.dll
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.pdb
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.genruntimeconfig.cache
+C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csprojAssemblyReference.cache

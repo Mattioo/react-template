@@ -1,26 +1,24 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using react_template_data;
+using react_template_data.Repositories.Master;
+using System;
 
 namespace react_template_identity
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IServiceProvider ServiceProvider(IServiceCollection services)
+            => services.BuildServiceProvider();
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Repositories();
+            services.AddRepositories();
+
+            //var clientRepository = ServiceProvider(services).GetService<ClientsRepository>();
+            //var client = clientRepository.Get(c => c.Active, default).Result;         
 
             services.AddIdentityServer()
                 .AddInMemoryClients(Config.Clients())
@@ -32,7 +30,6 @@ namespace react_template_identity
             services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

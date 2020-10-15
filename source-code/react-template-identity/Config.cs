@@ -35,8 +35,6 @@ namespace react_template_identity
                     },
 
                     AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
-                    RequirePkce = true,
 
                     RedirectUris = new List<string> {"https://localhost:44394/signin-oidc"},
                     PostLogoutRedirectUris = { "https://localhost:44394/signout-callback-oidc" },

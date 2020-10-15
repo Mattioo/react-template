@@ -24,7 +24,7 @@ namespace react_template_data
             .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template-data", $"appsettings.{Env}.json"), true)
             .Build();
 
-        public static IServiceCollection Repositories(this IServiceCollection services)
+        public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             /* REJESTRACJA W KONTENERZE DI SERWISU UMOŻLIWIAJĄCEGO DOSTĘP DO KONTEKSTU HTTP */
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
@@ -43,15 +43,19 @@ namespace react_template_data
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
             {
-                var host = new Uri(serviceProvider.GetService<IHttpContextAccessor>().HttpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
-                var repository = serviceProvider.GetService<ClientsRepository>();
-                var client = repository.Get(u => u.Path == host, default);
-                var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString("owner"))
+                var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+                if (httpContext is HttpContext)
                 {
-                    Database = client.Result?.Database
-                };
+                    var host = new Uri(httpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
+                    var repository = serviceProvider.GetService<ClientsRepository>();
+                    var client = repository.Get(u => u.Path == host, default);
+                    var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString("owner"))
+                    {
+                        Database = client.Result?.Database
+                    };
 
-                options.UseNpgsql(builder.ConnectionString);
+                    options.UseNpgsql(builder.ConnectionString);
+                }
             },
             ServiceLifetime.Transient);
 
@@ -66,7 +70,7 @@ namespace react_template_data
             return services;
         }
 
-       public static IServiceCollection Hangfire(this IServiceCollection services)
+        public static IServiceCollection AddHangfire(this IServiceCollection services)
        {
             services.AddHangfire(config =>
                 config.UsePostgreSqlStorage(ConfigurationBuilder.GetConnectionString("master"))

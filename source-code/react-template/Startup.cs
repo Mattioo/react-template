@@ -49,7 +49,7 @@ namespace react_template
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
             services.AddTransient<IPdfService, PdfService>();
 
-            services.Repositories();
+            services.AddRepositories();
             services.AddControllers();
 
             services.AddCors(options =>
@@ -57,9 +57,10 @@ namespace react_template
                 options.AddDefaultPolicy(
                 builder =>
                 {
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
                 });
             });
 
@@ -85,7 +86,7 @@ namespace react_template
                 c.EnableAnnotations();
             });
 
-            services.Hangfire();
+            services.AddHangfire();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
