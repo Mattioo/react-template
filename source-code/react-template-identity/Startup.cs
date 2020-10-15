@@ -17,8 +17,8 @@ namespace react_template_identity
         {
             services.AddRepositories();
 
-            //var clientRepository = ServiceProvider(services).GetService<ClientsRepository>();
-            //var client = clientRepository.Get(c => c.Active, default).Result;         
+            var domainsystemsRepository = ServiceProvider(services).GetService<DomainSystemsRepository>();
+            var domainSystem = domainsystemsRepository.Get(c => c.Active, default).Result;         
 
             services.AddIdentityServer()
                 .AddInMemoryClients(Config.Clients())
