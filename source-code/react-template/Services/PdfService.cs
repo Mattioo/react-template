@@ -24,7 +24,7 @@ namespace react_template.Services
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 10 },
-                DocumentTitle = "PDF File"
+                DocumentTitle = "Dokument"
             };
 
             var objectSettings = new ObjectSettings
@@ -32,8 +32,8 @@ namespace react_template.Services
                 PagesCount = true,
                 HtmlContent = html,
                 WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = pathToStyle },
-                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "PDF Footer" }
+                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Strona [page] z [toPage]", Line = true },
+                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Mateusz Korolow 2020 ®" }
             };
 
             var pdf = new HtmlToPdfDocument()

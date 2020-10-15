@@ -9,7 +9,7 @@ namespace react_template_data.Data
         public OwnerContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<OwnerContext>();
-            var connectionString = Startup.ConfigurationBuilder.GetConnectionString("owner");
+            var connectionString = Registration.ConfigurationBuilder.GetConnectionString("owner");
             builder.UseNpgsql(connectionString);
 
             return new OwnerContext(builder.Options);

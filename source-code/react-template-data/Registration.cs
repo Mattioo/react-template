@@ -15,7 +15,7 @@ using System.IO;
 
 namespace react_template_data
 {
-    public static class Startup
+    public static class Registration
     {
         private static readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -24,7 +24,7 @@ namespace react_template_data
             .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template-data", $"appsettings.{Env}.json"), true)
             .Build();
 
-        public static IServiceCollection RegisterRepositories(this IServiceCollection services)
+        public static IServiceCollection Repositories(this IServiceCollection services)
         {
             /* REJESTRACJA W KONTENERZE DI SERWISU UMOŻLIWIAJĄCEGO DOSTĘP DO KONTEKSTU HTTP */
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
@@ -66,12 +66,11 @@ namespace react_template_data
             return services;
         }
 
-       public static IServiceCollection RegisterHangfire(this IServiceCollection services)
+       public static IServiceCollection Hangfire(this IServiceCollection services)
        {
             services.AddHangfire(config =>
                 config.UsePostgreSqlStorage(ConfigurationBuilder.GetConnectionString("master"))
             );
-
             return services;
         }
     }

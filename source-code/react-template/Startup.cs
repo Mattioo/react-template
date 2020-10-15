@@ -1,12 +1,12 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Hangfire;
-using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using react_template.IoC;
@@ -30,10 +30,14 @@ namespace react_template
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            #region Rejestracja bilbioteki generuj¹cej pliki PDF
-            var pdfOptions = Configuration.GetSection(PdfOptions.Name);
-            services.Configure<PdfOptions>(pdfOptions);
-
+            #region Rejestracja konfiguracji
+            var identityServerSection = Configuration.GetSection(IdentityServerOptions.Name);
+            var identityServerOptions = new IdentityServerOptions();
+            
+            services.Configure<IdentityServerOptions>(identityServerSection);
+            identityServerSection.Bind(identityServerOptions);
+            #endregion
+            #region Rejestracja generatora wydruków
             var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
             NativeLibrary.Load(pdfLibraryPath);
 
@@ -45,14 +49,12 @@ namespace react_template
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
             services.AddTransient<IPdfService, PdfService>();
 
-            services.RegisterRepositories();
+            services.Repositories();
             services.AddControllers();
-
-            var identityOptions = Configuration.GetSection("IdentityOptions");
 
             services.AddCors(options =>
             {
-                options.AddPolicy(name: "cors",
+                options.AddDefaultPolicy(
                 builder =>
                 {
                     builder.AllowAnyOrigin()
@@ -69,15 +71,12 @@ namespace react_template
             .AddCookie("Cookies")
             .AddOpenIdConnect("oidc", options =>
             {
-                options.Authority = "https://localhost:44377";
-
-                options.ClientId = "react-template";
-                options.ClientSecret = "P@ssw0rd";
-                options.ResponseType = "code";
-
+                options.Authority = identityServerOptions.Authority;
+                options.ClientId = identityServerOptions.Client;
+                options.ClientSecret = identityServerOptions.Secret;
+                options.Scope.Add(identityServerOptions.Scope);
+                options.ResponseType = identityServerOptions.Response;
                 options.SaveTokens = true;
-
-                options.Scope.Add("identity-scope");
             });
 
             services.AddSwaggerGen(c =>
@@ -86,7 +85,7 @@ namespace react_template
                 c.EnableAnnotations();
             });
 
-            services.RegisterHangfire();
+            services.Hangfire();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -120,7 +119,7 @@ namespace react_template
             });
             #endregion
 
-            app.UseCors("cors");
+            app.UseCors();
             app.UseRouting();
        
             app.UseAuthentication();
