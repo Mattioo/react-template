@@ -21,9 +21,7 @@ namespace react_template_data.Models.Configurations.Master
                 .IsRequired();
 
             builder.HasKey(c => c.Id);
-            builder.HasIndex(c => c.Name)
-                .IsUnique();
-            builder.HasIndex(c => c.ClientId)
+            builder.HasIndex(c => new { c.Name, c.ClientId })
                 .IsUnique();
             #endregion
         }
