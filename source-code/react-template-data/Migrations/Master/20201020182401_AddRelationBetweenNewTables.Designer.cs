@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations
 {
     [DbContext(typeof(MasterContext))]
-    partial class MasterContextModelSnapshot : ModelSnapshot
+    [Migration("20201020182401_AddRelationBetweenNewTables")]
+    partial class AddRelationBetweenNewTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 10, 20, 20, 27, 9, 621, DateTimeKind.Utc).AddTicks(6793));
+                        .HasDefaultValue(new DateTime(2020, 10, 20, 18, 24, 0, 975, DateTimeKind.Utc).AddTicks(9969));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -105,7 +107,7 @@ namespace react_template_data.Migrations
                             Active = true,
                             Database = "react-template-owner-dev",
                             LicenceNo = "default",
-                            LicenceSince = new DateTime(2020, 10, 20, 20, 27, 9, 631, DateTimeKind.Utc).AddTicks(5859),
+                            LicenceSince = new DateTime(2020, 10, 20, 18, 24, 0, 982, DateTimeKind.Utc).AddTicks(7592),
                             Name = "default"
                         });
                 });
@@ -245,11 +247,6 @@ namespace react_template_data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(true);
 
-                    b.Property<bool>("ApiScope")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
                     b.Property<int>("DomainSystemId")
                         .HasColumnType("integer");
 
@@ -262,7 +259,7 @@ namespace react_template_data.Migrations
 
                     b.HasIndex("DomainSystemId");
 
-                    b.HasIndex("Name", "DomainSystemId", "ApiScope")
+                    b.HasIndex("Name")
                         .IsUnique();
 
                     b.ToTable("Scopes");
@@ -272,7 +269,6 @@ namespace react_template_data.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            ApiScope = false,
                             DomainSystemId = 1,
                             Name = "openid"
                         },
@@ -280,7 +276,6 @@ namespace react_template_data.Migrations
                         {
                             Id = 2,
                             Active = true,
-                            ApiScope = false,
                             DomainSystemId = 1,
                             Name = "profile"
                         },
@@ -288,15 +283,6 @@ namespace react_template_data.Migrations
                         {
                             Id = 3,
                             Active = true,
-                            ApiScope = false,
-                            DomainSystemId = 1,
-                            Name = "custom"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Active = true,
-                            ApiScope = true,
                             DomainSystemId = 1,
                             Name = "custom"
                         });

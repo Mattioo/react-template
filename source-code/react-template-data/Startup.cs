@@ -15,7 +15,7 @@ using System.IO;
 
 namespace react_template_data
 {
-    public static class Registration
+    public static class Startup
     {
         private static readonly string Env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -24,58 +24,60 @@ namespace react_template_data
             .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template-data", $"appsettings.{Env}.json"), true)
             .Build();
 
-        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        public static IServiceCollection AddContext(this IServiceCollection services)
         {
             /* REJESTRACJA W KONTENERZE DI SERWISU UMOŻLIWIAJĄCEGO DOSTĘP DO KONTEKSTU HTTP */
-            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             /* REJESTRACJA W KONTENERZE DI NIEZMIENNEGO KONTEKSTU BAZY MASTER */
-            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConfigurationBuilder.GetConnectionString("master")), ServiceLifetime.Transient);
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConfigurationBuilder.GetConnectionString("master")),
+                ServiceLifetime.Singleton
+            );
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU MASTER */
-            services.Scan(scan => scan.FromAssemblyOf<IMasterContextRepository>()
-                .AddClasses()
+            services.Scan(scan => scan.FromCallingAssembly()
+                .AddClasses(t => t.AssignableTo(typeof(IMasterContextRepository)))
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                 .AsSelf()
-                .WithTransientLifetime()
+                .WithSingletonLifetime()
             );
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
-            {
-                var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
-                if (httpContext is HttpContext)
                 {
-                    var host = new Uri(httpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
-                    var repository = serviceProvider.GetService<ClientsRepository>();
-                    var client = repository.Get(u => u.Path == host, default);
-                    var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString("owner"))
+                    var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
+                    if (httpContext is HttpContext)
                     {
-                        Database = client.Result?.Database
-                    };
+                        var host = new Uri(httpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
+                        var repository = serviceProvider.GetService<ClientsRepository>();
+                        var client = repository.Get(u => u.Path == host, default);
+                        var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString("owner"))
+                        {
+                            Database = client.Result?.Database
+                        };
 
-                    options.UseNpgsql(builder.ConnectionString);
-                }
-            },
-            ServiceLifetime.Transient);
+                        options.UseNpgsql(builder.ConnectionString);
+                    }
+                },
+                ServiceLifetime.Scoped
+            );
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
-            services.Scan(scan => scan.FromAssemblyOf<IOwnerContextRepository>()
-                .AddClasses()
+            services.Scan(scan => scan.FromCallingAssembly()
+                .AddClasses(t => t.AssignableTo(typeof(IOwnerContextRepository)))
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
                 .AsSelf()
-                .WithTransientLifetime()
+                .WithScopedLifetime()
             );
 
             return services;
         }
 
         public static IServiceCollection AddHangfire(this IServiceCollection services)
-       {
-            services.AddHangfire(config =>
+        {
+            return services.AddHangfire(config =>
                 config.UsePostgreSqlStorage(ConfigurationBuilder.GetConnectionString("master"))
             );
-            return services;
         }
     }
 }

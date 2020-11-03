@@ -9,7 +9,7 @@ namespace react_template_data.Data
         public MasterContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<MasterContext>();
-            var connectionString = Registration.ConfigurationBuilder.GetConnectionString("master");
+            var connectionString = Startup.ConfigurationBuilder.GetConnectionString("master");
             builder.UseNpgsql(connectionString);
 
             return new MasterContext(builder.Options);

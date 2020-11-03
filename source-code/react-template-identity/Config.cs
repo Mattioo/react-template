@@ -12,7 +12,7 @@ namespace react_template_identity
 {
     public class Config
     {
-        public static ApiScope IdentityScope { get; } = new ApiScope("identity-scope", "access");
+        public static ApiScope IdentityScope { get; } = new ApiScope("custom", "access");
         public static string Role { get; } = "role";
 
         public static IEnumerable<ApiScope> Scopes()

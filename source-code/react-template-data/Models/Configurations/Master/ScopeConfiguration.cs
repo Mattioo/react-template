@@ -18,15 +18,21 @@ namespace react_template_data.Models.Configurations.Master
             builder.Property(c => c.Active)
                 .HasDefaultValue(true)
                 .IsRequired();
+            builder.Property(c => c.DomainSystemId)
+                .IsRequired();
+            builder.Property(c => c.ApiScope)
+                .HasDefaultValue(false)
+                .IsRequired();
 
-            builder.HasIndex(s => s.Name)
+            builder.HasIndex(s => new { s.Name, s.DomainSystemId, s.ApiScope })
                 .IsUnique();
             #endregion
 
             builder.HasData(
-                new Scope { Id = 1, Name = "openid", Active = true },
-                new Scope { Id = 2, Name = "profile", Active = true },
-                new Scope { Id = 3, Name = "custom", Active = true }
+                new Scope { Id = 1, Name = "openid", Active = true, DomainSystemId = 1 },
+                new Scope { Id = 2, Name = "profile", Active = true, DomainSystemId = 1 },
+                new Scope { Id = 3, Name = "custom", Active = true, DomainSystemId = 1 },
+                new Scope { Id = 4, Name = "custom", Active = true, DomainSystemId = 1, ApiScope = true }
             );
         }
     }

@@ -18,13 +18,15 @@ namespace react_template_data.Models.Configurations.Master
             builder.Property(c => c.Active)
                 .HasDefaultValue(true)
                 .IsRequired();
+            builder.Property(c => c.DomainSystemId)
+                .IsRequired();
 
             builder.HasIndex(s => s.Uri)
                 .IsUnique();
             #endregion
 
             builder.HasData(
-                new RedirectUri { Id = 1, Uri = "https://localhost:44394", Active = true }
+                new RedirectUri { Id = 1, Uri = "https://localhost:44394", Active = true, DomainSystemId = 1 }
             );
         }
     }

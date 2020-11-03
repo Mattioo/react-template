@@ -49,7 +49,7 @@ namespace react_template
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
             services.AddTransient<IPdfService, PdfService>();
 
-            services.AddRepositories();
+            services.AddContext();
             services.AddControllers();
 
             services.AddCors(options =>

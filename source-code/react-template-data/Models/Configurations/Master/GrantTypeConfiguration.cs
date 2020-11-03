@@ -18,13 +18,15 @@ namespace react_template_data.Models.Configurations.Master
             builder.Property(c => c.Active)
                 .HasDefaultValue(true)
                 .IsRequired();
+            builder.Property(c => c.DomainSystemId)
+                .IsRequired();
 
             builder.HasIndex(s => s.Name)
                 .IsUnique();
             #endregion
 
             builder.HasData(
-                new GrantType { Id = 1, Name = "authorization_code", Active = true }
+                new GrantType { Id = 1, Name = "authorization_code", Active = true, DomainSystemId = 1 }
             );
         }
     }

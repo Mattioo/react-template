@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using react_template_data;
 using react_template_data.Repositories.Master;
+using react_template_identity.IoC;
+using react_template_identity.Services;
 using System;
 
 namespace react_template_identity
@@ -15,17 +17,17 @@ namespace react_template_identity
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRepositories();
+            services.AddContext();
+            services.AddSingleton<IConfigurationService, ConfigurationService>();
 
-            var domainsystemsRepository = ServiceProvider(services).GetService<DomainSystemsRepository>();
-            var domainSystem = domainsystemsRepository.Get(c => c.Active, default).Result;         
+            var configurationService = ServiceProvider(services).GetService<IConfigurationService>();
+            var (clients, scopes) = configurationService.GetConfiguration();
 
             services.AddIdentityServer()
-                .AddInMemoryClients(Config.Clients())
+                .AddInMemoryClients(clients)
                 .AddInMemoryIdentityResources(Config.Resources())
-                .AddInMemoryApiScopes(Config.Scopes())
-                .AddTestUsers(Config.Users())
-                .AddDeveloperSigningCredential();
+                .AddInMemoryApiScopes(scopes);
+                //.AddProfileService<>();
 
             services.AddControllersWithViews();
         }

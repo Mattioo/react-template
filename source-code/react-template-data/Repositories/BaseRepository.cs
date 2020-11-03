@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using react_template_data.IoC;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,5 +21,10 @@ namespace react_template_data.Repositories
             => Context.Set<T>()
                 .AsNoTracking()
                 .SingleOrDefaultAsync(filter, cancellationToken);
+
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> filter)
+            => Context.Set<T>()
+                .AsNoTracking()
+                .Where(filter);
     }
 }
