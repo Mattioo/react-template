@@ -9,20 +9,22 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<Url> builder)
         {
             #region Columns
-            builder.HasKey(u => u.Id);
-            builder.Property(u => u.Id)
+            builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            builder.Property(u => u.Active)
-                .HasDefaultValue(false)
-                .IsRequired();
-            builder.HasOne(u => u.Client)
+
+            builder.HasOne(c => c.Client)
                 .WithMany(c => c.Urls)
                 .IsRequired();
-            builder.HasOne(u => u.Style)
-                .WithMany(s => s.Urls)
+            builder.HasOne(c => c.Style)
+                .WithMany(c => c.Urls)
                 .IsRequired();
 
-            builder.HasIndex(u => new { u.ClientId, u.StyleId, u.Path })
+            builder.Property(c => c.Active)
+                .HasDefaultValue(false)
+                .IsRequired();
+
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => new { c.ClientId, c.StyleId, c.Path })
                 .IsUnique();
             #endregion
         }

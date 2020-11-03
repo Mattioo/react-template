@@ -21,11 +21,11 @@ namespace react_template_identity
             services.AddSingleton<IConfigurationService, ConfigurationService>();
 
             var configurationService = ServiceProvider(services).GetService<IConfigurationService>();
-            var (clients, scopes) = configurationService.GetConfiguration();
+            var (clients, resources, scopes) = configurationService.GetConfiguration();
 
             services.AddIdentityServer()
                 .AddInMemoryClients(clients)
-                .AddInMemoryIdentityResources(Config.Resources())
+                .AddInMemoryIdentityResources(resources)
                 .AddInMemoryApiScopes(scopes);
                 //.AddProfileService<>();
 

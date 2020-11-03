@@ -9,14 +9,11 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<Scope> builder)
         {
             #region Columns
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id)
+            builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            builder.Property(s => s.Name)
+
+            builder.Property(c => c.Name)
                 .HasMaxLength(50)
-                .IsRequired();
-            builder.Property(c => c.Active)
-                .HasDefaultValue(true)
                 .IsRequired();
             builder.Property(c => c.DomainSystemId)
                 .IsRequired();
@@ -24,7 +21,12 @@ namespace react_template_data.Models.Configurations.Master
                 .HasDefaultValue(false)
                 .IsRequired();
 
-            builder.HasIndex(s => new { s.Name, s.DomainSystemId, s.ApiScope })
+            builder.Property(c => c.Active)
+                .HasDefaultValue(true)
+                .IsRequired();
+
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => new { c.Name, c.DomainSystemId, c.ApiScope })
                 .IsUnique();
             #endregion
 

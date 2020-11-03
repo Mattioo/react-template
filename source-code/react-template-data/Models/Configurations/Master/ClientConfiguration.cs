@@ -10,9 +10,9 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<Client> builder)
         {
             #region Columns
-            builder.HasKey(c => c.Id);
             builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
+
             builder.Property(c => c.Name)
                 .HasMaxLength(50)
                 .IsRequired();
@@ -25,10 +25,12 @@ namespace react_template_data.Models.Configurations.Master
             builder.Property(c => c.LicenceSince)
                 .HasDefaultValue(DateTime.UtcNow)
                 .IsRequired();
+
             builder.Property(c => c.Active)
                 .HasDefaultValue(false)
                 .IsRequired();
 
+            builder.HasKey(c => c.Id);
             builder.HasIndex(c => c.Name)
                 .IsUnique();
             builder.HasIndex(c => c.LicenceNo)

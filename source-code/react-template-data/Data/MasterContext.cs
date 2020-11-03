@@ -16,6 +16,7 @@ namespace react_template_data.Data
         public DbSet<Scope> Scopes { get; set; }
         public DbSet<RedirectUri> RedirectUris { get; set; }
         public DbSet<GrantType> GrantTypes { get; set; }
+        public DbSet<IdentityResource> IdentityResources { get; set; }
         public DbSet<DomainSystem> DomainSystems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,6 +28,7 @@ namespace react_template_data.Data
             builder.ApplyConfiguration(new ScopeConfiguration());
             builder.ApplyConfiguration(new RedirectUriConfiguration());
             builder.ApplyConfiguration(new GrantTypeConfiguration());
+            builder.ApplyConfiguration(new IdentityResourceConfiguration());
             builder.ApplyConfiguration(new DomainSystemConfiguration());
         }
     }

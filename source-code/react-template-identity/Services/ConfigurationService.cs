@@ -15,7 +15,7 @@ namespace react_template_identity.Services
             _domainSystemsRepository = domainSystemsRepository;
         }
 
-        public (IEnumerable<Client> clients, IEnumerable<ApiScope> scopes) GetConfiguration()
+        public (IEnumerable<Client> clients, IEnumerable<IdentityResource> resources, IEnumerable<ApiScope> scopes) GetConfiguration()
         {
             var clients = _domainSystemsRepository.GetAll(c => c.Active).ToList();
 
@@ -38,7 +38,13 @@ namespace react_template_identity.Services
                     PostLogoutRedirectUris = c.RedirectUris.Where(redirectUri => redirectUri.Active)
                     .Select(redirectUri => $"{redirectUri.Uri}/signout-callback-oidc")
                     .ToList()
-                }), 
+                }),
+                clients.SelectMany(c => c.IdentityResources.Where(resource => resource.Active))
+                    .GroupBy(resource => resource.Name)
+                    .Select(resource => new IdentityResource { 
+                        Name = resource.Key,
+                        UserClaims = resource.Select(r => r.Claim).ToList()
+                    }),
                 clients.SelectMany(c => c.Scopes
                     .Where(scope => scope.Active && scope.ApiScope))
                     .Select(scope => new ApiScope(scope.Name))

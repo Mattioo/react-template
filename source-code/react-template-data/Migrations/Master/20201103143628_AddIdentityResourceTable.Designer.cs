@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations
 {
     [DbContext(typeof(MasterContext))]
-    partial class MasterContextModelSnapshot : ModelSnapshot
+    [Migration("20201103143628_AddIdentityResourceTable")]
+    partial class AddIdentityResourceTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 15, 8, 5, 598, DateTimeKind.Utc).AddTicks(7041));
+                        .HasDefaultValue(new DateTime(2020, 11, 3, 14, 36, 27, 712, DateTimeKind.Utc).AddTicks(115));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -105,7 +107,7 @@ namespace react_template_data.Migrations
                             Active = true,
                             Database = "react-template-owner-dev",
                             LicenceNo = "default",
-                            LicenceSince = new DateTime(2020, 11, 3, 15, 8, 5, 611, DateTimeKind.Utc).AddTicks(9415),
+                            LicenceSince = new DateTime(2020, 11, 3, 14, 36, 27, 722, DateTimeKind.Utc).AddTicks(7100),
                             Name = "default"
                         });
                 });
@@ -227,144 +229,6 @@ namespace react_template_data.Migrations
                         .IsUnique();
 
                     b.ToTable("IdentityResources");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            Claim = "sub",
-                            DomainSystemId = 1,
-                            Name = "openid"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Active = true,
-                            Claim = "email",
-                            DomainSystemId = 1,
-                            Name = "email"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Active = true,
-                            Claim = "email_verified",
-                            DomainSystemId = 1,
-                            Name = "email"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Active = true,
-                            Claim = "name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Active = true,
-                            Claim = "family_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Active = true,
-                            Claim = "given_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Active = true,
-                            Claim = "middle_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Active = true,
-                            Claim = "nickname",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Active = true,
-                            Claim = "preferred_username",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Active = true,
-                            Claim = "profile",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Active = true,
-                            Claim = "picture",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Active = true,
-                            Claim = "website",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Active = true,
-                            Claim = "gender",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Active = true,
-                            Claim = "birthdate",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Active = true,
-                            Claim = "zoneinfo",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Active = true,
-                            Claim = "locale",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Active = true,
-                            Claim = "updated_at",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.RedirectUri", b =>

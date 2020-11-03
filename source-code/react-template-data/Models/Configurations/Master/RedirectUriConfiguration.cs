@@ -9,19 +9,21 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<RedirectUri> builder)
         {
             #region Columns
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id)
+            builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            builder.Property(s => s.Uri)
-                .HasMaxLength(100)
-                .IsRequired();
-            builder.Property(c => c.Active)
-                .HasDefaultValue(true)
+
+            builder.Property(c => c.Uri)
+                .HasMaxLength(50)
                 .IsRequired();
             builder.Property(c => c.DomainSystemId)
                 .IsRequired();
 
-            builder.HasIndex(s => s.Uri)
+            builder.Property(c => c.Active)
+                .HasDefaultValue(true)
+                .IsRequired();
+
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => c.Uri)
                 .IsUnique();
             #endregion
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations
 {
     [DbContext(typeof(MasterContext))]
-    partial class MasterContextModelSnapshot : ModelSnapshot
+    [Migration("20201103144632_FeedIdentityResourceTable")]
+    partial class FeedIdentityResourceTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,7 +80,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 15, 8, 5, 598, DateTimeKind.Utc).AddTicks(7041));
+                        .HasDefaultValue(new DateTime(2020, 11, 3, 14, 46, 32, 446, DateTimeKind.Utc).AddTicks(4283));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -105,7 +107,7 @@ namespace react_template_data.Migrations
                             Active = true,
                             Database = "react-template-owner-dev",
                             LicenceNo = "default",
-                            LicenceSince = new DateTime(2020, 11, 3, 15, 8, 5, 611, DateTimeKind.Utc).AddTicks(9415),
+                            LicenceSince = new DateTime(2020, 11, 3, 14, 46, 32, 456, DateTimeKind.Utc).AddTicks(1819),
                             Name = "default"
                         });
                 });

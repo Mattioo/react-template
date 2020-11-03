@@ -5,6 +5,6 @@ namespace react_template_identity.IoC
 {
     public interface IConfigurationService
     {
-        public (IEnumerable<Client> clients, IEnumerable<ApiScope> scopes) GetConfiguration();
+        public (IEnumerable<Client> clients, IEnumerable<IdentityResource> resources, IEnumerable<ApiScope> scopes) GetConfiguration();
     }
 }

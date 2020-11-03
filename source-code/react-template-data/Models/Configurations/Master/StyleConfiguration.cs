@@ -9,23 +9,25 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<Style> builder)
         {
             #region Columns
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id)
+            builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            builder.Property(s => s.Dict)
+
+            builder.Property(c => c.Dict)
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(s => s.File)
+            builder.Property(c => c.File)
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(s => s.Default)
-                .HasDefaultValue(false)
-                .IsRequired();
-            builder.Property(s => s.Active)
+            builder.Property(c => c.Default)
                 .HasDefaultValue(false)
                 .IsRequired();
 
-            builder.HasIndex(s => new { s.Dict, s.File })
+            builder.Property(c => c.Active)
+                .HasDefaultValue(false)
+                .IsRequired();
+
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => new { c.Dict, c.File })
                 .IsUnique();
             #endregion
 

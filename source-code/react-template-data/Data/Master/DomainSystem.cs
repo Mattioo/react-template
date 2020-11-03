@@ -13,5 +13,6 @@ namespace react_template_data.Data.Master
         public List<Scope> Scopes { get; set; }
         public List<GrantType> GrantTypes { get; set; }
         public List<RedirectUri> RedirectUris { get; set; }
+        public List<IdentityResource> IdentityResources { get; set; }
     }
 }

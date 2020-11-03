@@ -10,23 +10,25 @@ namespace react_template_data.Models.Configurations.Master
         public void Configure(EntityTypeBuilder<DomainSystem> builder)
         {
             #region Columns
-            builder.HasKey(s => s.Id);
-            builder.Property(s => s.Id)
+            builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
-            builder.Property(s => s.Identifier)
+
+            builder.Property(c => c.Identifier)
                 .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(s => s.Name)
-                .HasMaxLength(100)
+            builder.Property(c => c.Name)
+                .HasMaxLength(50)
                 .IsRequired();
-            builder.Property(s => s.Secret)
-                .HasMaxLength(100)
+            builder.Property(c => c.Secret)
+                .HasMaxLength(50)
                 .IsRequired();
+
             builder.Property(c => c.Active)
                 .HasDefaultValue(true)
                 .IsRequired();
 
-            builder.HasIndex(s => s.Identifier)
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => c.Identifier)
                 .IsUnique();
             #endregion
 

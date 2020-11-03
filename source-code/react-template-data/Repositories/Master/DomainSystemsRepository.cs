@@ -19,6 +19,7 @@ namespace react_template_data.Repositories.Master
                 .Include(_ => _.Scopes)
                 .Include(_ => _.GrantTypes)
                 .Include(_ => _.RedirectUris)
+                .Include(_ => _.IdentityResources)
                 .Where(filter);
     }
 }
