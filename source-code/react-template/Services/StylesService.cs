@@ -25,7 +25,7 @@ namespace react_template.Services
             return await _stylesRepository.Get(u =>
                 u.Active &&
                 u.Path == url &&
-                u.Client.Active &&
+                u.Unit.Active &&
                 u.Style.Active,
                 cancellationToken
             ) ??

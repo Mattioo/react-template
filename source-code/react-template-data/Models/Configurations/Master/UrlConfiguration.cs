@@ -12,7 +12,7 @@ namespace react_template_data.Models.Configurations.Master
             builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.HasOne(c => c.Client)
+            builder.HasOne(c => c.Unit)
                 .WithMany(c => c.Urls)
                 .IsRequired();
             builder.HasOne(c => c.Style)
@@ -24,7 +24,7 @@ namespace react_template_data.Models.Configurations.Master
                 .IsRequired();
 
             builder.HasKey(c => c.Id);
-            builder.HasIndex(c => new { c.ClientId, c.StyleId, c.Path })
+            builder.HasIndex(c => new { c.UnitId, c.StyleId, c.Path })
                 .IsUnique();
             #endregion
         }

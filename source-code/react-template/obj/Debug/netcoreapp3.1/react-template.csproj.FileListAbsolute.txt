@@ -10,6 +10,7 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template.runtimeconfig.dev.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template.pdb
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Dapper.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\DinkToPdf.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Hangfire.AspNetCore.dll
@@ -18,8 +19,13 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\IdentityModel.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\IdentityServer4.AccessTokenValidation.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\IdentityServer4.EntityFramework.Storage.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\IdentityServer4.Storage.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
@@ -39,6 +45,8 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
@@ -82,4 +90,5 @@ C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.dll
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.pdb
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.genruntimeconfig.cache
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\EnumStringValues.dll
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csprojAssemblyReference.cache

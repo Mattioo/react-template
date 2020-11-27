@@ -31,9 +31,6 @@ namespace react_template_data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime?>("LastRun")
                         .HasColumnType("timestamp without time zone");
 
@@ -42,436 +39,17 @@ namespace react_template_data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
+                    b.Property<int>("UnitId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("UnitId");
 
-                    b.HasIndex("Name", "ClientId")
+                    b.HasIndex("Name", "UnitId")
                         .IsUnique();
 
                     b.ToTable("BackgroundJobs");
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.Client", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Database")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("LicenceNo")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<DateTime>("LicenceSince")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 11, 3, 15, 19, 2, 965, DateTimeKind.Utc).AddTicks(831));
-
-                    b.Property<DateTime?>("LicenceTo")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LicenceNo")
-                        .IsUnique();
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Clients");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            Database = "react-template-owner-dev",
-                            LicenceNo = "default",
-                            LicenceSince = new DateTime(2020, 11, 3, 15, 19, 2, 972, DateTimeKind.Utc).AddTicks(5640),
-                            Name = "default"
-                        });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.DomainSystem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Identifier")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Secret")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Identifier")
-                        .IsUnique();
-
-                    b.ToTable("DomainSystems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            Identifier = "react-template",
-                            Name = "Front office",
-                            Secret = "sD3fPKLnFKZUjnSV4qA/XoJOqsmDfNfxWcZ7kPtLc0I="
-                        });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.GrantType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<int>("DomainSystemId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DomainSystemId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("GrantTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            DomainSystemId = 1,
-                            Name = "authorization_code"
-                        });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.IdentityResource", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Claim")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("DomainSystemId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DomainSystemId");
-
-                    b.HasIndex("Name", "Claim")
-                        .IsUnique();
-
-                    b.ToTable("IdentityResources");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            Claim = "sub",
-                            DomainSystemId = 1,
-                            Name = "openid"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Active = true,
-                            Claim = "email",
-                            DomainSystemId = 1,
-                            Name = "email"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Active = true,
-                            Claim = "email_verified",
-                            DomainSystemId = 1,
-                            Name = "email"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Active = true,
-                            Claim = "name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Active = true,
-                            Claim = "family_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Active = true,
-                            Claim = "given_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Active = true,
-                            Claim = "middle_name",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Active = true,
-                            Claim = "nickname",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Active = true,
-                            Claim = "preferred_username",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Active = true,
-                            Claim = "profile",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Active = true,
-                            Claim = "picture",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Active = true,
-                            Claim = "website",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Active = true,
-                            Claim = "gender",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Active = true,
-                            Claim = "birthdate",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Active = true,
-                            Claim = "zoneinfo",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Active = true,
-                            Claim = "locale",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Active = true,
-                            Claim = "updated_at",
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.RedirectUri", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<int>("DomainSystemId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Uri")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DomainSystemId");
-
-                    b.HasIndex("Uri")
-                        .IsUnique();
-
-                    b.ToTable("RedirectUris");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            DomainSystemId = 1,
-                            Uri = "https://localhost:44394"
-                        });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.Scope", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
-
-                    b.Property<bool>("ApiScope")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<int>("DomainSystemId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DomainSystemId");
-
-                    b.HasIndex("Name", "DomainSystemId", "ApiScope")
-                        .IsUnique();
-
-                    b.ToTable("Scopes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            ApiScope = false,
-                            DomainSystemId = 1,
-                            Name = "openid"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Active = true,
-                            ApiScope = false,
-                            DomainSystemId = 1,
-                            Name = "profile"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Active = true,
-                            ApiScope = false,
-                            DomainSystemId = 1,
-                            Name = "custom"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Active = true,
-                            ApiScope = true,
-                            DomainSystemId = 1,
-                            Name = "custom"
-                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Style", b =>
@@ -519,6 +97,63 @@ namespace react_template_data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("react_template_data.Data.Master.Unit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Database")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("LicenceNo")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<DateTime>("LicenceSince")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValue(new DateTime(2020, 11, 25, 14, 47, 47, 966, DateTimeKind.Utc).AddTicks(1290));
+
+                    b.Property<DateTime?>("LicenceTo")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LicenceNo")
+                        .IsUnique();
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Units");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Database = "react-template-owner-dev",
+                            LicenceNo = "default",
+                            LicenceSince = new DateTime(2020, 11, 25, 14, 47, 47, 974, DateTimeKind.Utc).AddTicks(7169),
+                            Name = "default"
+                        });
+                });
+
             modelBuilder.Entity("react_template_data.Data.Master.Url", b =>
                 {
                     b.Property<int>("Id")
@@ -531,20 +166,20 @@ namespace react_template_data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ClientId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Path")
                         .HasColumnType("text");
 
                     b.Property<int>("StyleId")
                         .HasColumnType("integer");
 
+                    b.Property<int>("UnitId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("StyleId");
 
-                    b.HasIndex("ClientId", "StyleId", "Path")
+                    b.HasIndex("UnitId", "StyleId", "Path")
                         .IsUnique();
 
                     b.ToTable("Urls");
@@ -552,60 +187,24 @@ namespace react_template_data.Migrations
 
             modelBuilder.Entity("react_template_data.Data.Master.BackgroundJob", b =>
                 {
-                    b.HasOne("react_template_data.Data.Master.Client", "Client")
+                    b.HasOne("react_template_data.Data.Master.Unit", "Unit")
                         .WithMany("BackgroundJobs")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.GrantType", b =>
-                {
-                    b.HasOne("react_template_data.Data.Master.DomainSystem", "DomainSystem")
-                        .WithMany("GrantTypes")
-                        .HasForeignKey("DomainSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.IdentityResource", b =>
-                {
-                    b.HasOne("react_template_data.Data.Master.DomainSystem", "DomainSystem")
-                        .WithMany("IdentityResources")
-                        .HasForeignKey("DomainSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.RedirectUri", b =>
-                {
-                    b.HasOne("react_template_data.Data.Master.DomainSystem", "DomainSystem")
-                        .WithMany("RedirectUris")
-                        .HasForeignKey("DomainSystemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Master.Scope", b =>
-                {
-                    b.HasOne("react_template_data.Data.Master.DomainSystem", "DomainSystem")
-                        .WithMany("Scopes")
-                        .HasForeignKey("DomainSystemId")
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.Url", b =>
                 {
-                    b.HasOne("react_template_data.Data.Master.Client", "Client")
-                        .WithMany("Urls")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("react_template_data.Data.Master.Style", "Style")
                         .WithMany("Urls")
                         .HasForeignKey("StyleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("react_template_data.Data.Master.Unit", "Unit")
+                        .WithMany("Urls")
+                        .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

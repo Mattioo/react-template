@@ -23,7 +23,7 @@ namespace react_template_data.Repositories.Master
             => (
                 await Context.Set<Url>()
                  .AsNoTracking()
-                 .Include(u => u.Client)
+                 .Include(u => u.Unit)
                  .Include(u => u.Style)
                  .SingleOrDefaultAsync(filter, cancellationToken)
             )?.Style;

@@ -40,6 +40,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "EnumStringValues": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
             "Hangfire.AspNetCore": {
               "target": "Package",
               "version": "[1.7.11, )"
@@ -52,6 +56,10 @@
               "target": "Package",
               "version": "[4.3.1, )"
             },
+            "IdentityServer4.EntityFramework.Storage": {
+              "target": "Package",
+              "version": "[4.0.4, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
@@ -59,6 +67,10 @@
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -162,6 +174,10 @@
             "IdentityServer4.AccessTokenValidation": {
               "target": "Package",
               "version": "[3.0.1, )"
+            },
+            "IdentityServer4.AspNetIdentity": {
+              "target": "Package",
+              "version": "[4.0.4, )"
             },
             "IdentityServer4.EntityFramework": {
               "target": "Package",

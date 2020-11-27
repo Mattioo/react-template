@@ -5,9 +5,9 @@ using System;
 
 namespace react_template_data.Models.Configurations.Master
 {
-    public class ClientConfiguration : IEntityTypeConfiguration<Client>
+    public class UnitConfiguration : IEntityTypeConfiguration<Unit>
     {
-        public void Configure(EntityTypeBuilder<Client> builder)
+        public void Configure(EntityTypeBuilder<Unit> builder)
         {
             #region Columns
             builder.Property(c => c.Id)
@@ -38,7 +38,7 @@ namespace react_template_data.Models.Configurations.Master
             #endregion
 
             builder.HasData(
-                new Client { Id = 1, Name = "default", Database = "react-template-owner-dev", LicenceNo = "default", LicenceSince = DateTime.UtcNow, Active = true }
+                new Unit { Id = 1, Name = "default", Database = "react-template-owner-dev", LicenceNo = "default", LicenceSince = DateTime.UtcNow, Active = true }
             );
         }
     }

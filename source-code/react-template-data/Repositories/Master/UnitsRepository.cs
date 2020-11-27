@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace react_template_data.Repositories.Master
 {
-    public class ClientsRepository : BaseRepository<Client>, IMasterContextRepository
+    public class UnitsRepository : BaseRepository<Unit>, IMasterContextRepository
     {
-        public ClientsRepository(MasterContext context) : base(context)
+        public UnitsRepository(MasterContext context) : base(context)
         { }
 
-        public async Task<Client> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
+        public async Task<Unit> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
         {
             var found = await Context.Set<Url>()
                 .AsNoTracking()
-                .Include(u => u.Client)
+                .Include(u => u.Unit)
                 .SingleOrDefaultAsync(filter, cancellationToken);
 
-            return found?.Client;
+            return found?.Unit;
         }
     }
 }

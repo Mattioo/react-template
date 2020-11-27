@@ -10,10 +10,10 @@ namespace react_template_data.Data.Master
         public DateTime? LastRun { get; set; }
         public bool Active { get; set; }
 
-        public Client Client { get; set; }
+        public Unit Unit { get; set; }
 
         #region Hidden
-        public int ClientId { get; set; }
+        public int UnitId { get; set; }
         #endregion
     }
 }
