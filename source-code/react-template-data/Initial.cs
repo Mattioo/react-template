@@ -1,6 +1,7 @@
 ﻿using EnumStringValues;
 using Hangfire;
 using Hangfire.PostgreSql;
+using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -39,7 +40,7 @@ namespace react_template_data
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             /* REJESTRACJA W KONTENERZE DI NIEZMIENNEGO KONTEKSTU BAZY MASTER */
-            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConfigurationBuilder.GetConnectionString("master")),
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConnectionString(ConnectionStringType.Master)),
                 ServiceLifetime.Singleton
             );
 
@@ -52,10 +53,18 @@ namespace react_template_data
             );
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
-            services.AddDbContext<OwnerContext>(OwnerContextGenerator, ServiceLifetime.Scoped);
+            services.AddDbContext<OwnerContext>((serviceProvider, options) =>
+            {
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider));
+            },
+            ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU IDENTITY ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
-            services.AddDbContext<IdentityContext>(OwnerContextGenerator, ServiceLifetime.Scoped);
+            services.AddDbContext<IdentityContext>((serviceProvider, options) =>
+            {
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider));
+            },
+            ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
             services.Scan(scan => scan.FromCallingAssembly()
@@ -68,13 +77,12 @@ namespace react_template_data
             return services;
         }
 
-        public static string ConnectionString(IServiceProvider serviceProvider, ConnectionStringType connectionStringType = ConnectionStringType.Master)
+        public static string ConnectionString(ConnectionStringType connectionStringType, IServiceProvider serviceProvider = null)
         {
             var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString(EnumExtensions.GetStringValue(connectionStringType)));
-            if (connectionStringType is ConnectionStringType.Owner)
+            if (connectionStringType is ConnectionStringType.Owner && serviceProvider is IServiceProvider)
             {
                 var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
-
                 if (httpContext is HttpContext)
                 {
                     var host = new Uri(httpContext.Request.GetEncodedUrl()).Host;
@@ -88,9 +96,22 @@ namespace react_template_data
             return builder.ConnectionString;
         }
 
-        private static readonly Action<IServiceProvider, DbContextOptionsBuilder> OwnerContextGenerator = (serviceProvider, options) =>
+        public static T GenerateConstantContext<T>() where T : DbContext
         {
-            options.UseNpgsql(ConnectionString(serviceProvider, ConnectionStringType.Owner));
-        };
+            var connectionString = ConnectionString(ConnectionStringType.Master);
+            var builder = new DbContextOptionsBuilder<T>();
+            builder.UseNpgsql(connectionString);
+
+            return (T) Activator.CreateInstance(typeof(T), builder.Options, typeof(T) == typeof(ConfigurationContext) ?
+                (object) new ConfigurationStoreOptions
+                {
+                    ConfigureDbContext = builder => builder.UseNpgsql(connectionString)
+                } :
+                new OperationalStoreOptions
+                {
+                    ConfigureDbContext = builder => builder.UseNpgsql(connectionString)
+                }
+            );
+        }
     }
 }

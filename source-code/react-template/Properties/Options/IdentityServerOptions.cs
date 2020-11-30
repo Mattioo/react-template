@@ -3,6 +3,7 @@
     public class IdentityServerOptions
     {
         public const string Name = "IdentityServerOptions";
+
         public string Authority { get; set; }
         public string Client { get; set; }
         public string Secret { get; set; }

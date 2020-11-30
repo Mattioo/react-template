@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using react_template_data.Data.Identity;
+using react_template_data.Data.IS;
 
 namespace react_template_data.Data
 {

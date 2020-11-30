@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using react_template_data.Data;
-using react_template_data.Data.Identity;
+using react_template_data.Data.IS;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

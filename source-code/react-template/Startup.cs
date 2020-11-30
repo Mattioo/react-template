@@ -45,9 +45,9 @@ namespace react_template
             #endregion
 
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ STYLI */
-            services.AddTransient<IStylesService, StylesService>();
+            services.AddScoped<IStylesService, StylesService>();
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
-            services.AddTransient<IPdfService, PdfService>();
+            services.AddScoped<IPdfService, PdfService>();
 
             services.AddContext();
             services.AddControllers();

@@ -1,4 +1,5 @@
 using IdentityServer4.Configuration;
+using IdentityServer4.EntityFramework.Mappers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -7,20 +8,22 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using react_template_data;
 using react_template_data.Data;
-using react_template_data.Data.Identity;
+using react_template_data.Data.IS;
+using react_template_data.Enums;
 using react_template_data.Repositories.Identity;
 using System;
+using System.Linq;
 
 namespace react_template_identity
 {
     public class Startup
     {
-        private IServiceProvider ServiceProvider(IServiceCollection services)
-            => services.BuildServiceProvider();
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddContext();
+
+            services.AddSingleton(serviceProvider => Initial.GenerateConstantContext<PersistedGrantContext>());
+            services.AddSingleton(serviceProvider => Initial.GenerateConstantContext<ConfigurationContext>());
 
             services.AddIdentity<User, IdentityRole>(options =>
                 {
@@ -55,13 +58,13 @@ namespace react_template_identity
             })
             .AddConfigurationStore(option =>
                 option.ConfigureDbContext = dbContextBuilder => dbContextBuilder.UseNpgsql(
-                    Initial.ConnectionString(ServiceProvider(services)),
+                    Initial.ConnectionString(ConnectionStringType.Master),
                     options => options.MigrationsAssembly(assembly)
                 )
             )
             .AddOperationalStore(option =>
                 option.ConfigureDbContext = dbContextBuilder => dbContextBuilder.UseNpgsql(
-                    Initial.ConnectionString(ServiceProvider(services)),
+                    Initial.ConnectionString(ConnectionStringType.Master),
                     options => options.MigrationsAssembly(assembly)
                 )
             )
@@ -72,6 +75,8 @@ namespace react_template_identity
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            InitializeDatabase(app);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -83,6 +88,44 @@ namespace react_template_identity
 
             app.UseIdentityServer();
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
+        }
+
+        private void InitializeDatabase(IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+
+            var persistedGrantContext = scope.ServiceProvider.GetRequiredService<PersistedGrantContext>();
+            var configurationContext = scope.ServiceProvider.GetRequiredService<ConfigurationContext>();
+
+            persistedGrantContext.Database.Migrate();
+            configurationContext.Database.Migrate();
+
+            if (!configurationContext.Clients.Any())
+            {
+                foreach (var client in Config.Clients())
+                {
+                    configurationContext.Clients.Add(client.ToEntity());
+                }
+                configurationContext.SaveChanges();
+            }
+
+            if (!configurationContext.IdentityResources.Any())
+            {
+                foreach (var resource in Config.Resources())
+                {
+                    configurationContext.IdentityResources.Add(resource.ToEntity());
+                }
+                configurationContext.SaveChanges();
+            }
+
+            if (!configurationContext.ApiResources.Any())
+            {
+                foreach (var resource in Config.ApiResources())
+                {
+                    configurationContext.ApiResources.Add(resource.ToEntity());
+                }
+                configurationContext.SaveChanges();
+            }
         }
     }
 }
