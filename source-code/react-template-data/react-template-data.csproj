@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\Configuration\" />
-    <Folder Include="Migrations\Identity\" />
     <Folder Include="Migrations\Owner\" />
   </ItemGroup>
 

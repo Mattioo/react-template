@@ -30,7 +30,7 @@ namespace react_template_data
         public static IServiceCollection AddHangfire(this IServiceCollection services)
         {
             return services.AddHangfire(config =>
-                config.UsePostgreSqlStorage(ConfigurationBuilder.GetConnectionString("master"))
+                config.UsePostgreSqlStorage(ConnectionString(ConnectionStringType.Master))
             );
         }
 

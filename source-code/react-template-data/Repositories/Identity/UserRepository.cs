@@ -36,6 +36,7 @@ namespace react_template_data.Repositories.Identity
                 .AsNoTracking()
                 .AnyAsync(filter, cancellationToken);
         }
+
         public Task<User> GetUserAsync(Expression<Func<User, bool>> filter, CancellationToken cancellationToken)
         {
             return context.Set<User>()

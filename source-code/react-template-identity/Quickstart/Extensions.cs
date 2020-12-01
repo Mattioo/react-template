@@ -1,5 +1,7 @@
 using System;
+using System.Threading.Tasks;
 using IdentityServer4.Models;
+using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -22,6 +24,17 @@ namespace IdentityServerHost.Quickstart.UI
             controller.HttpContext.Response.Headers["Location"] = "";
             
             return controller.View(viewName, new RedirectViewModel { RedirectUrl = redirectUri });
+        }
+
+        public static async Task<bool> IsPkceClientAsync(this IClientStore store, string client_id)
+        {
+            if (!string.IsNullOrWhiteSpace(client_id))
+            {
+                var client = await store.FindEnabledClientByIdAsync(client_id);
+                return client?.RequirePkce ?? false;
+            }
+
+            return false;
         }
     }
 }

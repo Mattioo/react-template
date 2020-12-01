@@ -26,20 +26,20 @@ namespace react_template_identity
             services.AddSingleton(serviceProvider => Initial.GenerateConstantContext<ConfigurationContext>());
 
             services.AddIdentity<User, IdentityRole>(options =>
-                {
-                    options.Password.RequiredLength = 6;
-                    options.Password.RequireLowercase = true;
-                    options.Password.RequireUppercase = true;
-                    options.Password.RequireDigit = true;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.Password.RequiredUniqueChars = 0;
-                    options.Lockout.AllowedForNewUsers = true;
-                    options.Lockout.MaxFailedAccessAttempts = 5;
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3);
-                })
-                .AddUserManager<UserRepository>()
-                .AddEntityFrameworkStores<IdentityContext>()
-                .AddDefaultTokenProviders();
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            })
+            .AddUserManager<UserRepository>()
+            .AddEntityFrameworkStores<IdentityContext>()
+            .AddDefaultTokenProviders();
 
             var assembly = typeof(Initial).Assembly.GetName().Name;
 
@@ -68,7 +68,8 @@ namespace react_template_identity
                     options => options.MigrationsAssembly(assembly)
                 )
             )
-            .AddAspNetIdentity<User>();
+            .AddAspNetIdentity<User>()
+            .AddDeveloperSigningCredential();
 
             services.AddControllersWithViews();
         }
@@ -84,9 +85,9 @@ namespace react_template_identity
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
-            app.UseIdentityServer();
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
 
@@ -99,6 +100,15 @@ namespace react_template_identity
 
             persistedGrantContext.Database.Migrate();
             configurationContext.Database.Migrate();
+
+            if (!configurationContext.ApiScopes.Any())
+            {
+                foreach (var apiScope in Config.Scopes())
+                {
+                    configurationContext.ApiScopes.Add(apiScope.ToEntity());
+                }
+                configurationContext.SaveChanges();
+            }
 
             if (!configurationContext.Clients.Any())
             {

@@ -9,6 +9,8 @@ namespace react_template_identity
 {
     public class Config
     {
+        private static readonly string scope = "react-template-scope";
+
         public static IEnumerable<IdentityResource> Resources()
         {
             return new List<IdentityResource>
@@ -19,11 +21,19 @@ namespace react_template_identity
             };
         }
 
+        public static IEnumerable<ApiScope> Scopes()
+        {
+            return new List<ApiScope>
+            {
+                new ApiScope(scope)
+            };
+        }
+
         public static IEnumerable<ApiResource> ApiResources()
         {
             return new List<ApiResource>
             {
-                new ApiResource("react-template-scope", "REACT API"),
+                new ApiResource(scope),
             };
         }
 
@@ -47,7 +57,7 @@ namespace react_template_identity
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "react-template-scope"
+                        scope
                     }
                 }
             };
