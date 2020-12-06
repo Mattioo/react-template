@@ -57,10 +57,13 @@ namespace react_template
                 .WithSingletonLifetime()
             );
 
-            /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ STYLI */
-            services.AddSingleton<IStylesService, StylesService>();
-            /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
-            services.AddSingleton<IPdfService, PdfService>();
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW O ZASIÊGU ¯¥DANIA */
+            services.Scan(scan => scan.FromCallingAssembly()
+                .AddClasses(t => t.AssignableTo(typeof(IScopeService)))
+                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+            );
             
             services.AddControllers();
 
