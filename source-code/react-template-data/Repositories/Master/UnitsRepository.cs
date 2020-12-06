@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using react_template_data.Data;
 using react_template_data.Data.Master;
-using react_template_data.IoC;
+using react_template_data.IoC.Master;
 using System;
 using System.Linq.Expressions;
 using System.Threading;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace react_template_data.Repositories.Master
 {
-    public class UnitsRepository : BaseRepository<Unit>, IMasterContextRepository
+    public class UnitsRepository : BaseRepository<Unit>, IUnitsRepository
     {
         public UnitsRepository(MasterContext context) : base(context)
         { }

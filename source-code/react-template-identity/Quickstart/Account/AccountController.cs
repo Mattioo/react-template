@@ -1,7 +1,3 @@
-// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
 using IdentityModel;
 using IdentityServer4.Events;
 using IdentityServer4.Extensions;
@@ -20,17 +16,10 @@ using System.Threading.Tasks;
 
 namespace IdentityServerHost.Quickstart.UI
 {
-    /// <summary>
-    /// This sample controller implements a typical login/logout/provision workflow for local and external accounts.
-    /// The login service encapsulates the interactions with the user data store. This data store is in-memory only and cannot be used for production!
-    /// The interaction service provides a way for the UI to communicate with identityserver for validation and context retrieval
-    /// </summary>
     [SecurityHeaders]
     [AllowAnonymous]
     public class AccountController : Controller
     {
-        //private readonly TestUserStore _users;
-
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -46,10 +35,6 @@ namespace IdentityServerHost.Quickstart.UI
             IAuthenticationSchemeProvider schemeProvider,
             IEventService events)
         {
-            // if the TestUserStore is not in DI, then we'll just use the global users collection
-            // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-            //_users = users ?? new TestUserStore(TestUsers.Users);
-
             _userManager = userManager;
             _signInManager = signInManager;
 
@@ -65,12 +50,9 @@ namespace IdentityServerHost.Quickstart.UI
         [HttpGet]
         public async Task<IActionResult> Login(string returnUrl)
         {
-            // build a model so we know what to show on the login page
             var vm = await BuildLoginViewModelAsync(returnUrl);
-
             if (vm.IsExternalLoginOnly)
             {
-                // we only have one option for logging in and it's an external provider
                 return RedirectToAction("Challenge", "External", new { scheme = vm.ExternalLoginScheme, returnUrl });
             }
 
@@ -84,32 +66,22 @@ namespace IdentityServerHost.Quickstart.UI
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model, string button)
         {
-            // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
 
-            // the user clicked the "cancel" button
             if (button != "login")
             {
                 if (context != null)
                 {
-                    // if the user cancels, send a result back into IdentityServer as if they 
-                    // denied the consent (even if this client does not require consent).
-                    // this will send back an access denied OIDC error response to the client.
                     await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
 
-                    // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                     if (context.IsNativeClient())
                     {
-                        // The client is native, so this change in how to
-                        // return the response is for better UX for the end user.
                         return this.LoadingPage("Redirect", model.ReturnUrl);
                     }
-
                     return Redirect(model.ReturnUrl);
                 }
                 else
                 {
-                    // since we don't have a valid context, then we just go back to the home page
                     return Redirect("~/");
                 }
             }
@@ -126,16 +98,11 @@ namespace IdentityServerHost.Quickstart.UI
                     {
                         if (await _clientStore.IsPkceClientAsync(context.Client?.ClientId))
                         {
-                            // if the client is PKCE then we assume it's native, so this change in how to
-                            // return the response is for better UX for the end user.
                             return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
                         }
-
-                        // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                         return Redirect(model.ReturnUrl);
                     }
 
-                    // request for a local page
                     if (Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
@@ -146,16 +113,14 @@ namespace IdentityServerHost.Quickstart.UI
                     }
                     else
                     {
-                        // user might have clicked on a malicious link - should be logged
                         throw new Exception("invalid return URL");
                     }
                 }
 
-                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId:context?.Client.ClientId));
+                await _events.RaiseAsync(new UserLoginFailureEvent(model.Username, "invalid credentials", clientId: context?.Client.ClientId));
                 ModelState.AddModelError(string.Empty, AccountOptions.InvalidCredentialsErrorMessage);
             }
 
-            // something went wrong, show form with error
             var vm = await BuildLoginViewModelAsync(model);
             return View(vm);
         }
@@ -285,8 +250,9 @@ namespace IdentityServerHost.Quickstart.UI
         private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
         {
             var vm = await BuildLoginViewModelAsync(model.ReturnUrl);
-            vm.Username = model.Username;
-            vm.RememberLogin = model.RememberLogin;
+                vm.Username = model.Username;
+                vm.RememberLogin = model.RememberLogin;
+
             return vm;
         }
 

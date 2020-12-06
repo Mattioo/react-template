@@ -1,6 +1,6 @@
 ﻿using react_template.IoC;
 using react_template_data.Data.Master;
-using react_template_data.Repositories.Master;
+using react_template_data.IoC.Master;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,9 +8,9 @@ namespace react_template.Services
 {
     public class StylesService : IStylesService
     {
-        private readonly StylesRepository _stylesRepository;
+        private readonly IStylesRepository _stylesRepository;
 
-        public StylesService(StylesRepository stylesRepository)
+        public StylesService(IStylesRepository stylesRepository)
         {
             _stylesRepository = stylesRepository;
         }

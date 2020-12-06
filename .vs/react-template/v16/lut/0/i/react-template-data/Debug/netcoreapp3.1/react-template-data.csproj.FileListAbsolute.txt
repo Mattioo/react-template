@@ -1,0 +1,10 @@
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\b\react-template-data\Debug\netcoreapp3.1\react-template-data.deps.json
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\b\react-template-data\Debug\netcoreapp3.1\react-template-data.runtimeconfig.json
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\b\react-template-data\Debug\netcoreapp3.1\react-template-data.runtimeconfig.dev.json
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\b\react-template-data\Debug\netcoreapp3.1\react-template-data.dll
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.csprojAssemblyReference.cache
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.AssemblyInfoInputs.cache
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.AssemblyInfo.cs
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.csproj.CopyComplete
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.dll
+C:\Repositories\react-template\.vs\react-template\v16\lut\0\i\react-template-data\Debug\netcoreapp3.1\react-template-data.genruntimeconfig.cache

@@ -1,0 +1,12 @@
+C:\Repositories\react-template\source-code\react-template-data\bin\x64\Debug\netcoreapp3.1\react-template-data.deps.json
+C:\Repositories\react-template\source-code\react-template-data\bin\x64\Debug\netcoreapp3.1\react-template-data.runtimeconfig.json
+C:\Repositories\react-template\source-code\react-template-data\bin\x64\Debug\netcoreapp3.1\react-template-data.runtimeconfig.dev.json
+C:\Repositories\react-template\source-code\react-template-data\bin\x64\Debug\netcoreapp3.1\react-template-data.dll
+C:\Repositories\react-template\source-code\react-template-data\bin\x64\Debug\netcoreapp3.1\react-template-data.pdb
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.csprojAssemblyReference.cache
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.AssemblyInfoInputs.cache
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.AssemblyInfo.cs
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.csproj.CoreCompileInputs.cache
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.dll
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.pdb
+C:\Repositories\react-template\source-code\react-template-data\obj\x64\Debug\netcoreapp3.1\react-template-data.genruntimeconfig.cache

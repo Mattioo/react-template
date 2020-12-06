@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace react_template_data.Repositories
 {
-    public class BaseRepository<T> : IRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         protected DbContext Context { get; }
 

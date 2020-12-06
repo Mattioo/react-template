@@ -1,6 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Hangfire;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,7 @@ using react_template.Services;
 using react_template_data;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace react_template
 {
@@ -44,12 +46,13 @@ namespace react_template
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             #endregion
 
+            services.RegisterInContainer();
+
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ STYLI */
             services.AddScoped<IStylesService, StylesService>();
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
             services.AddScoped<IPdfService, PdfService>();
-
-            services.AddContext();
+            
             services.AddControllers();
 
             services.AddCors(options =>
@@ -78,6 +81,16 @@ namespace react_template
                 options.Scope.Add(identityServerOptions.Scope);
                 options.ResponseType = identityServerOptions.Response;
                 options.SaveTokens = true;
+                options.Events = new OpenIdConnectEvents
+                {
+                    OnRemoteFailure = context =>
+                    {
+                        context.Response.Redirect("/");
+                        context.HandleResponse();
+
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             services.AddSwaggerGen(c =>

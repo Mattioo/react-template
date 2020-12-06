@@ -11,10 +11,11 @@ using Npgsql;
 using react_template_data.Data;
 using react_template_data.Enums;
 using react_template_data.IoC;
-using react_template_data.Repositories.Master;
+using react_template_data.IoC.Master;
 using Scrutor;
 using System;
 using System.IO;
+using System.Threading;
 
 namespace react_template_data
 {
@@ -34,7 +35,7 @@ namespace react_template_data
             );
         }
 
-        public static IServiceCollection AddContext(this IServiceCollection services)
+        public static IServiceCollection RegisterInContainer(this IServiceCollection services)
         {
             /* REJESTRACJA W KONTENERZE DI SERWISU UMOŻLIWIAJĄCEGO DOSTĘP DO KONTEKSTU HTTP */
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -46,9 +47,9 @@ namespace react_template_data
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU MASTER */
             services.Scan(scan => scan.FromCallingAssembly()
-                .AddClasses(t => t.AssignableTo(typeof(IMasterContextRepository)))
+                .AddClasses(t => t.AssignableTo(typeof(IMasterRepository<>)))
                 .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                .AsSelf()
+                .AsImplementedInterfaces()
                 .WithSingletonLifetime()
             );
 
@@ -59,6 +60,19 @@ namespace react_template_data
             },
             ServiceLifetime.Scoped);
 
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
+            services.Scan(scan => scan.FromCallingAssembly()
+                .AddClasses(t => t.AssignableTo(typeof(IOwnerRepository<>)))
+                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+            );
+
+            return services;
+        }
+
+        public static IServiceCollection RegisterInIdentityServerContainer(this IServiceCollection services)
+        {
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU IDENTITY ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<IdentityContext>((serviceProvider, options) =>
             {
@@ -66,13 +80,9 @@ namespace react_template_data
             },
             ServiceLifetime.Scoped);
 
-            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
-            services.Scan(scan => scan.FromCallingAssembly()
-                .AddClasses(t => t.AssignableTo(typeof(IOwnerContextRepository)))
-                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                .AsSelf()
-                .WithScopedLifetime()
-            );
+            /* REJESTRACJA W KONTENERZE DI KONTEKSTÓW DB DLA KONFIGURACJI IDENTITYSERVER4 */
+            services.AddSingleton(serviceProvider => GenerateMasterContext<PersistedGrantContext>());
+            services.AddSingleton(serviceProvider => GenerateMasterContext<ConfigurationContext>());
 
             return services;
         }
@@ -86,21 +96,24 @@ namespace react_template_data
                 if (httpContext is HttpContext)
                 {
                     var host = new Uri(httpContext.Request.GetEncodedUrl()).Host;
-                    var repository = serviceProvider.GetService<UnitsRepository>();
-                    var database = repository.Get(u => u.Path == host, default).Result?.Database;
-
-                    builder.Database = database;
+                    var repository = serviceProvider.GetService<IUnitsRepository>();
+                    
+                    if (repository is IUnitsRepository)
+                    {
+                        var database = repository.Get(u => u.Path == host, CancellationToken.None).Result?.Database;
+                        builder.Database = database;
+                    }
                 }
-            }           
-
+            }
             return builder.ConnectionString;
         }
 
-        public static T GenerateConstantContext<T>() where T : DbContext
+        public static T GenerateMasterContext<T>() where T : DbContext
         {
             var connectionString = ConnectionString(ConnectionStringType.Master);
+
             var builder = new DbContextOptionsBuilder<T>();
-            builder.UseNpgsql(connectionString);
+                builder.UseNpgsql(connectionString);
 
             return (T) Activator.CreateInstance(typeof(T), builder.Options, typeof(T) == typeof(ConfigurationContext) ?
                 (object) new ConfigurationStoreOptions

@@ -1,0 +1,46 @@
+[23:12:05.843 Verbose] - BuildManager - Some of the paths are absolute. This may prevent Live Unit Testing from building to the correct location.
+[23:12:05.844 Verbose] - BuildManager - Property BaseOutputPath evaluated to 'bin\' via:
+BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+[23:12:05.844 Verbose] - BuildManager - Property BaseIntermediateOutputPath evaluated to 'C:\Repositories\react-template\source-code\react-template-identity\obj\' via:
+BaseIntermediateOutputPath: '$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk.Publish\targets\Microsoft.NET.Sdk.Publish.targets:74
+  MSBuildProjectDirectory: 'C:\Repositories\react-template\source-code\react-template-identity'
+  BaseIntermediateOutputPath: 'obj\' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Microsoft.Common.props:46
+[23:12:05.845 Verbose] - BuildManager - Property IntermediateOutputPath evaluated to 'obj\Debug\netcoreapp3.1\' via:
+IntermediateOutputPath: '$(IntermediateOutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:185
+  IntermediateOutputPath: '$(BaseIntermediateOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:39
+    BaseIntermediateOutputPath: 'obj\' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Microsoft.Common.props:46
+    Configuration: 'Debug'
+[23:12:05.845 Verbose] - BuildManager - Property OutputPath evaluated to 'bin\Debug\netcoreapp3.1\' via:
+OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:186
+  OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+    BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+    Configuration: 'Debug'
+[23:12:05.845 Verbose] - BuildManager - Property OutDir evaluated to 'bin\Debug\netcoreapp3.1\' via:
+OutDir: '$(OutputPath)' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets:193
+  OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:186
+    OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+      BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+      Configuration: 'Debug'
+[23:12:11.517 Verbose] - BuildManager - Some of the paths are absolute. This may prevent Live Unit Testing from building to the correct location.
+[23:12:11.517 Verbose] - BuildManager - Property BaseOutputPath evaluated to 'bin\' via:
+BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+[23:12:11.517 Verbose] - BuildManager - Property BaseIntermediateOutputPath evaluated to 'C:\Repositories\react-template\source-code\react-template\obj\' via:
+BaseIntermediateOutputPath: '$(MSBuildProjectDirectory)\$(BaseIntermediateOutputPath)' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk.Publish\targets\Microsoft.NET.Sdk.Publish.targets:74
+  MSBuildProjectDirectory: 'C:\Repositories\react-template\source-code\react-template'
+  BaseIntermediateOutputPath: 'obj\' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Microsoft.Common.props:46
+[23:12:11.518 Verbose] - BuildManager - Property IntermediateOutputPath evaluated to 'obj\Debug\netcoreapp3.1\' via:
+IntermediateOutputPath: '$(IntermediateOutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:185
+  IntermediateOutputPath: '$(BaseIntermediateOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:39
+    BaseIntermediateOutputPath: 'obj\' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Microsoft.Common.props:46
+    Configuration: 'Debug'
+[23:12:11.518 Verbose] - BuildManager - Property OutputPath evaluated to 'bin\Debug\netcoreapp3.1\' via:
+OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:186
+  OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+    BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+    Configuration: 'Debug'
+[23:12:11.518 Verbose] - BuildManager - Property OutDir evaluated to 'bin\Debug\netcoreapp3.1\' via:
+OutDir: '$(OutputPath)' @ C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets:193
+  OutputPath: '$(OutputPath)$(TargetFramework.ToLowerInvariant())\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.TargetFrameworkInference.targets:186
+    OutputPath: '$(BaseOutputPath)$(Configuration)\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:33
+      BaseOutputPath: 'bin\' @ C:\Program Files (x86)\dotnet\sdk\3.1.301\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.DefaultOutputPaths.targets:31
+      Configuration: 'Debug'
