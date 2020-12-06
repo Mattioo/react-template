@@ -2,9 +2,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace react_template.IoC
+namespace react_template.IoC.Singletons
 {
-    public interface IStylesService
+    public interface IStylesService : ISingletonService
     {
         public Task<Style> GetDefault(CancellationToken cancellationToken);
 

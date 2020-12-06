@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using react_template.Helpers.Filters;
-using react_template.IoC;
+using react_template.IoC.Singletons;
 using react_template.Models.Results;
 using Swashbuckle.AspNetCore.Annotations;
 

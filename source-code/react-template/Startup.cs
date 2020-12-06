@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using react_template.IoC;
+using react_template.IoC.Singletons;
 using react_template.Properties.Options;
 using react_template.Services;
 using react_template_data;
+using Scrutor;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -48,10 +49,18 @@ namespace react_template
 
             services.RegisterInContainer();
 
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW TYPU SINGLETON */
+            services.Scan(scan => scan.FromCallingAssembly()
+                .AddClasses(t => t.AssignableTo(typeof(ISingletonService)))
+                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                .AsImplementedInterfaces()
+                .WithSingletonLifetime()
+            );
+
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ STYLI */
-            services.AddScoped<IStylesService, StylesService>();
+            services.AddSingleton<IStylesService, StylesService>();
             /* REJESTRACJA W KONTENERZE DI SERWISU ZAJMUJ¥CEGO SIÊ OBS£UG¥ PLIKÓW PDF */
-            services.AddScoped<IPdfService, PdfService>();
+            services.AddSingleton<IPdfService, PdfService>();
             
             services.AddControllers();
 

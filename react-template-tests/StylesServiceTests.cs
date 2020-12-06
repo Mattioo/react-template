@@ -1,4 +1,4 @@
-using react_template.IoC;
+using react_template.IoC.Singletons;
 using react_template.Services;
 using react_template_tests.Stubs;
 using System.Threading;

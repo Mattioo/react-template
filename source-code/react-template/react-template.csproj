@@ -21,6 +21,7 @@
     <Folder Include="ClientApp\dist\styles\" />
     <Folder Include="ClientApp\dist\styles\default\" />
     <Folder Include="ClientApp\dist\styles\other\" />
+    <Folder Include="IoC\Scoped\" />
   </ItemGroup>
 
   <ItemGroup>

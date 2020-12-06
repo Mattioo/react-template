@@ -1,22 +1,26 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
-using react_template.IoC;
-using react_template_data.Data.Master;
+using react_template.IoC.Singletons;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace react_template.Services
 {
     public class PdfService : IPdfService
     {
         private readonly IConverter _converter;
+        private readonly IStylesService _stylesService;
 
-        public PdfService(IConverter converter)
+        public PdfService(IConverter converter, IStylesService stylesService)
         {
             _converter = converter;
+            _stylesService = stylesService;
         }
 
-        public byte[] Generate(string html, Style styles)
+        public async Task<byte[]> Generate(string html, string host, CancellationToken cancellationToken)
         {
+            var styles = await _stylesService.GetByUrl(host, cancellationToken);
             var pathToStyle = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "dist", "styles", styles.Dict, styles.File);
 
             var globalSettings = new GlobalSettings

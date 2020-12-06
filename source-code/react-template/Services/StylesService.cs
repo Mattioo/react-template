@@ -1,4 +1,4 @@
-﻿using react_template.IoC;
+﻿using react_template.IoC.Singletons;
 using react_template_data.Data.Master;
 using react_template_data.IoC.Master;
 using System.Threading;

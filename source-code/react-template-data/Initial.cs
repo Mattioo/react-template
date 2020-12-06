@@ -1,7 +1,6 @@
 ﻿using EnumStringValues;
 using Hangfire;
 using Hangfire.PostgreSql;
-using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using react_template_data.Data;
 using react_template_data.Enums;
+using react_template_data.Helpers;
 using react_template_data.IoC;
 using react_template_data.IoC.Master;
 using Scrutor;
@@ -57,8 +57,7 @@ namespace react_template_data
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
             {
                 options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider));
-            },
-            ServiceLifetime.Scoped);
+            });
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
             services.Scan(scan => scan.FromCallingAssembly()
@@ -81,8 +80,8 @@ namespace react_template_data
             ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI KONTEKSTÓW DB DLA KONFIGURACJI IDENTITYSERVER4 */
-            services.AddSingleton(serviceProvider => GenerateMasterContext<PersistedGrantContext>());
-            services.AddSingleton(serviceProvider => GenerateMasterContext<ConfigurationContext>());
+            services.AddSingleton(serviceProvider => Common.GenerateMasterContext<PersistedGrantContext>());
+            services.AddSingleton(serviceProvider => Common.GenerateMasterContext<ConfigurationContext>());
 
             return services;
         }
@@ -106,25 +105,6 @@ namespace react_template_data
                 }
             }
             return builder.ConnectionString;
-        }
-
-        public static T GenerateMasterContext<T>() where T : DbContext
-        {
-            var connectionString = ConnectionString(ConnectionStringType.Master);
-
-            var builder = new DbContextOptionsBuilder<T>();
-                builder.UseNpgsql(connectionString);
-
-            return (T) Activator.CreateInstance(typeof(T), builder.Options, typeof(T) == typeof(ConfigurationContext) ?
-                (object) new ConfigurationStoreOptions
-                {
-                    ConfigureDbContext = builder => builder.UseNpgsql(connectionString)
-                } :
-                new OperationalStoreOptions
-                {
-                    ConfigureDbContext = builder => builder.UseNpgsql(connectionString)
-                }
-            );
-        }
+        }    
     }
 }

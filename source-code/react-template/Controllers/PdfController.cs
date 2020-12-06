@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using react_template.IoC;
+using react_template.IoC.Singletons;
+using react_template_data.Helpers;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,12 +12,10 @@ namespace react_template.Controllers
     [Route("api/[controller]")]
     public class PdfController : ControllerBase
     {
-        private readonly IStylesService _stylesService;
         private readonly IPdfService _pdfService;
 
-        public PdfController(IStylesService stylesService, IPdfService pdfService)
+        public PdfController(IPdfService pdfService)
         {
-            _stylesService = stylesService;
             _pdfService = pdfService;
         }
 
@@ -29,13 +26,12 @@ namespace react_template.Controllers
         [SwaggerOperation("Generuje dokument PDF na podstawie przasłanego kodu HTML", "Generator wykorzystuje kaskadowy arkusz styli przypisany do klienta")]
         public async Task<IActionResult> Create(string html, CancellationToken cancellationToken = default)
         {
-            var host = new Uri(HttpContext.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
-            var styles = await _stylesService.GetByUrl(host, cancellationToken);
+            var host = HttpContext.GetHost();
 
-            if (styles is null)
+            if (string.IsNullOrWhiteSpace(host))
                 return BadRequest();
 
-            var bytes = _pdfService.Generate(html, styles);
+            var bytes = await _pdfService.Generate(html, host, cancellationToken);
             return File(bytes, "application/pdf");
         }
     }
