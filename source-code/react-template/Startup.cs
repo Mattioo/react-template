@@ -1,6 +1,7 @@
 using DinkToPdf;
 using DinkToPdf.Contracts;
 using Hangfire;
+using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,10 +11,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using react_template.IoC;
-using react_template.IoC.Singletons;
 using react_template.Properties.Options;
-using react_template.Services;
 using react_template_data;
+using react_template_data.Enums;
 using Scrutor;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -111,7 +111,9 @@ namespace react_template
                 c.EnableAnnotations();
             });
 
-            services.AddHangfire();
+            services.AddHangfire(config =>
+                config.UsePostgreSqlStorage(Initial.ConnectionString(ConnectionStringType.Master))
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

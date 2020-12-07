@@ -1,6 +1,4 @@
 ﻿using EnumStringValues;
-using Hangfire;
-using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -27,13 +25,6 @@ namespace react_template_data
             .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template-data", "appsettings.json"))
             .AddJsonFile(Path.Combine(Directory.GetCurrentDirectory(), "..", "react-template-data", $"appsettings.{Env}.json"), true)
             .Build();
-
-        public static IServiceCollection AddHangfire(this IServiceCollection services)
-        {
-            return services.AddHangfire(config =>
-                config.UsePostgreSqlStorage(ConnectionString(ConnectionStringType.Master))
-            );
-        }
 
         public static IServiceCollection RegisterInContainer(this IServiceCollection services)
         {
