@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using react_template_data.Data;
 using react_template_data.Enums;
+using Scrutor;
 using System;
 
 namespace react_template_data.Helpers
@@ -30,6 +32,35 @@ namespace react_template_data.Helpers
                     ConfigureDbContext = builder => builder.UseNpgsql(connectionString)
                 }
             );
+        }
+
+        public static IServiceCollection Register(this IServiceCollection services, Type type, ServiceLifetime serviceLifetime)
+        {
+            var action = new Action<ITypeSourceSelector>(
+                scan =>
+                {
+                    var selector = scan.FromAssembliesOf(type)
+                        .AddClasses(t => t.AssignableTo(type))
+                        .UsingRegistrationStrategy(RegistrationStrategy.Skip)
+                        .AsImplementedInterfaces();
+
+                    switch (serviceLifetime)
+                    {
+                        case ServiceLifetime.Singleton:
+                            selector.WithSingletonLifetime();
+                            break;
+                        case ServiceLifetime.Scoped:
+                            selector.WithScopedLifetime();
+                            break;
+                        default:
+                            selector.WithTransientLifetime();
+                            break;
+                    }
+                }
+            );
+
+            services.Scan(action);
+            return services;
         }
     }
 }

@@ -37,12 +37,7 @@ namespace react_template_data
             );
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU MASTER */
-            services.Scan(scan => scan.FromCallingAssembly()
-                .AddClasses(t => t.AssignableTo(typeof(IMasterRepository<>)))
-                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                .AsImplementedInterfaces()
-                .WithSingletonLifetime()
-            );
+            services.Register(typeof(IMasterRepository<>), ServiceLifetime.Singleton);
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
@@ -51,12 +46,7 @@ namespace react_template_data
             });
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
-            services.Scan(scan => scan.FromCallingAssembly()
-                .AddClasses(t => t.AssignableTo(typeof(IOwnerRepository<>)))
-                .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                .AsImplementedInterfaces()
-                .WithScopedLifetime()
-            );
+            services.Register(typeof(IOwnerRepository<>), ServiceLifetime.Scoped);
 
             return services;
         }
@@ -71,8 +61,12 @@ namespace react_template_data
             ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI KONTEKSTÓW DB DLA KONFIGURACJI IDENTITYSERVER4 */
-            services.AddSingleton(serviceProvider => Common.GenerateMasterContext<PersistedGrantContext>());
-            services.AddSingleton(serviceProvider => Common.GenerateMasterContext<ConfigurationContext>());
+            services.AddSingleton(serviceProvider =>
+                Common.GenerateMasterContext<PersistedGrantContext>()
+            );
+            services.AddSingleton(serviceProvider =>
+                Common.GenerateMasterContext<ConfigurationContext>()
+            );
 
             return services;
         }
