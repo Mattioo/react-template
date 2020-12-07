@@ -11,14 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
 using react_template.IoC;
-using react_template.IoC.Singletons;
 using react_template.Properties.Options;
-using react_template.Services;
 using react_template_data;
 using react_template_data.Enums;
 using react_template_data.Helpers;
-using Scrutor;
-using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -53,10 +49,8 @@ namespace react_template
 
             services.RegisterInContainer();
 
-            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW TYPU SINGLETON */
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW */
             services.Register(typeof(ISingletonService), ServiceLifetime.Singleton);
-
-            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW O ZASIÊGU ¯¥DANIA */
             services.Register(typeof(IScopeService), ServiceLifetime.Scoped);
 
             services.AddControllers();
@@ -106,7 +100,7 @@ namespace react_template
             });
 
             services.AddHangfire(config =>
-                config.UsePostgreSqlStorage(Initial.ConnectionString(ConnectionStringType.Master))
+                config.UsePostgreSqlStorage(Initial.ConnectionString(ConnectionStringType.Master).Result)
             );
         }
 

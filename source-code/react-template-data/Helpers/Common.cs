@@ -17,7 +17,7 @@ namespace react_template_data.Helpers
 
         public static T GenerateMasterContext<T>() where T : DbContext
         {
-            var connectionString = Initial.ConnectionString(ConnectionStringType.Master);
+            var connectionString = Initial.ConnectionString(ConnectionStringType.Master).Result;
 
             var builder = new DbContextOptionsBuilder<T>();
             builder.UseNpgsql(connectionString);

@@ -38,7 +38,7 @@ namespace react_template_identity
             .AddDefaultTokenProviders();
 
             var assembly = typeof(Initial).Assembly.GetName().Name;
-            var masterConnectionString = Initial.ConnectionString(ConnectionStringType.Master);
+            var masterConnectionString = Initial.ConnectionString(ConnectionStringType.Master).Result;
 
             services.AddIdentityServer(options =>
             {

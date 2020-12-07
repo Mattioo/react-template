@@ -1,6 +1,5 @@
 ﻿using EnumStringValues;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,10 +9,10 @@ using react_template_data.Enums;
 using react_template_data.Helpers;
 using react_template_data.IoC;
 using react_template_data.IoC.Master;
-using Scrutor;
 using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace react_template_data
 {
@@ -32,7 +31,7 @@ namespace react_template_data
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             /* REJESTRACJA W KONTENERZE DI NIEZMIENNEGO KONTEKSTU BAZY MASTER */
-            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConnectionString(ConnectionStringType.Master)),
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConnectionString(ConnectionStringType.Master).Result),
                 ServiceLifetime.Singleton
             );
 
@@ -42,7 +41,7 @@ namespace react_template_data
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
             {
-                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider));
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).Result);
             });
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
@@ -56,9 +55,8 @@ namespace react_template_data
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU IDENTITY ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<IdentityContext>((serviceProvider, options) =>
             {
-                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider));
-            },
-            ServiceLifetime.Scoped);
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).Result);
+            });
 
             /* REJESTRACJA W KONTENERZE DI KONTEKSTÓW DB DLA KONFIGURACJI IDENTITYSERVER4 */
             services.AddSingleton(serviceProvider =>
@@ -71,21 +69,29 @@ namespace react_template_data
             return services;
         }
 
-        public static string ConnectionString(ConnectionStringType connectionStringType, IServiceProvider serviceProvider = null)
+        public async static Task<string> ConnectionString(ConnectionStringType connectionStringType, IServiceProvider serviceProvider = null)
         {
-            var builder = new NpgsqlConnectionStringBuilder(ConfigurationBuilder.GetConnectionString(EnumExtensions.GetStringValue(connectionStringType)));
-            if (connectionStringType is ConnectionStringType.Owner && serviceProvider is IServiceProvider)
+            if (connectionStringType is ConnectionStringType.Owner && serviceProvider is null)
+            {
+                throw new Exception("W celu uzyskania dostępu do bazy danych klienta wymagane jest podanie obu parametru IServiceProvider");
+            }
+
+            var builder = new NpgsqlConnectionStringBuilder(
+                ConfigurationBuilder.GetConnectionString(EnumExtensions.GetStringValue(connectionStringType))
+            );
+
+            if (connectionStringType is ConnectionStringType.Owner)
             {
                 var httpContext = serviceProvider.GetService<IHttpContextAccessor>().HttpContext;
                 if (httpContext is HttpContext)
                 {
-                    var host = new Uri(httpContext.Request.GetEncodedUrl()).Host;
+                    var host = httpContext.GetHost();
                     var repository = serviceProvider.GetService<IUnitsRepository>();
                     
                     if (repository is IUnitsRepository)
                     {
-                        var database = repository.Get(u => u.Path == host, CancellationToken.None).Result?.Database;
-                        builder.Database = database;
+                        var unit = await repository.Get(u => u.Active && u.Path == host, CancellationToken.None);
+                        builder.Database = unit?.Database;
                     }
                 }
             }
