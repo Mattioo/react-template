@@ -10,6 +10,8 @@ using react_template_data;
 using react_template_data.Data;
 using react_template_data.Data.IS;
 using react_template_data.Enums;
+using react_template_data.Helpers;
+using react_template_identity.IoC;
 using System;
 using System.Linq;
 
@@ -20,6 +22,9 @@ namespace react_template_identity
         public void ConfigureServices(IServiceCollection services)
         {
             services.RegisterInIdentityServerContainer();
+
+            /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW */
+            services.Register(typeof(IScopeService), ServiceLifetime.Scoped);
 
             services.AddIdentity<User, IdentityRole>(options =>
             {

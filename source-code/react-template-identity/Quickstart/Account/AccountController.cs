@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using react_template_data.Data.IS;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace IdentityServerHost.Quickstart.UI
@@ -125,7 +126,6 @@ namespace IdentityServerHost.Quickstart.UI
             return View(vm);
         }
 
-        
         /// <summary>
         /// Show logout page
         /// </summary>
