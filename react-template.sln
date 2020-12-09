@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source-code", "source-code", "{6EA07EF1-62E7-476A-AB17-8C93D4BEA00F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "react-template", "source-code\react-template\react-template.csproj", "{9F6CF0CF-3A52-45C8-AE12-8E4A042AF18D}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E17D87BE-1351-4227-B1D3-48E43B74A7EF} = {E17D87BE-1351-4227-B1D3-48E43B74A7EF}
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54EBF06F-24B3-4FF9-B74A-9BFF2A3312BF}"
 	ProjectSection(SolutionItems) = preProject
