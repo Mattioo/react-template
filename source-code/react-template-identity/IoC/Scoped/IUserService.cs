@@ -7,12 +7,12 @@ namespace react_template_identity.IoC.Scoped
 {
     public interface IUserService : IScopeService
     {
-        public Task<User> Get(string username, CancellationToken cancellationToken);
-        public Task<bool> Exists(string username, CancellationToken cancellationToken);
+        public Task<User> Get(string id, CancellationToken cancellationToken);
+        public Task<bool> Exists(string id, CancellationToken cancellationToken);
         public Task<User> Create(UserModel model, CancellationToken cancellationToken);
-        public Task ConfirmEmail(string username, CancellationToken cancellationToken);
-        public Task ChangePassword(string username, UserPasswordModel model, CancellationToken cancellationToken);
-        public Task ResetPassword(string username, UserPasswordModel model, CancellationToken cancellationToken);
-        public Task<bool> Delete(string username, CancellationToken cancellationToken);
+        public Task ConfirmEmail(string id, CancellationToken cancellationToken);
+        public Task ChangePassword(string id, UserPasswordModel model, CancellationToken cancellationToken);
+        public Task ResetPassword(string id, UserPasswordModel model, CancellationToken cancellationToken);
+        public Task<bool> Delete(string id, UserPasswordModel model, CancellationToken cancellationToken);
     }
 }

@@ -54,6 +54,7 @@ C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\net
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\react-template-identity.Views.pdb
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\Dapper.dll
+C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\EnumStringValues.dll
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\Hangfire.AspNetCore.dll
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\Hangfire.Core.dll
 C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\Hangfire.PostgreSql.dll
@@ -155,4 +156,3 @@ C:\Repositories\react-template\source-code\react-template-identity\obj\Debug\net
 C:\Repositories\react-template\source-code\react-template-identity\obj\Debug\netcoreapp3.1\react-template-identity.dll
 C:\Repositories\react-template\source-code\react-template-identity\obj\Debug\netcoreapp3.1\react-template-identity.pdb
 C:\Repositories\react-template\source-code\react-template-identity\obj\Debug\netcoreapp3.1\react-template-identity.genruntimeconfig.cache
-C:\Repositories\react-template\source-code\react-template-identity\bin\Debug\netcoreapp3.1\EnumStringValues.dll

@@ -22,28 +22,28 @@ namespace react_template_identity.Controllers
         public async Task<IActionResult> Create([FromBody] UserModel model, CancellationToken cancellationToken)
             => await Create(_userService.Create(model, cancellationToken));
 
-        [HttpHead("{username}")]
-        public async Task<IActionResult> Exists([FromRoute] string username, CancellationToken cancellationToken)
-            => await Exists(_userService.Exists(username, cancellationToken));
+        [HttpHead("{id}")]
+        public async Task<IActionResult> Exists([FromRoute] string id, CancellationToken cancellationToken)
+            => await Exists(_userService.Exists(id, cancellationToken));
 
-        [HttpGet("{username}")]
-        public async Task<IActionResult> Get([FromRoute] string username, CancellationToken cancellationToken)
-            => await Get(_userService.Get(username, cancellationToken));
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([FromRoute] string id, CancellationToken cancellationToken)
+            => await Get(_userService.Get(id, cancellationToken));
 
-        [HttpPut("{username}/email/confirm")]
-        public async Task<IActionResult> ConfirmEmail([FromRoute] string username, CancellationToken cancellationToken)
-            => await ConfirmEmail(_userService.ConfirmEmail(username, cancellationToken));
+        [HttpPut("{id}/email/confirm")]
+        public async Task<IActionResult> ConfirmEmail([FromRoute] string id, CancellationToken cancellationToken)
+            => await ConfirmEmail(_userService.ConfirmEmail(id, cancellationToken));
 
-        [HttpPut("{username}/password/change")]
-        public async Task<IActionResult> ChangePassword([FromRoute] string username, [FromBody] UserPasswordModel model, CancellationToken cancellationToken)
-            => await ChangePassword(_userService.ChangePassword(username, model, cancellationToken));
+        [HttpPut("{id}/password/change")]
+        public async Task<IActionResult> ChangePassword([FromRoute] string id, [FromBody] UserPasswordModel model, CancellationToken cancellationToken)
+            => await ChangePassword(_userService.ChangePassword(id, model, cancellationToken));
 
-        [HttpPut("{username}/password/reset")]
-        public async Task<IActionResult> ResetPassword([FromRoute] string username, [FromBody] UserPasswordModel model, CancellationToken cancellationToken)
-            => await ChangePassword(_userService.ResetPassword(username, model, cancellationToken));
+        [HttpPut("{id}/password/reset")]
+        public async Task<IActionResult> ResetPassword([FromRoute] string id, [FromBody] UserPasswordModel model, CancellationToken cancellationToken)
+            => await ChangePassword(_userService.ResetPassword(id, model, cancellationToken));
 
-        [HttpDelete("{username}")]
-        public async Task<IActionResult> Delete([FromRoute] string username, CancellationToken cancellationToken)
-            => await Delete(_userService.Delete(username, cancellationToken));
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id, [FromBody] UserPasswordModel model, CancellationToken cancellationToken)
+            => await Delete(_userService.Delete(id, model, cancellationToken));
     }
 }

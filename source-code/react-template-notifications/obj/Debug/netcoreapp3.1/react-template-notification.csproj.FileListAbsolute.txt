@@ -1,0 +1,3 @@
+C:\Repositories\react-template\react-template-notification\bin\Debug\netcoreapp3.1\react-template-notification.exe
+C:\Repositories\react-template\react-template-notification\obj\Debug\netcoreapp3.1\react-template-notification.AssemblyInfoInputs.cache
+C:\Repositories\react-template\react-template-notification\obj\Debug\netcoreapp3.1\react-template-notification.AssemblyInfo.cs

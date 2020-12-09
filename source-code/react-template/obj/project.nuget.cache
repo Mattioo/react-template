@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "n60xe3/8w9q8NMn4QlX2ZBEKpCHVQFF9FFy8KBO/7/MJfo9mrtwW/zRMTqTsBdHIiFPjqvrIl25vGLdT7CI4vQ==",
+  "dgSpecHash": "BrGK8vfRc7/M4qq/0fJqIDn/ElHLpH+pMfY1hkby0HUeLLOz/U1CvHVajRELgDQgdjeJYPa1Dq9s9MmhNLG99A==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj",
   "expectedPackageFiles": [
@@ -37,8 +37,8 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.4\\microsoft.extensions.caching.abstractions.3.1.4.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.4\\microsoft.extensions.caching.memory.3.1.4.nupkg.sha512",
-    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.4\\microsoft.extensions.configuration.3.1.4.nupkg.sha512",
-    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.4\\microsoft.extensions.configuration.abstractions.3.1.4.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.4\\microsoft.extensions.configuration.binder.3.1.4.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\3.1.4\\microsoft.extensions.configuration.fileextensions.3.1.4.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.configuration.json\\3.1.4\\microsoft.extensions.configuration.json.3.1.4.nupkg.sha512",
@@ -54,7 +54,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.4\\microsoft.extensions.logging.abstractions.3.1.4.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.objectpool\\2.2.0\\microsoft.extensions.objectpool.2.2.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.options\\3.1.4\\microsoft.extensions.options.3.1.4.nupkg.sha512",
-    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.4\\microsoft.extensions.primitives.3.1.4.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.7.1\\microsoft.identitymodel.jsonwebtokens.6.7.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.identitymodel.logging\\6.7.1\\microsoft.identitymodel.logging.6.7.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.5.0\\microsoft.identitymodel.protocols.5.5.0.nupkg.sha512",

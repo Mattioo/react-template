@@ -13,6 +13,7 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Dapper.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\DinkToPdf.dll
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\EnumStringValues.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Hangfire.AspNetCore.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Hangfire.Core.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Hangfire.PostgreSql.dll
@@ -78,6 +79,7 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\zh\Hangfire.Core.resources.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-data.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-data.pdb
+C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csprojAssemblyReference.cache
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.AssemblyInfoInputs.cache
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.AssemblyInfo.cs
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.csproj.CoreCompileInputs.cache
@@ -90,4 +92,3 @@ C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.dll
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.pdb
 C:\Repositories\react-template\source-code\react-template\obj\Debug\netcoreapp3.1\react-template.genruntimeconfig.cache
-C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\EnumStringValues.dll
