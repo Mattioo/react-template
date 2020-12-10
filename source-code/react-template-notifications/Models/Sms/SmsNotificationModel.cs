@@ -76,7 +76,7 @@ namespace react_template_notifications.Models.Sms
         }
 
         #region validation
-        public override bool Valid => base.Valid && PhoneNumbers.Count > 0 && Text.Length < Config.MaxNumberOfCharacters && Common.GSM(Text);
+        public override bool Valid => base.Valid && PhoneNumbers.Count > 0 && (Encrypted || (Text.Length < Config.MaxNumberOfCharacters && Common.GSM(Text)));
         #endregion
     }
 }

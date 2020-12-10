@@ -11,7 +11,7 @@ namespace react_template_notifications.Helpers
         public static string Encrypt(this string text, string publicKey) =>
             EncryptProvider.RSAEncrypt(publicKey, text);
 
-        public static string Decrypt(this string text, string publicKey) =>
-            EncryptProvider.RSADecrypt(publicKey, text);
+        public static string Decrypt(this string text, string privateKey) =>
+            EncryptProvider.RSADecrypt(privateKey, text);
     }
 }

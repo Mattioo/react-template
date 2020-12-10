@@ -1,8 +1,8 @@
 ﻿namespace react_template_notifications.Options
 {
-    public class QueueOptions
+    public class NotificationsOptions
     {
-        public const string Name = "QueueOptions";
+        public const string Name = "NotificationsOptions";
 
         public string Queue { get; set; }
         public string Host { get; set; }

@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\react-template-data\react-template-data.csproj" />
+    <ProjectReference Include="..\react-template-notifications\react-template-notifications.csproj" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

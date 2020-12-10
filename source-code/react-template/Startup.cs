@@ -15,6 +15,9 @@ using react_template.Properties.Options;
 using react_template_data;
 using react_template_data.Enums;
 using react_template_data.Helpers;
+using react_template_notifications.IoC;
+using react_template_notifications.Options;
+using react_template_notifications.Services;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -39,6 +42,9 @@ namespace react_template
             
             services.Configure<IdentityServerOptions>(identityServerSection);
             identityServerSection.Bind(identityServerOptions);
+
+            var queueSection = Configuration.GetSection(NotificationsOptions.Name);
+            services.Configure<NotificationsOptions>(queueSection);
             #endregion
             #region Rejestracja generatora wydruków
             var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
@@ -52,6 +58,9 @@ namespace react_template
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW */
             services.Register(typeof(ISingletonService), ServiceLifetime.Singleton);
             services.Register(typeof(IScopeService), ServiceLifetime.Scoped);
+
+            /* REJESTRACJA SERWISU POWIADOMIEÑ */
+            services.AddSingleton<INotificationService, NotificationService>();
 
             services.AddControllers();
 

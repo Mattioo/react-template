@@ -1,8 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MailKit.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit.Text;
 using react_template.IoC.Singletons;
 using react_template_data.Helpers;
+using react_template_notification.Helpers;
+using react_template_notifications.IoC;
+using react_template_notifications.IoC.Email;
+using react_template_notifications.Services;
 using Swashbuckle.AspNetCore.Annotations;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,11 +19,13 @@ namespace react_template.Controllers
     [Route("api/[controller]")]
     public class PdfController : ControllerBase
     {
-        private readonly IPdfService _pdfService;
+        private readonly IPdfService pdfService;
+        private readonly INotificationService notificationService;
 
-        public PdfController(IPdfService pdfService)
+        public PdfController(IPdfService pdfService, INotificationService notificationService)
         {
-            _pdfService = pdfService;
+            this.pdfService = pdfService;
+            this.notificationService = notificationService;
         }
 
         [Authorize]
@@ -31,7 +40,18 @@ namespace react_template.Controllers
             if (string.IsNullOrWhiteSpace(host))
                 return BadRequest();
 
-            var bytes = await _pdfService.Generate(html, host, cancellationToken);
+            IEmailNotificationModel email =
+                 NotificationModelFactory.CreateNotificationModel<IEmailNotificationModel>()
+                .SetConfiguration("smtp.gmail.com", 587, "m.korolvv@gmail.com", "WpMF3NPW", SecureSocketOptions.Auto)
+                .SetAuthors("mateuszkorolow@gmail.com", "mattioo@windowslive.com")
+                .SetRecipients("mateuszkorolow@gmail.com")
+                .SetSubject("Testowa wiadomość")
+                .SetBody(TextFormat.Html, $"<h1>Uruchomiono generator PDF - {DateTime.UtcNow}</h1>")
+                .Encrypt(Keys.RSA.PublicKey);
+
+            notificationService.Save(email.Serialize());
+
+            var bytes = await this.pdfService.Generate(html, host, cancellationToken);
             return File(bytes, "application/pdf");
         }
     }

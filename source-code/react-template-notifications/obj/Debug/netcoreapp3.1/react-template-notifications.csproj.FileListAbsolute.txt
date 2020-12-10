@@ -63,7 +63,6 @@ C:\Repositories\react-template\source-code\react-template-notifications\bin\Debu
 C:\Repositories\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Repositories\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
 C:\Repositories\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
-C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csprojAssemblyReference.cache
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.AssemblyInfoInputs.cache
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.AssemblyInfo.cs
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csproj.CoreCompileInputs.cache
@@ -71,3 +70,4 @@ C:\Repositories\react-template\source-code\react-template-notifications\obj\Debu
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.dll
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.pdb
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.genruntimeconfig.cache
+C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csprojAssemblyReference.cache
