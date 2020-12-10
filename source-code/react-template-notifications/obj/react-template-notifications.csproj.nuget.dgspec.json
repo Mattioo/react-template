@@ -75,6 +75,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.2.1, )"
+            },
+            "SMSAPI.pl": {
+              "target": "Package",
+              "version": "[1.0.9, )"
             }
           },
           "imports": [

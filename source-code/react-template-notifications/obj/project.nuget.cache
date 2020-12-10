@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+d/AEAQcbYklcx3O2IbQ8uwEXxMh2zqXRc1i9nteE9Ow/zXJpzxU0RvmaUAqsqxvTDQ6TPM6XesIaoOT23KoHA==",
+  "dgSpecHash": "m1ob7/+oglMmu81RN0GrdodKaK0A6D4T6L1XeFzz2TVWLq2L+pLZox9Au1ab9NCihVqe0TxL7UaYhZB2Ki8btg==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\portable.bouncycastle\\1.8.8\\portable.bouncycastle.1.8.8.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\rabbitmq.client\\6.2.1\\rabbitmq.client.6.2.1.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\smsapi.pl\\1.0.9\\smsapi.pl.1.0.9.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",

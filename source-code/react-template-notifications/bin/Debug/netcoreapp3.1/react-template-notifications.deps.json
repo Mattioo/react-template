@@ -16,7 +16,8 @@
           "Microsoft.Extensions.Options": "5.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0",
           "NETCore.Encrypt": "2.0.9",
-          "RabbitMQ.Client": "6.2.1"
+          "RabbitMQ.Client": "6.2.1",
+          "SMSAPI.pl": "1.0.9"
         },
         "runtime": {
           "react-template-notifications.dll": {}
@@ -239,6 +240,14 @@
           }
         }
       },
+      "SMSAPI.pl/1.0.9": {
+        "runtime": {
+          "lib/netcoreapp3.1/smsapi.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
       "System.Buffers/4.5.1": {},
       "System.Data.DataSetExtensions/4.5.0": {},
       "System.Memory/4.5.4": {},
@@ -431,6 +440,13 @@
       "sha512": "sha512-kdcin0uz1b9xQPvlLOoa8Y2zQsfu7nRuTrcX02dCLVzwGVlsPp9AFgu1L3kRh4wSFEOGE03OVqpWKxaDlhuowQ==",
       "path": "rabbitmq.client/6.2.1",
       "hashPath": "rabbitmq.client.6.2.1.nupkg.sha512"
+    },
+    "SMSAPI.pl/1.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-g+xdm5vM5pKOkWnCarfiS2wmNLgJudcIWdKEHp+rnjIY/uZBzX6vwTC9MsRal3PxtKBeKLDbWN4aI3E4hiFTaA==",
+      "path": "smsapi.pl/1.0.9",
+      "hashPath": "smsapi.pl.1.0.9.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

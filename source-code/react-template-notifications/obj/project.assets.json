@@ -246,6 +246,15 @@
           "lib/netstandard2.0/RabbitMQ.Client.dll": {}
         }
       },
+      "SMSAPI.pl/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/smsapi.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/smsapi.dll": {}
+        }
+      },
       "System.Buffers/4.5.1": {
         "type": "package",
         "compile": {
@@ -780,6 +789,24 @@
         "rabbitmq.client.nuspec"
       ]
     },
+    "SMSAPI.pl/1.0.9": {
+      "sha512": "g+xdm5vM5pKOkWnCarfiS2wmNLgJudcIWdKEHp+rnjIY/uZBzX6vwTC9MsRal3PxtKBeKLDbWN4aI3E4hiFTaA==",
+      "type": "package",
+      "path": "smsapi.pl/1.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/smsapi.dll",
+        "lib/netcoreapp2.0/smsapi.dll",
+        "lib/netcoreapp2.1/smsapi.dll",
+        "lib/netcoreapp3.0/smsapi.dll",
+        "lib/netcoreapp3.1/smsapi.dll",
+        "lib/netstandard2.0/smsapi.dll",
+        "lib/netstandard2.1/smsapi.dll",
+        "smsapi.pl.1.0.9.nupkg.sha512",
+        "smsapi.pl.nuspec"
+      ]
+    },
     "System.Buffers/4.5.1": {
       "sha512": "Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
       "type": "package",
@@ -1151,7 +1178,8 @@
       "Microsoft.Extensions.Options >= 5.0.0",
       "Microsoft.Extensions.Options.ConfigurationExtensions >= 5.0.0",
       "NETCore.Encrypt >= 2.0.9",
-      "RabbitMQ.Client >= 6.2.1"
+      "RabbitMQ.Client >= 6.2.1",
+      "SMSAPI.pl >= 1.0.9"
     ]
   },
   "packageFolders": {
@@ -1228,6 +1256,10 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.2.1, )"
+          },
+          "SMSAPI.pl": {
+            "target": "Package",
+            "version": "[1.0.9, )"
           }
         },
         "imports": [

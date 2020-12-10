@@ -11,8 +11,10 @@ using react_template_notifications.IoC;
 using react_template_notifications.IoC.Email;
 using react_template_notifications.IoC.Sms;
 using react_template_notifications.Options;
+using SMSApi.Api;
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,7 +58,7 @@ namespace react_template_notifications.Services
                 channel.BasicPublish(string.Empty, this.queue, props, body);
                 return true;
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 return false;
             }
@@ -108,7 +110,7 @@ namespace react_template_notifications.Services
                 this.model.BasicConsume(this.queue, false, this.consumer);
                 return Task.CompletedTask;
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 return Task.FromException(ex);
             }
@@ -159,9 +161,9 @@ namespace react_template_notifications.Services
                     smtp.Disconnect(true);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
-                
+                // log
             }
 
             return false;
@@ -173,13 +175,27 @@ namespace react_template_notifications.Services
             {
                 if (message.Valid)
                 {
-                    return true;
+                    IClient client = new ClientOAuth(message.Config.Token);
+                    var api = new SMSFactory(client);
+
+                    var builder = 
+                        api.ActionSend()
+                           .SetText(message.Text)
+                           .SetTo(message.PhoneNumbers.ToArray());
+                    
+                    if (message.Date.HasValue)
+                    {
+                        builder.SetDateSent(message.Date.Value);
+                    }
+                    
+                    builder.Execute();
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
-               
+               // log
             }
+
             return false;
         }
     }

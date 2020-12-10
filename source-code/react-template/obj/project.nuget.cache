@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sVpwiIHEZq+KCS3LINpUAVW00QZ5a8en1dw7mcGGehgmx8SwcU4dGJwHk+S99OwTwYqiUTfHGzCNcp9m9DJjxA==",
+  "dgSpecHash": "M9MqrdafHdOxi+HVnTITfZOuONBtd5B1T5lD3Bhh3N7xc7yh/JhCAwy8aGiNrkF5C+4OTITngqRQ81NdsNdEGg==",
   "success": true,
   "projectFilePath": "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj",
   "expectedPackageFiles": [
@@ -80,6 +80,7 @@
     "C:\\Users\\m.korolow\\.nuget\\packages\\runtime.native.system.net.http\\4.0.1\\runtime.native.system.net.http.4.0.1.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\runtime.native.system.security.cryptography\\4.0.0\\runtime.native.system.security.cryptography.4.0.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\scrutor\\3.2.1\\scrutor.3.2.1.nupkg.sha512",
+    "C:\\Users\\m.korolow\\.nuget\\packages\\smsapi.pl\\1.0.9\\smsapi.pl.1.0.9.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\swashbuckle.aspnetcore\\5.0.0\\swashbuckle.aspnetcore.5.0.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\5.5.0\\swashbuckle.aspnetcore.annotations.5.5.0.nupkg.sha512",
     "C:\\Users\\m.korolow\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.5.0\\swashbuckle.aspnetcore.swagger.5.5.0.nupkg.sha512",

@@ -1,9 +1,12 @@
 ﻿using react_template_notifications.Enums;
+using System;
 
 namespace react_template_notifications.IoC
 {
     public interface IBaseNotificationModel
     {
+        public DateTime? Date { get; }
+
         public string Text { get; }
 
         public NotificationType NotificationType { get; }

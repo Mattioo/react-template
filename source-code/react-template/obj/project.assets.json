@@ -1027,6 +1027,15 @@
           "lib/netstandard2.0/Scrutor.dll": {}
         }
       },
+      "SMSAPI.pl/1.0.9": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/smsapi.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/smsapi.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -2182,7 +2191,8 @@
           "Microsoft.Extensions.Options": "5.0.0",
           "Microsoft.Extensions.Options.ConfigurationExtensions": "5.0.0",
           "NETCore.Encrypt": "2.0.9",
-          "RabbitMQ.Client": "6.2.1"
+          "RabbitMQ.Client": "6.2.1",
+          "SMSAPI.pl": "1.0.9"
         },
         "compile": {
           "bin/placeholder/react-template-notifications.dll": {}
@@ -3635,6 +3645,24 @@
         "lib/netstandard2.0/Scrutor.xml",
         "scrutor.3.2.1.nupkg.sha512",
         "scrutor.nuspec"
+      ]
+    },
+    "SMSAPI.pl/1.0.9": {
+      "sha512": "g+xdm5vM5pKOkWnCarfiS2wmNLgJudcIWdKEHp+rnjIY/uZBzX6vwTC9MsRal3PxtKBeKLDbWN4aI3E4hiFTaA==",
+      "type": "package",
+      "path": "smsapi.pl/1.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/smsapi.dll",
+        "lib/netcoreapp2.0/smsapi.dll",
+        "lib/netcoreapp2.1/smsapi.dll",
+        "lib/netcoreapp3.0/smsapi.dll",
+        "lib/netcoreapp3.1/smsapi.dll",
+        "lib/netstandard2.0/smsapi.dll",
+        "lib/netstandard2.1/smsapi.dll",
+        "smsapi.pl.1.0.9.nupkg.sha512",
+        "smsapi.pl.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/5.0.0": {

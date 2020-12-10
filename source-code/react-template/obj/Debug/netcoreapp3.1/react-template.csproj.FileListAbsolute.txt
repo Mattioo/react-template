@@ -103,3 +103,4 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-notifications.dll
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template-notifications.pdb
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\smsapi.dll
