@@ -9,18 +9,18 @@ namespace react_template.Services
 {
     public class PdfService : IPdfService
     {
-        private readonly IConverter _converter;
-        private readonly IStylesService _stylesService;
+        private readonly IConverter converter;
+        private readonly IStylesService stylesService;
 
         public PdfService(IConverter converter, IStylesService stylesService)
         {
-            _converter = converter;
-            _stylesService = stylesService;
+            this.converter = converter;
+            this.stylesService = stylesService;
         }
 
         public async Task<byte[]> Generate(string html, string host, CancellationToken cancellationToken)
         {
-            var styles = await _stylesService.GetByUrl(host, cancellationToken);
+            var styles = await stylesService.GetByUrl(host, cancellationToken);
             var pathToStyle = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "dist", "styles", styles.Dict, styles.File);
 
             var globalSettings = new GlobalSettings
@@ -46,7 +46,7 @@ namespace react_template.Services
                 Objects = { objectSettings }
             };
 
-            return _converter.Convert(pdf);
+            return converter.Convert(pdf);
         }
     }
 }

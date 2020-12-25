@@ -69,6 +69,5 @@ C:\Repositories\react-template\source-code\react-template-notifications\obj\Debu
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.dll
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.pdb
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.genruntimeconfig.cache
-C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csprojAssemblyReference.cache
 C:\Repositories\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\smsapi.dll
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csproj.CoreCompileInputs.cache

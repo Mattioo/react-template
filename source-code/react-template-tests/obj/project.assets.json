@@ -2866,7 +2866,10 @@
         },
         "runtime": {
           "bin/placeholder/react-template-notifications.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },

@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit.Text;
 using react_template.IoC.Singletons;
+using react_template_data.Data.Owner;
 using react_template_data.Helpers;
+using react_template_data.IoC.Owner;
 using react_template_notification.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.IoC.Email;
-using react_template_notifications.IoC.Sms;
 using react_template_notifications.Services;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
@@ -23,10 +24,15 @@ namespace react_template.Controllers
         private readonly IPdfService pdfService;
         private readonly INotificationService notificationService;
 
-        public PdfController(IPdfService pdfService, INotificationService notificationService)
+        private readonly ISmtpConfigsRepository smtpConfigsRepository;
+
+        public PdfController(IPdfService pdfService,
+            INotificationService notificationService,
+            ISmtpConfigsRepository smtpConfigsRepository)
         {
             this.pdfService = pdfService;
             this.notificationService = notificationService;
+            this.smtpConfigsRepository = smtpConfigsRepository;
         }
 
         [Authorize]
@@ -41,25 +47,19 @@ namespace react_template.Controllers
             if (string.IsNullOrWhiteSpace(host))
                 return BadRequest();
 
-            IEmailNotificationModel email =
+            if (await smtpConfigsRepository.Get(c => c.Active, cancellationToken) is SmtpConfig config)
+            {
+                IEmailNotificationModel email =
                  NotificationModelFactory.CreateNotificationModel<IEmailNotificationModel>()
-                .SetConfiguration("smtp.gmail.com", 587, "m.korolvv@gmail.com", "[PASSWORD]", SecureSocketOptions.Auto)
-                .SetAuthors("mateuszkorolow@gmail.com", "mattioo@windowslive.com")
-                .SetRecipients("mateuszkorolow@gmail.com")
-                .SetSubject("Testowa wiadomość")
-                .SetBody(TextFormat.Html, $"<h1>Uruchomiono generator PDF - {DateTime.UtcNow}</h1>")
-                .Encrypt(Keys.RSA.PublicKey);
+                    .SetConfiguration(config.Host, config.Port, config.Username, config.Password, (SecureSocketOptions)config.SecureSocketOption)
+                    .SetAuthors("m.korolvv@gmail.com", "m.korolvv@gmail.com")
+                    .SetRecipients("mateuszkorolow@gmail.com")
+                    .SetSubject("Testowa wiadomość")
+                    .SetBody(TextFormat.Html, $"<h1>Uruchomiono generator PDF - {DateTime.UtcNow}</h1>")
+                    .Encrypt(Keys.RSA.PublicKey);
 
-            ISmsNotificationModel sms =
-                 NotificationModelFactory.CreateNotificationModel<ISmsNotificationModel>()
-                .SetConfiguration("[TOKEN]")
-                .SetRecipients("888258188")
-                .SetMessage($"5 minut temu uruchomiono generator PDF - {DateTime.UtcNow}")
-                .SetTime(DateTime.Now.AddMinutes(5))
-                .Encrypt(Keys.RSA.PublicKey);
-
-            notificationService.Save(email.Serialize());
-            notificationService.Save(sms.Serialize());
+                notificationService.Save(email.Serialize());
+            }
 
             var bytes = await this.pdfService.Generate(html, host, cancellationToken);
             return File(bytes, "application/pdf");

@@ -12,8 +12,8 @@ namespace react_template_data.Helpers
 {
     public static class Common
     {
-        public static string GetHost(this HttpContext context)
-            => new Uri(context.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
+        public static string GetHost(this HttpContext context, bool protocol = false)
+            => !protocol? context.Request.Host.Host : new Uri(context.Request.GetEncodedUrl()).GetLeftPart(UriPartial.Authority);
 
         public static T GenerateMasterContext<T>() where T : DbContext
         {

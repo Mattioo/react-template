@@ -173,3 +173,15 @@ C:\Repositories\react-template\source-code\react-template-tests\obj\Debug\netcor
 C:\Repositories\react-template\source-code\react-template-tests\obj\Debug\netcoreapp3.1\react-template-tests.dll
 C:\Repositories\react-template\source-code\react-template-tests\obj\Debug\netcoreapp3.1\react-template-tests.pdb
 C:\Repositories\react-template\source-code\react-template-tests\obj\Debug\netcoreapp3.1\react-template-tests.genruntimeconfig.cache
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\react-template-notifications.exe
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\NETCore.Encrypt.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\smsapi.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\react-template-notifications.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\react-template-notifications.pdb
