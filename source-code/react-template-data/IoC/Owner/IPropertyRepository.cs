@@ -2,7 +2,7 @@
 
 namespace react_template_data.IoC.Owner
 {
-    public interface ISmsConfigsRepository : IOwnerRepository<SmsConfig>
+    public interface IPropertyRepository : IOwnerRepository<Property>
     {
     }
 }

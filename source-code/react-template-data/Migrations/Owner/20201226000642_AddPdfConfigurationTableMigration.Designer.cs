@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using react_template_data.Data;
@@ -9,9 +10,10 @@ using react_template_data.Data;
 namespace react_template_data.Migrations.Owner
 {
     [DbContext(typeof(OwnerContext))]
-    partial class OwnerContextModelSnapshot : ModelSnapshot
+    [Migration("20201226000642_AddPdfConfigurationTableMigration")]
+    partial class AddPdfConfigurationTableMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,9 +110,7 @@ namespace react_template_data.Migrations.Owner
                         .HasColumnType("double precision");
 
                     b.Property<int>("MarginUnit")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(1);
+                        .HasColumnType("integer");
 
                     b.Property<int>("Orientation")
                         .ValueGeneratedOnAdd()

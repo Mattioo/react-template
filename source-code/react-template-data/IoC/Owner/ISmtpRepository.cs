@@ -2,7 +2,7 @@
 
 namespace react_template_data.IoC.Owner
 {
-    public interface ISmtpConfigsRepository : IOwnerRepository<SmtpConfig>
+    public interface ISmtpRepository : IOwnerRepository<Smtp>
     {
     }
 }

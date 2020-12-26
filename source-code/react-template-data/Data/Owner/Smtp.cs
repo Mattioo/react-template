@@ -1,6 +1,6 @@
 ﻿namespace react_template_data.Data.Owner
 {
-    public class SmtpConfig
+    public class Smtp
     {
         public int Id { get; set; }
         public string Name { get; set; }

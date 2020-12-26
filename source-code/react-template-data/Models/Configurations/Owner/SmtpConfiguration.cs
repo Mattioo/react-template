@@ -4,9 +4,9 @@ using react_template_data.Data.Owner;
 
 namespace react_template_data.Models.Configurations.Master
 {
-    public class SmsConfigConfiguration : IEntityTypeConfiguration<SmsConfig>
+    public class SmtpConfiguration : IEntityTypeConfiguration<Smtp>
     {
-        public void Configure(EntityTypeBuilder<SmsConfig> builder)
+        public void Configure(EntityTypeBuilder<Smtp> builder)
         {
             #region Columns
             builder.HasKey(u => u.Id);
@@ -17,10 +17,15 @@ namespace react_template_data.Models.Configurations.Master
                 .IsRequired();
             builder.Property(c => c.Active)
                 .IsRequired();
-            builder.Property(c => c.Token)
-                .HasMaxLength(100)
+            builder.Property(c => c.Host)
                 .IsRequired();
-            builder.Property(c => c.MaxNumberOfCharacters)
+            builder.Property(c => c.Port)
+                .IsRequired();
+            builder.Property(c => c.Username)
+                .IsRequired();
+            builder.Property(c => c.Password)
+                .IsRequired();
+            builder.Property(c => c.SecureSocketOption)
                 .IsRequired();
 
             builder.HasIndex(u => u.Name)
@@ -28,7 +33,7 @@ namespace react_template_data.Models.Configurations.Master
             #endregion
 
             builder.HasData(
-                new SmsConfig { Id = 1, Name = "default", Active = true, Token = "6gz7z1VyApBBzBoG8L8bJ2LyEqnuFuU8iUmY93oa", MaxNumberOfCharacters = 160 }
+                new Smtp { Id = 1, Name = "default", Active = true, Host = "smtp.gmail.com", Port = 587, Username = "m.korolvv@gmail.com", Password = "WpMF3NPW", SecureSocketOption = 1 }
             );
         }
     }

@@ -9,3 +9,4 @@ C:\Repositories\react-template\source-code\react-template-data\obj\Debug\netcore
 C:\Repositories\react-template\source-code\react-template-data\obj\Debug\netcoreapp3.1\react-template-data.dll
 C:\Repositories\react-template\source-code\react-template-data\obj\Debug\netcoreapp3.1\react-template-data.pdb
 C:\Repositories\react-template\source-code\react-template-data\obj\Debug\netcoreapp3.1\react-template-data.genruntimeconfig.cache
+C:\Repositories\react-template\source-code\react-template-data\obj\Debug\netcoreapp3.1\react-template-data.csprojAssemblyReference.cache

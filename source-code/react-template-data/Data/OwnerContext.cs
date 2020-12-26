@@ -10,14 +10,16 @@ namespace react_template_data.Data
         { }
 
         public DbSet<Property> Properties { get; set; }
-        public DbSet<SmtpConfig> SmtpConfigs { get; set; }
-        public DbSet<SmsConfig> SmsConfigs { get; set; }
+        public DbSet<Smtp> SmtpConfigs { get; set; }
+        public DbSet<Sms> SmsConfigs { get; set; }
+        public DbSet<Pdf> Pdfs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new PropertyConfiguration());
-            builder.ApplyConfiguration(new SmtpConfigConfiguration());
-            builder.ApplyConfiguration(new SmsConfigConfiguration());
+            builder.ApplyConfiguration(new SmtpConfiguration());
+            builder.ApplyConfiguration(new SmsConfiguration());
+            builder.ApplyConfiguration(new PdfConfiguration());
         }
     }
 }

@@ -4,9 +4,9 @@ using react_template_data.IoC.Owner;
 
 namespace react_template_data.Repositories.Owner
 {
-    public class PropertiesRepository : BaseRepository<Property>, IPropertiesRepository
+    public class SmtpRepository : BaseRepository<Smtp>, ISmtpRepository
     {
-        public PropertiesRepository(OwnerContext context) : base(context)
+        public SmtpRepository(OwnerContext context) : base(context)
         { }
     }
 }

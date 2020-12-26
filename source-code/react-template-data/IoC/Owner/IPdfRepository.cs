@@ -2,7 +2,7 @@
 
 namespace react_template_data.IoC.Owner
 {
-    public interface IPropertiesRepository : IOwnerRepository<Property>
+    public interface IPdfRepository : IOwnerRepository<Pdf>
     {
     }
 }
