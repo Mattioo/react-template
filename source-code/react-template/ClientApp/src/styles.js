@@ -1,2 +1,2 @@
 ﻿import './styles/default.scss';
-import './styles/other.scss';
+import './styles/contrast.scss';

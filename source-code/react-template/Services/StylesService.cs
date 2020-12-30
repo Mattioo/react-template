@@ -28,8 +28,7 @@ namespace react_template.Services
                 u.Unit.Active &&
                 u.Style.Active,
                 cancellationToken
-            ) ??
-            await stylesRepository.GetDefault(cancellationToken);
+            );
         }
     }
 }

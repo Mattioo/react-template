@@ -1,7 +1,12 @@
-.color {
-  color: blue; }
-  .color:hover {
-    color: red; }
+body {
+  margin: 0; }
 
-p {
-  color: tomato; }
+.app-toolbar {
+  background-color: #0d47a1;
+  padding: 5px;
+  color: white; }
+  .app-toolbar--item {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    margin: 5px; }

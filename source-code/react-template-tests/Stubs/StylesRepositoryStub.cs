@@ -10,7 +10,8 @@ namespace react_template_tests.Stubs
     public class StylesRepositoryStub : IStylesRepository
     {
         public async Task<Style> GetDefault(CancellationToken cancellationToken)
-            => await Task.FromResult(
+        {
+            return await Task.FromResult(
                 new Style
                 {
                     Id = 1,
@@ -18,13 +19,17 @@ namespace react_template_tests.Stubs
                     File = "bundle.css",
                     Default = true,
                     Active = true
-                }
-            );
+                });
+        }
 
         public async Task<Style> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
-            => await GetDefault(cancellationToken);
+        {
+            return await GetDefault(cancellationToken);
+        }
 
         public async Task<Style> Get(Expression<Func<Style, bool>> filter, CancellationToken cancellationToken)
-            => await GetDefault(cancellationToken);
+        {
+            return await GetDefault(cancellationToken);
+        }
     }
 }

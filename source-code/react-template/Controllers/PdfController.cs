@@ -24,11 +24,11 @@ namespace react_template.Controllers
         private readonly IPdfService pdfService;
         private readonly INotificationService notificationService;
 
-        private readonly ISmtpConfigsRepository smtpConfigsRepository;
+        private readonly ISmtpRepository smtpConfigsRepository;
 
         public PdfController(IPdfService pdfService,
             INotificationService notificationService,
-            ISmtpConfigsRepository smtpConfigsRepository)
+            ISmtpRepository smtpConfigsRepository)
         {
             this.pdfService = pdfService;
             this.notificationService = notificationService;
@@ -47,7 +47,7 @@ namespace react_template.Controllers
             if (string.IsNullOrWhiteSpace(host))
                 return BadRequest();
 
-            if (await smtpConfigsRepository.Get(c => c.Active, cancellationToken) is SmtpConfig config)
+            if (await smtpConfigsRepository.Get(c => c.Active, cancellationToken) is Smtp config)
             {
                 IEmailNotificationModel email =
                  NotificationModelFactory.CreateNotificationModel<IEmailNotificationModel>()
@@ -62,6 +62,10 @@ namespace react_template.Controllers
             }
 
             var bytes = await this.pdfService.Generate(html, host, cancellationToken);
+
+            if (bytes is null)
+                return BadRequest();
+
             return File(bytes, "application/pdf");
         }
     }
