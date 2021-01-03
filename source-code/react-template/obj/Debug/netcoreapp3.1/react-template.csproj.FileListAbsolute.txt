@@ -111,3 +111,7 @@ C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\5dfb1f7f3c34abad2532.hot-update.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\a7a749fd96dda20373ca.hot-update.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\db1bd41037fb08abdd83.hot-update.json
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\1509c828d1fc63a082b6.hot-update.json
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\407f0150cc66ecd30d60.hot-update.json
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\4e44e35c0df72ff34d37.hot-update.json
+C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\dist\9f150fa785c215d485cd.hot-update.json

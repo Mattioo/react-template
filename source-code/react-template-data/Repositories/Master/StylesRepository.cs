@@ -20,12 +20,22 @@ namespace react_template_data.Repositories.Master
                 .SingleOrDefaultAsync(s => s.Default && s.Active, cancellationToken);
 
         public async Task<Style> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
-            => (
-                await Context.Set<Url>()
+        {
+            try
+            {
+                var found = await Context.Set<Url>()
                  .AsNoTracking()
                  .Include(u => u.Unit)
                  .Include(u => u.Style)
-                 .SingleOrDefaultAsync(filter, cancellationToken)
-            )?.Style;
+                 .SingleOrDefaultAsync(filter, cancellationToken);
+
+                return found?.Style;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

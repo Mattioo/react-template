@@ -1,28 +1,33 @@
-﻿require('./favicon.ico');
+﻿require('./favicon.ico')
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from "./components/app";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from "./components/app"
 
-let config = (() => {
-    return require("./config.json");
-})();
+const config = (() => {
+    return require("./config.json")
+})()
 
-let url = `${window.location.protocol}//${window.location.host}`;
-let stylesLink = document.head.querySelector('link[href="//:0"]');
+const url = new URL(window.location).hostname
+const stylesLink = document.head.querySelector('link[href="//:0"]')
 
 fetch(`${config.backoffice.url}/${config.backoffice.paths.styles}?url=${url}`)
-    .then(resp => resp.json())
-    .then(styles => {
-        if (styles.status === 200 && stylesLink) {
-            stylesLink.setAttribute('href', `./styles/${styles.dict}/${styles.file}`);
+    .then(resp => {
+        if (resp.status !== 200) {
+            throw 'Not Found'
         }
-        else throw 'Not Found';
+        return resp.json()
+    })
+    .then(styles => {
+        if (stylesLink) {
+            stylesLink.setAttribute('href', `./styles/${styles.dict}/${styles.file}`)
+            console.log('Załadowano style')
+        }
     })
     .catch(() => {
         if (stylesLink) {
-            stylesLink.setAttribute('href', `./styles/default/bundle.css?v=${new Date().getTime()}`);
-            console.error('Załadowano style domyślne');
+            stylesLink.setAttribute('href', `./styles/default/bundle.css?v=${new Date().getTime()}`)
+            console.error('Załadowano style domyślne')
         }
     })
     .finally(() => {
@@ -32,4 +37,4 @@ fetch(`${config.backoffice.url}/${config.backoffice.paths.styles}?url=${url}`)
         );
     });
 
-if (module && module.hot) module.hot.accept();
+if (module && module.hot) module.hot.accept()

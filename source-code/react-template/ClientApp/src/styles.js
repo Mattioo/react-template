@@ -1,2 +1,1 @@
-﻿import './styles/default.scss';
-import './styles/contrast.scss';
+﻿import './styles/default.scss'

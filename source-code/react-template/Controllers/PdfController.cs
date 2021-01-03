@@ -9,6 +9,7 @@ using react_template_data.IoC.Owner;
 using react_template_notification.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.IoC.Email;
+using react_template_notifications.IoC.Sms;
 using react_template_notifications.Services;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
@@ -57,6 +58,7 @@ namespace react_template.Controllers
                     .SetSubject("Testowa wiadomość")
                     .SetBody(TextFormat.Html, $"<h1>Uruchomiono generator PDF - {DateTime.UtcNow}</h1>")
                     .Encrypt(Keys.RSA.PublicKey);
+
 
                 notificationService.Save(email.Serialize());
             }
