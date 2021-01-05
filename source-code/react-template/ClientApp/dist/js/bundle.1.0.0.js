@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "4b72584eb77b4d25c59d";
+/******/ 	var hotCurrentHash = "8234a116afec995bc21b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -39391,6 +39391,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
+  var settings = {
+    contrast: window.sessionStorage && window.sessionStorage.getItem('contrast') || false,
+    fontSize: window.sessionStorage && window.sessionStorage.getItem('fontSize') || 100,
+    language: window.sessionStorage && window.sessionStorage.getItem('lang') || 'PL'
+  };
   var languages = [{
     id: 1,
     "short": 'PL',
@@ -39403,22 +39408,26 @@ var App = function App() {
     id: 3,
     "short": 'RU',
     name: 'русский'
+  }, {
+    id: 4,
+    "short": 'DE',
+    name: 'deutsche'
   }];
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('PL'),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(settings.contrast),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
-      lang = _useState2[0],
-      setLang = _useState2[1];
+      contrast = _useState2[0],
+      setContrast = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(100),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(settings.fontSize),
       _useState4 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState3, 2),
       fontSize = _useState4[0],
       setFontSize = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(settings.language),
       _useState6 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState5, 2),
-      contrast = _useState6[0],
-      setContrast = _useState6[1];
+      lang = _useState6[0],
+      setLang = _useState6[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     style: {
@@ -39448,8 +39457,11 @@ var App = function App() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
 
 
 var Toolbar = function Toolbar(_ref) {
@@ -39460,47 +39472,84 @@ var Toolbar = function Toolbar(_ref) {
       languages = _ref.languages,
       lang = _ref.lang,
       setLang = _ref.setLang;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
+      languageListVisible = _useState2[0],
+      setLanguageListVisible = _useState2[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar".concat(contrast ? ' contrast' : '')
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--left"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--item",
     onClick: function onClick() {
-      return setFontSize(Math.min(fontSize + 10, 130));
+      var size = Math.min(fontSize + 10, 130);
+
+      if (window.sessionStorage) {
+        window.sessionStorage.setItem('fontSize', size);
+      }
+
+      setFontSize(size);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "A+")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "A+")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--item",
     onClick: function onClick() {
-      return setFontSize(Math.max(fontSize - 10, 100));
+      var size = Math.max(fontSize - 10, 100);
+
+      if (window.sessionStorage) {
+        window.sessionStorage.setItem('fontSize', size);
+      }
+
+      setFontSize(size);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "A-")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "A-")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--item",
     onClick: function onClick() {
-      return setContrast(!contrast);
+      if (window.sessionStorage) {
+        window.sessionStorage.setItem('contrast', !contrast);
+      }
+
+      setContrast(!contrast);
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Wersja kontrastowa"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Wersja kontrastowa"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-toolbar--item--lang"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "app-toolbar--lang--main",
+    onClick: function onClick() {
+      return setLanguageListVisible(true);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "app-toolbar--lang"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
     className: "flag:".concat(lang)
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "app-toolbar--lang--list"
+  }))), languageListVisible ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "app-toolbar--lang--list",
+    onMouseLeave: function onMouseLeave() {
+      return setLanguageListVisible(false);
+    }
   }, languages.filter(function (x) {
     return x["short"] !== lang;
   }).map(function (language) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "app-toolbar--lang",
       key: language["short"],
-      className: "app-toolbar--language flag:".concat(language["short"]),
       title: language.name,
       onClick: function onClick() {
-        return setLang(language["short"]);
+        return setLanguageListVisible(false);
       }
-    });
-  }))))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
+      className: "flag:".concat(language["short"]),
+      onClick: function onClick() {
+        if (window.sessionStorage) {
+          window.sessionStorage.setItem('lang', language["short"]);
+        }
+
+        setLang(language["short"]);
+      }
+    }));
+  })) : null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Toolbar);

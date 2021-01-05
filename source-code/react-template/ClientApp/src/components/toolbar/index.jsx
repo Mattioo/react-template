@@ -1,34 +1,63 @@
-﻿import React from 'react'
+﻿import React, { useState } from 'react'
 
 const Toolbar = ({ fontSize, setFontSize, contrast, setContrast, languages, lang, setLang }) => {
+
+    const [languageListVisible, setLanguageListVisible] = useState(false);
 
     return (
         <React.Fragment>
             <div className={`app-toolbar${(contrast ? ' contrast' : '')}`} >
                 <div className="app-toolbar--left">
-                    <div className="app-toolbar--item" onClick={() => setFontSize(Math.min(fontSize + 10, 130))}>
+                    <div className="app-toolbar--item" onClick={() => {
+                        const size = Math.min(fontSize + 10, 130)          
+                        if (window.sessionStorage) {
+                            window.sessionStorage.setItem('fontSize', size)
+                        }
+                        setFontSize(size)
+                    }}>
                         <span>A+</span>
                     </div>
-                    <div className="app-toolbar--item" onClick={() => setFontSize(Math.max(fontSize - 10, 100))}>
+                    <div className="app-toolbar--item" onClick={() => {
+                        const size = Math.max(fontSize - 10, 100)
+                        if (window.sessionStorage) {
+                            window.sessionStorage.setItem('fontSize', size)
+                        }
+                        setFontSize(size)
+                    }}>
                         <span>A-</span>
                     </div>
-                    <div className="app-toolbar--item" onClick={() => setContrast(!contrast)}>
+                    <div className="app-toolbar--item" onClick={() => {
+                        if (window.sessionStorage) {
+                            window.sessionStorage.setItem('contrast', !contrast)
+                        }
+                        setContrast(!contrast)
+                    }}>
                         <span>Wersja kontrastowa</span>
                     </div>
                 </div>
                 <div className="app-toolbar--right">
-                    <div className="app-toolbar--item--lang">
+                    <div className="app-toolbar--lang--main" onClick={() => setLanguageListVisible(true)}>
                         <div className="app-toolbar--lang">
                             <i className={`flag:${lang}`}></i>
                         </div>
-                        <div className="app-toolbar--lang--list">
-                            {
-                                languages.filter(x => x.short !== lang).map((language) =>
-                                    <i key={language.short} className={`app-toolbar--language flag:${language.short}`} title={language.name} onClick={() => setLang(language.short)}></i>
-                                )
-                            }
-                        </div>
                     </div>
+                    {
+                        languageListVisible ?
+                            <div className="app-toolbar--lang--list" onMouseLeave={() => setLanguageListVisible(false)}>
+                                {
+                                    languages.filter(x => x.short !== lang).map((language) =>
+                                        <div className="app-toolbar--lang" key={language.short} title={language.name} onClick={() => setLanguageListVisible(false)}>
+                                            <i className={`flag:${language.short}`} onClick={() => {
+                                                if (window.sessionStorage) {
+                                                    window.sessionStorage.setItem('lang', language.short)
+                                                }
+                                                setLang(language.short)
+                                            }}></i>
+                                        </div>
+                                    )
+                                }
+                            </div> :  null
+                    }
                 </div>
             </div>
         </React.Fragment>

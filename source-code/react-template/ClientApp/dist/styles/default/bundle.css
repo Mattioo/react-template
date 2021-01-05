@@ -1025,7 +1025,12 @@ body {
   width: 100%;
   font-weight: 700;
   background-color: #0d47a1;
-  color: #ffffff; }
+  color: #ffffff;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
   .app-toolbar--left {
     float: left; }
   .app-toolbar--right {
@@ -1035,22 +1040,14 @@ body {
     display: inline-block;
     margin: 5px;
     cursor: pointer;
-    background-color: inherit;
-    /* Bez zanaczania tekstu */
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    .app-toolbar--item--lang {
+    background-color: inherit; }
+  .app-toolbar--lang {
+    padding: 5px 5px 0px 5px;
+    cursor: pointer; }
+    .app-toolbar--lang--main {
       clear: both;
       float: left;
-      margin: 3px 0px 0px 0px;
-      background-color: inherit;
-      cursor: pointer; }
-  .app-toolbar--lang {
-    padding: 5px 5px 0px 5px; }
+      background-color: inherit; }
     .app-toolbar--lang--list {
-      padding: 0px 5px 0px 5px;
       position: absolute;
       background-color: inherit; }

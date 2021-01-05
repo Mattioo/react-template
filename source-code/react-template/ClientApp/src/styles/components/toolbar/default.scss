@@ -7,6 +7,12 @@
     background-color: #0d47a1;
     color: #ffffff;
 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     &--left {
         float: left;
     }
@@ -21,28 +27,19 @@
         margin: 5px;
         cursor: pointer;
         background-color: inherit;
-
-        /* Bez zanaczania tekstu */
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-
-        &--lang {
-            clear: both;
-            float: left;
-            margin: 3px 0px 0px 0px;
-            background-color: inherit;
-            cursor: pointer;
-        }
     }
 
     &--lang {
         padding: 5px 5px 0px 5px;
+        cursor: pointer;
+
+        &--main {
+            clear: both;
+            float: left;
+            background-color: inherit;
+        }
 
         &--list {
-            padding: 0px 5px 0px 5px;
             position: absolute;
             background-color: inherit;
         }
