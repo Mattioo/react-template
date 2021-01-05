@@ -27,7 +27,7 @@ fetch(`${config.backoffice.url}/${config.backoffice.paths.styles}?url=${url}`)
     .catch(() => {
         if (stylesLink) {
             stylesLink.setAttribute('href', `./styles/default/bundle.css?v=${new Date().getTime()}`)
-            console.error('Załadowano style domyślne')
+            console.log('Załadowano style domyślne')
         }
     })
     .finally(() => {

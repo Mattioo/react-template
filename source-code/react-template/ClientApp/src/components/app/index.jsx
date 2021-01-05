@@ -8,7 +8,7 @@ const App = () => {
 
     const settings =
         {
-            contrast: (window.sessionStorage && window.sessionStorage.getItem('contrast')) || false,
+            contrast: (window.sessionStorage && window.sessionStorage.getItem('contrast') === "true") || false,
             fontSize: (window.sessionStorage && window.sessionStorage.getItem('fontSize')) || 100,
             language: (window.sessionStorage && window.sessionStorage.getItem('lang')) || 'PL'
         };

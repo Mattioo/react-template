@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "8234a116afec995bc21b";
+/******/ 	var hotCurrentHash = "65b2644efbbc00a3ffe5";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -39392,7 +39392,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   var settings = {
-    contrast: window.sessionStorage && window.sessionStorage.getItem('contrast') || false,
+    contrast: window.sessionStorage && window.sessionStorage.getItem('contrast') === "true" || false,
     fontSize: window.sessionStorage && window.sessionStorage.getItem('fontSize') || 100,
     language: window.sessionStorage && window.sessionStorage.getItem('lang') || 'PL'
   };
@@ -39620,7 +39620,7 @@ fetch("".concat(config.backoffice.url, "/").concat(config.backoffice.paths.style
 })["catch"](function () {
   if (stylesLink) {
     stylesLink.setAttribute('href', "./styles/default/bundle.css?v=".concat(new Date().getTime()));
-    console.error('Załadowano style domyślne');
+    console.log('Załadowano style domyślne');
   }
 })["finally"](function () {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_app__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('app'));
