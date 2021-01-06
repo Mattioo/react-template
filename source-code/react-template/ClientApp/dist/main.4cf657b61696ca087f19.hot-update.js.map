@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/styles.js","webpack:///./src/styles/default.scss"],"names":[],"mappings":";;;;;;;;;;AAAA;AAAA;;;;;;;;;;;;;ACAA;AAAe,oFAAuB,8BAA8B,E","file":"main.4cf657b61696ca087f19.hot-update.js","sourcesContent":["import './styles/default.scss'","export default __webpack_public_path__ + \"styles/default/bundle.css\";"],"sourceRoot":""}

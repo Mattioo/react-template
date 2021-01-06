@@ -21,7 +21,7 @@ const App = () => {
     ];
 
     const [contrast, setContrast] = useState(settings.contrast);
-    const [fontSize, setFontSize] = useState(settings.fontSize);
+    const [fontSize, setFontSize] = useState(+settings.fontSize);
     const [lang, setLang] = useState(settings.language);
 
     return (

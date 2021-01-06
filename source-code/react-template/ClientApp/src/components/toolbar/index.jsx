@@ -1,4 +1,6 @@
 ﻿import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAdjust } from '@fortawesome/free-solid-svg-icons'
 
 const Toolbar = ({ fontSize, setFontSize, contrast, setContrast, languages, lang, setLang }) => {
 
@@ -32,7 +34,8 @@ const Toolbar = ({ fontSize, setFontSize, contrast, setContrast, languages, lang
                         }
                         setContrast(!contrast)
                     }}>
-                        <span>Wersja kontrastowa</span>
+                        <FontAwesomeIcon icon={faAdjust} />
+                        <span className="app-toolbar--item--adjust">Wersja kontrastowa</span>
                     </div>
                 </div>
                 <div className="app-toolbar--right">
