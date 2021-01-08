@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
@@ -115,7 +116,7 @@ namespace react_template
             });
 
             services.AddHangfire(config =>
-                config.UsePostgreSqlStorage(Initial.ConnectionString(ConnectionStringType.Master).Result)
+                config.UsePostgreSqlStorage(Initial.ConnectionString(ConnectionStringType.Master).GetAwaiter().GetResult())
             );
         }
 
@@ -161,9 +162,22 @@ namespace react_template
                 endpoints.MapControllers();
             });
 
+            var clientApp = "ClientApp";
+
+            var clientAppDist = new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    @$"{clientApp}\public"
+                )
+            )};
+
+            app.UseSpaStaticFiles(clientAppDist);
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = "ClientApp";
+                spa.Options.SourcePath = clientApp;
+                spa.Options.DefaultPageStaticFileOptions = clientAppDist;
                 spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
 
                 if (env.IsDevelopment())

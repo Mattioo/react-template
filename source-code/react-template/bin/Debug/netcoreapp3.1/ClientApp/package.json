@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "start": "react-scripts start",
-    "build": "rm -f dist/*.js && rm -f dist/*.json && rm -f dist/*.map && webpack --mode production",
+    "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

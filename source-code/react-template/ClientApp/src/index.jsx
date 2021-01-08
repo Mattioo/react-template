@@ -20,13 +20,13 @@ fetch(`${config.backoffice.url}/${config.backoffice.paths.styles}?url=${url}`)
     })
     .then(styles => {
         if (stylesLink) {
-            stylesLink.setAttribute('href', `./styles/${styles.dict}/${styles.file}`)
+            stylesLink.setAttribute('href', `/styles/${styles.dict}/${styles.file}`)
             console.log('Załadowano style')
         }
     })
     .catch(() => {
         if (stylesLink) {
-            stylesLink.setAttribute('href', `./styles/default/bundle.css?v=${new Date().getTime()}`)
+            stylesLink.setAttribute('href', `/styles/default/bundle.css?v=${new Date().getTime()}`)
             console.log('Załadowano style domyślne')
         }
     })

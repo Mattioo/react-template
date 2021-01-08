@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "e9dffa5b3e07e4370e29";
+/******/ 	var hotCurrentHash = "64f1701bf23e0b4e4be7";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -847,7 +847,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -41092,12 +41092,12 @@ fetch("".concat(config.backoffice.url, "/").concat(config.backoffice.paths.style
   return resp.json();
 }).then(function (styles) {
   if (stylesLink) {
-    stylesLink.setAttribute('href', "./styles/".concat(styles.dict, "/").concat(styles.file));
+    stylesLink.setAttribute('href', "/styles/".concat(styles.dict, "/").concat(styles.file));
     console.log('Załadowano style');
   }
 }).catch(function () {
   if (stylesLink) {
-    stylesLink.setAttribute('href', "./styles/default/bundle.css?v=".concat(new Date().getTime()));
+    stylesLink.setAttribute('href', "/styles/default/bundle.css?v=".concat(new Date().getTime()));
     console.log('Załadowano style domyślne');
   }
 }).finally(function () {
