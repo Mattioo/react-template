@@ -11,6 +11,8 @@
     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.11" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.10" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.5.0" />
@@ -18,16 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IoC\Scoped\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\react-template-data\react-template-data.csproj" />
     <ProjectReference Include="..\react-template-notifications\react-template-notifications.csproj" />
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd ClientApp&#xD;&#xA;npm run dev&#xD;&#xA;" />
-  </Target>
-
 </Project>

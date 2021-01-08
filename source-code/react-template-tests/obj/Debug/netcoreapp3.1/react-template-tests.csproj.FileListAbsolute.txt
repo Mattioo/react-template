@@ -185,3 +185,8 @@ C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcor
 C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
 C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\react-template-notifications.dll
 C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\react-template-notifications.pdb
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.NodeServices.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SpaServices.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.SpaServices.Extensions.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Configuration.dll
+C:\Repositories\react-template\source-code\react-template-tests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Console.dll

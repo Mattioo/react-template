@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace react_template.IoC.Singletons
+namespace react_template.IoC.Scoped
 {
     public interface IPdfService : IScopeService
     {

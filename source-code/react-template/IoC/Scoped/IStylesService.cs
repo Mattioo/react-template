@@ -2,12 +2,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace react_template.IoC.Singletons
+namespace react_template.IoC.Scoped
 {
-    public interface IStylesService : ISingletonService
+    public interface IStylesService : IScopeService
     {
-        public Task<Style> GetDefault(CancellationToken cancellationToken);
-
         public Task<Style> GetByUrl(string url, CancellationToken cancellationToken);
     }
 }

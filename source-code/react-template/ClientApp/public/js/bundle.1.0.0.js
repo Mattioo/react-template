@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "963ea7900311a1ddad28";
+/******/ 	var hotCurrentHash = "e9dffa5b3e07e4370e29";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -40868,19 +40868,19 @@ var App = function App() {
   };
   var languages = [{
     id: 1,
-    "short": 'PL',
+    short: 'PL',
     name: 'polski'
   }, {
     id: 2,
-    "short": 'US',
+    short: 'US',
     name: 'english'
   }, {
     id: 3,
-    "short": 'RU',
+    short: 'RU',
     name: 'русский'
   }, {
     id: 4,
-    "short": 'DE',
+    short: 'DE',
     name: 'deutsche'
   }];
 
@@ -41008,23 +41008,23 @@ var Toolbar = function Toolbar(_ref) {
       return setLanguageListVisible(false);
     }
   }, languages.filter(function (x) {
-    return x["short"] !== lang;
+    return x.short !== lang;
   }).map(function (language) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
       className: "app-toolbar--lang",
-      key: language["short"],
+      key: language.short,
       title: language.name,
       onClick: function onClick() {
         return setLanguageListVisible(false);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", {
-      className: "flag:".concat(language["short"]),
+      className: "flag:".concat(language.short),
       onClick: function onClick() {
         if (window.sessionStorage) {
-          window.sessionStorage.setItem('lang', language["short"]);
+          window.sessionStorage.setItem('lang', language.short);
         }
 
-        setLang(language["short"]);
+        setLang(language.short);
       }
     }));
   })) : null)));
@@ -41095,12 +41095,12 @@ fetch("".concat(config.backoffice.url, "/").concat(config.backoffice.paths.style
     stylesLink.setAttribute('href', "./styles/".concat(styles.dict, "/").concat(styles.file));
     console.log('Załadowano style');
   }
-})["catch"](function () {
+}).catch(function () {
   if (stylesLink) {
     stylesLink.setAttribute('href', "./styles/default/bundle.css?v=".concat(new Date().getTime()));
     console.log('Załadowano style domyślne');
   }
-})["finally"](function () {
+}).finally(function () {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_app__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('app'));
 });
 if (module && module.hot) module.hot.accept();

@@ -2,14 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit.Text;
-using react_template.IoC.Singletons;
+using react_template.IoC.Scoped;
 using react_template_data.Data.Owner;
 using react_template_data.Helpers;
 using react_template_data.IoC.Owner;
 using react_template_notification.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.IoC.Email;
-using react_template_notifications.IoC.Sms;
 using react_template_notifications.Services;
 using Swashbuckle.AspNetCore.Annotations;
 using System;

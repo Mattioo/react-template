@@ -15,6 +15,7 @@ module.exports = (env, argv) => (
         entry: './src/index.jsx',
         output: {
             filename: `js/bundle.${version()}.js`,
+            path: path.resolve(__dirname, 'public'),
             publicPath: "./"
         },
         module: {
@@ -67,15 +68,5 @@ module.exports = (env, argv) => (
         devtool: argv.mode === 'production' ? false : 'source-map',
         optimization: {
             minimize: argv.mode === 'production'
-        },
-        devServer: {
-            port: 9000,
-            contentBase: path.resolve(__dirname,'dist'),
-            stats: {
-                children: false,
-                maxModules: 0
-            },
-            writeToDisk: true,
-            hot: true
         }
     });

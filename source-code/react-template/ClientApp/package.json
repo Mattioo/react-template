@@ -5,11 +5,11 @@
   "description": "",
   "main": "./src/index.jsx",
   "scripts": {
-    "dev-server": "webpack-dev-server --mode development",
     "dev": "webpack --mode development",
+    "start": "react-scripts start",
     "build": "rm -f dist/*.js && rm -f dist/*.json && rm -f dist/*.map && webpack --mode production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "Mateusz Korolow",
@@ -30,9 +30,8 @@
     "html-webpack-plugin": "^4.3.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack": "4.44.2",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -41,8 +40,20 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "country-flag-icons": "^1.2.8",
-    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-scripts": "^4.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

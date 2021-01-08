@@ -1,11 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using react_template_data.Data;
+﻿using react_template_data.Data;
 using react_template_data.Data.Master;
 using react_template_data.IoC.Master;
-using System;
-using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace react_template_data.Repositories.Master
 {
@@ -13,29 +8,5 @@ namespace react_template_data.Repositories.Master
     {
         public StylesRepository(MasterContext context) : base(context)
         { }
-
-        public async Task<Style> GetDefault(CancellationToken cancellationToken)
-            => await Context.Set<Style>()
-                .AsNoTracking()
-                .SingleOrDefaultAsync(s => s.Default && s.Active, cancellationToken);
-
-        public async Task<Style> Get(Expression<Func<Url, bool>> filter, CancellationToken cancellationToken)
-        {
-            try
-            {
-                var found = await Context.Set<Url>()
-                 .AsNoTracking()
-                 .Include(u => u.Unit)
-                 .Include(u => u.Style)
-                 .SingleOrDefaultAsync(filter, cancellationToken);
-
-                return found?.Style;
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
     }
 }

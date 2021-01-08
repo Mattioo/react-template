@@ -31,17 +31,15 @@ namespace react_template_data
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             /* REJESTRACJA W KONTENERZE DI NIEZMIENNEGO KONTEKSTU BAZY MASTER */
-            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConnectionString(ConnectionStringType.Master).Result),
-                ServiceLifetime.Singleton
-            );
+            services.AddDbContext<MasterContext>(ctx => ctx.UseNpgsql(ConnectionString(ConnectionStringType.Master).GetAwaiter().GetResult()));
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU MASTER */
-            services.Register(typeof(IMasterRepository<>), ServiceLifetime.Singleton);
+            services.Register(typeof(IMasterRepository<>), ServiceLifetime.Scoped);
 
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU BAZY OWNER ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<OwnerContext>((serviceProvider, options) =>
             {
-                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).Result);
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).GetAwaiter().GetResult());
             });
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH REPOZYTORIÓW KONTEKSTU OWNER */
@@ -55,14 +53,14 @@ namespace react_template_data
             /* REJESTRACJA W KONTENERZE DI ZMIENNEGO KONTEKSTU IDENTITY ZALEŻNEGO OD HOSTA W ADRESIE ŻĄDANIA */
             services.AddDbContext<IdentityContext>((serviceProvider, options) =>
             {
-                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).Result);
+                options.UseNpgsql(ConnectionString(ConnectionStringType.Owner, serviceProvider).GetAwaiter().GetResult());
             });
 
             /* REJESTRACJA W KONTENERZE DI KONTEKSTÓW DB DLA KONFIGURACJI IDENTITYSERVER4 */
-            services.AddSingleton(serviceProvider =>
+            services.AddScoped(serviceProvider =>
                 Common.GenerateMasterContext<PersistedGrantContext>()
             );
-            services.AddSingleton(serviceProvider =>
+            services.AddScoped(serviceProvider =>
                 Common.GenerateMasterContext<ConfigurationContext>()
             );
 

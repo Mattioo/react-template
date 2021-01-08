@@ -5,6 +5,7 @@ using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +19,7 @@ using react_template_data.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.Options;
 using react_template_notifications.Services;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -56,7 +58,6 @@ namespace react_template
             services.RegisterInContainer();
 
             /* REJESTRACJA W KONTENERZE DI WSZYSTKICH SERWISÓW */
-            services.Register(typeof(ISingletonService), ServiceLifetime.Singleton);
             services.Register(typeof(IScopeService), ServiceLifetime.Scoped);
 
             /* REJESTRACJA SERWISU POWIADOMIEÑ */
@@ -100,6 +101,11 @@ namespace react_template
                         return Task.CompletedTask;
                     }
                 };
+            });
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
             });
 
             services.AddSwaggerGen(c =>
@@ -153,6 +159,17 @@ namespace react_template
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
     }

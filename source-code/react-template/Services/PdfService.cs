@@ -1,6 +1,6 @@
 ﻿using DinkToPdf;
 using DinkToPdf.Contracts;
-using react_template.IoC.Singletons;
+using react_template.IoC.Scoped;
 using react_template_data.Data.Owner;
 using react_template_data.IoC.Owner;
 using System.IO;
