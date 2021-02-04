@@ -1,8 +1,5 @@
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\package-lock.json
-C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\package.json
-C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\ClientApp\src\config.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template.exe
 C:\Repositories\react-template\source-code\react-template\bin\Debug\netcoreapp3.1\react-template.deps.json

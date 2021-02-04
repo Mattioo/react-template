@@ -1,0 +1,38 @@
+﻿header {
+    background-color: #f0f0f0;
+    overflow: auto;
+    height: 100%;
+    /* CIEŃ */
+    -webkit-box-shadow: 0 5px 6px -6px black;
+    -moz-box-shadow: 0 5px 6px -6px black;
+    box-shadow: 0 5px 6px -6px black;
+    /* BRAK MOŻLIWOŚCI ZAZNACZANIA TEKSTU */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    * {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .header-buttons {
+        float: left;
+        padding: 5px;
+
+        > * {
+            margin: 5px;
+        }
+    }
+
+    .header-language {
+        float: right;
+        padding: 5px;
+
+        .header-language-list {
+            display: contents;
+        }
+    }
+}

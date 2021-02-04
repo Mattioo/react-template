@@ -106,7 +106,7 @@ namespace react_template
 
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "wwwroot/public";
             });
 
             services.AddSwaggerGen(c =>
@@ -162,23 +162,18 @@ namespace react_template
                 endpoints.MapControllers();
             });
 
-            var clientApp = "ClientApp";
-
-            var clientAppDist = new StaticFileOptions()
+            var staticFileOptions = new StaticFileOptions()
             {
                 FileProvider = new PhysicalFileProvider(
-                Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    @$"{clientApp}\public"
-                )
+                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/public")
             )};
 
-            app.UseSpaStaticFiles(clientAppDist);
+            app.UseSpaStaticFiles(staticFileOptions);
             app.UseSpa(spa =>
             {
-                spa.Options.SourcePath = clientApp;
-                spa.Options.DefaultPageStaticFileOptions = clientAppDist;
-                spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
+                spa.Options.SourcePath = "wwwroot";
+                spa.Options.DefaultPageStaticFileOptions = staticFileOptions;
+                spa.Options.StartupTimeout = TimeSpan.FromSeconds(15);
 
                 if (env.IsDevelopment())
                 {

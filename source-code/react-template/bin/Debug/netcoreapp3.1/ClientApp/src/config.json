@@ -1,8 +1,0 @@
-{
-  "backoffice": {
-    "url": "https://localhost:44394",
-    "paths": {
-      "styles": "api/app/styles"
-    }
-  }
-}

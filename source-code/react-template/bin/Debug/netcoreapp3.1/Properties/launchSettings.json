@@ -11,8 +11,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "index"
+      "launchBrowser": true
     },
     "react_template": {
       "commandName": "Project",

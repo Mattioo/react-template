@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ClientApp\**" />
+    <Compile Remove="client\**" />
+    <Content Remove="ClientApp\**" />
+    <Content Remove="client\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
+    <EmbeddedResource Remove="client\**" />
+    <None Remove="ClientApp\**" />
+    <None Remove="client\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.11" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
