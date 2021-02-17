@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +20,7 @@ using react_template_data.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.Options;
 using react_template_notifications.Services;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -64,6 +66,11 @@ namespace react_template
 
             services.AddControllers();
 
+            /* NA PRODUKCJI PLIKI REACT BÊD¥ SERWOWANE Z TEGO KATALOGU */
+            services.AddSpaStaticFiles(configuration => {
+                configuration.RootPath = "ClientApp/build";
+            });
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
@@ -101,11 +108,6 @@ namespace react_template
                 };
             })
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            //services.AddSpaStaticFiles(configuration =>
-            //{
-            //    configuration.RootPath = "ClientApp/public";
-            //});
 
             services.AddSwaggerGen(c =>
             {
@@ -150,28 +152,22 @@ namespace react_template
             app.UseAuthentication();
             app.UseAuthorization();
 
-            //var staticFileOptions = new StaticFileOptions()
-            //{
-            //    FileProvider = new PhysicalFileProvider(
-            //    Path.Combine(Directory.GetCurrentDirectory(), "ClientApp/public")
-            //)};
-
-            //app.UseSpaStaticFiles(staticFileOptions);
-            //app.UseSpa(spa =>
-            //{
-            //    spa.Options.SourcePath = "ClientApp";
-            //    spa.Options.DefaultPageStaticFileOptions = staticFileOptions;
-            //    spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
-
-            //    if (env.IsDevelopment())
-            //    {
-            //        spa.UseReactDevelopmentServer(npmScript: "start");
-            //    }
-            //});
+            app.UseSpaStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
     }

@@ -2,22 +2,19 @@ import ReactFlagsSelect from 'react-flags-select';
 import './header.scss';
 
 const Header = (props) => {
-
-    const style = { fontSize: `${props.fontSize}%` };
-
     return (
-        <header className={props.contrast ? "contrast" : null}>
+        <div className={props.contrast ? "header contrast" : "header"}>
             <div className='header-buttons'>
                 <div onClick={() => props.changeFontSize(props.fontSize - 10)}>
-                    <strong style={style}>A-</strong>
+                    <strong>A-</strong>
                 </div>
 
                 <div onClick={() => props.changeFontSize(props.fontSize + 10)}>
-                    <strong style={style}>A+</strong>
+                    <strong>A+</strong>
                 </div>
 
                 <div onClick={() => props.toogleContrast(!props.contrast)}>
-                    <span style={style}>Wersja kontrastowa</span>
+                    <span>Wersja kontrastowa</span>
                 </div>
             </div>
             <div className='header-language'>
@@ -31,7 +28,7 @@ const Header = (props) => {
                     className='header-language-list'
                 />
             </div>
-        </header>
+        </div>
     );
 }
 

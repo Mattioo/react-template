@@ -4,7 +4,9 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { reducer } from './reducer';
+
 import App from './App';
+
 import './styles.scss';
 import './contrast.scss';
 

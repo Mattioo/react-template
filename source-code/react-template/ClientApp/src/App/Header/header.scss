@@ -1,4 +1,4 @@
-﻿header {
+﻿.header {
     background-color: #f0f0f0;
     overflow: auto;
     height: 100%;
@@ -20,7 +20,7 @@
 
     .header-buttons {
         float: left;
-        padding: 5px;
+        padding: 12px;
 
         > * {
             margin: 5px;

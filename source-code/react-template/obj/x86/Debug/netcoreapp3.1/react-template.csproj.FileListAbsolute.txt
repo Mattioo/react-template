@@ -108,3 +108,4 @@ C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template\
 C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template\obj\x86\Debug\netcoreapp3.1\react-template.genruntimeconfig.cache
 C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template\bin\x86\Debug\netcoreapp3.1\ClientApp\package-lock.json
 C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template\bin\x86\Debug\netcoreapp3.1\ClientApp\package.json
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template\bin\x86\Debug\netcoreapp3.1\ClientApp\build\asset-manifest.json
