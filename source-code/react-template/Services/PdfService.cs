@@ -3,7 +3,6 @@ using DinkToPdf.Contracts;
 using react_template.IoC.Scoped;
 using react_template_data.Data.Owner;
 using react_template_data.IoC.Owner;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,14 +10,12 @@ namespace react_template.Services
 {
     public class PdfService : IPdfService
     {
-        private readonly IConverter converter;       
-        private readonly IStylesService stylesService;
+        private readonly IConverter converter;
         private readonly IPdfRepository pdfRepository;
 
-        public PdfService(IConverter converter, IStylesService stylesService, IPdfRepository pdfRepository)
+        public PdfService(IConverter converter, IPdfRepository pdfRepository)
         {
             this.converter = converter;
-            this.stylesService = stylesService;
             this.pdfRepository = pdfRepository;
         }
 
@@ -26,8 +23,7 @@ namespace react_template.Services
         {
             if (await pdfRepository.Get(pdf => pdf.Active && pdf.Default, cancellationToken) is Pdf config)
             {
-                var styles = await stylesService.GetByUrl(host, cancellationToken);
-                var pathToStyle = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "dist", "styles", styles.Dict, styles.File);
+                //var pathToStyle = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "dist", "styles", styles.Dict, styles.File);
 
                 var globalSettings = new GlobalSettings
                 {
@@ -51,7 +47,7 @@ namespace react_template.Services
                     WebSettings =
                     {
                         DefaultEncoding = config.Encoding,
-                        UserStyleSheet = pathToStyle
+                        //UserStyleSheet = pathToStyle
                     },
                     HeaderSettings = 
                     {

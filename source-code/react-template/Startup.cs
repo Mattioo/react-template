@@ -2,13 +2,12 @@ using DinkToPdf;
 using DinkToPdf.Contracts;
 using Hangfire;
 using Hangfire.PostgreSql;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
@@ -20,7 +19,6 @@ using react_template_data.Helpers;
 using react_template_notifications.IoC;
 using react_template_notifications.Options;
 using react_template_notifications.Services;
-using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -51,7 +49,7 @@ namespace react_template
             #endregion
             #region Rejestracja generatora wydruków
             var pdfLibraryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "libs", "libwkhtmltox", "libwkhtmltox");
-            NativeLibrary.Load(pdfLibraryPath);
+            NativeLibrary.Load(pdfLibraryPath);         
 
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
             #endregion
@@ -80,11 +78,10 @@ namespace react_template
 
             services.AddAuthentication(options =>
             {
-                options.DefaultScheme = "Cookies";
-                options.DefaultChallengeScheme = "oidc";
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
-            .AddCookie("Cookies")
-            .AddOpenIdConnect("oidc", options =>
+            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
                 options.Authority = identityServerOptions.Authority;
                 options.ClientId = identityServerOptions.Client;
@@ -102,12 +99,13 @@ namespace react_template
                         return Task.CompletedTask;
                     }
                 };
-            });
+            })
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "wwwroot/public";
-            });
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/public";
+            //});
 
             services.AddSwaggerGen(c =>
             {
@@ -127,58 +125,53 @@ namespace react_template
             {
                 IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "React-Template API v1");
+                });
+
+                GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute
+                {
+                    Attempts = 0
+                });
+                app.UseHangfireServer(new BackgroundJobServerOptions
+                {
+                    WorkerCount = 1
+                });
+                app.UseHangfireDashboard("/hangfire");
             }
 
             app.UseHttpsRedirection();
-
-            #region Swagger
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "React-Template API v1");
-            });
-            #endregion
-            #region Hangfire
-            app.UseHangfireDashboard("/hangfire");
-            app.UseHangfireServer(new BackgroundJobServerOptions
-            {
-                WorkerCount = 1
-            });
-
-            GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute
-            {
-                Attempts = 0
-            });
-            #endregion
-
             app.UseCors();
             app.UseRouting();
        
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //var staticFileOptions = new StaticFileOptions()
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //    Path.Combine(Directory.GetCurrentDirectory(), "ClientApp/public")
+            //)};
+
+            //app.UseSpaStaticFiles(staticFileOptions);
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+            //    spa.Options.DefaultPageStaticFileOptions = staticFileOptions;
+            //    spa.Options.StartupTimeout = TimeSpan.FromSeconds(30);
+
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseReactDevelopmentServer(npmScript: "start");
+            //    }
+            //});
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
-
-            var staticFileOptions = new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(
-                Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/public")
-            )};
-
-            app.UseSpaStaticFiles(staticFileOptions);
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "wwwroot";
-                spa.Options.DefaultPageStaticFileOptions = staticFileOptions;
-                spa.Options.StartupTimeout = TimeSpan.FromSeconds(15);
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
             });
         }
     }

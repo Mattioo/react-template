@@ -100,11 +100,13 @@ namespace react_template_identity
             var persistedGrantContext = scope.ServiceProvider
                 .GetRequiredService<PersistedGrantContext>();
 
+            persistedGrantContext.Database.EnsureCreated();
             persistedGrantContext.Database.Migrate();
 
             var configurationContext = scope.ServiceProvider
                 .GetRequiredService<ConfigurationContext>();
- 
+
+            configurationContext.Database.EnsureCreated();
             configurationContext.Database.Migrate();
 
             /* INICJALIZACJA BAZY DANYCH WYKORZYSTUJ¥C DOMYŒLN¥ KONFIGURACJÊ IDENTITYSERVER4 */

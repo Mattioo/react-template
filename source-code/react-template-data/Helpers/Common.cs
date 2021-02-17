@@ -7,8 +7,6 @@ using react_template_data.Data;
 using react_template_data.Enums;
 using Scrutor;
 using System;
-using System.Linq;
-using System.Linq.Expressions;
 
 namespace react_template_data.Helpers
 {

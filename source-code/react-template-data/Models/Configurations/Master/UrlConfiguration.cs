@@ -15,18 +15,19 @@ namespace react_template_data.Models.Configurations.Master
             builder.HasOne(c => c.Unit)
                 .WithMany(c => c.Urls)
                 .IsRequired();
-            builder.HasOne(c => c.Style)
-                .WithMany(c => c.Urls)
-                .IsRequired();
 
             builder.Property(c => c.Active)
                 .HasDefaultValue(false)
                 .IsRequired();
 
             builder.HasKey(c => c.Id);
-            builder.HasIndex(c => new { c.UnitId, c.StyleId, c.Path })
+            builder.HasIndex(c => new { c.UnitId, c.Path })
                 .IsUnique();
             #endregion
+
+            builder.HasData(
+                new Url { Id = 1, Path = "localhost", Active = true, UnitId = 1 }
+            );
         }
     }
 }

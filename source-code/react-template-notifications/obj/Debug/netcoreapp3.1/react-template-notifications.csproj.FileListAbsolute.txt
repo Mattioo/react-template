@@ -71,3 +71,40 @@ C:\Repositories\react-template\source-code\react-template-notifications\obj\Debu
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.genruntimeconfig.cache
 C:\Repositories\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\smsapi.dll
 C:\Repositories\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csproj.CoreCompileInputs.cache
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.exe
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.deps.json
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.runtimeconfig.json
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.runtimeconfig.dev.json
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\react-template-notifications.pdb
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\NETCore.Encrypt.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\RabbitMQ.Client.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\smsapi.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.AssemblyInfoInputs.cache
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.AssemblyInfo.cs
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csproj.CoreCompileInputs.cache
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.csproj.CopyComplete
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.dll
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.pdb
+C:\Users\Mateusz Korolow\Source\Repos\react-template\source-code\react-template-notifications\obj\Debug\netcoreapp3.1\react-template-notifications.genruntimeconfig.cache

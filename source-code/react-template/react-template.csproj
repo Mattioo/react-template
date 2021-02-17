@@ -3,17 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>react_template</RootNamespace>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ClientApp\**" />
     <Compile Remove="client\**" />
-    <Content Remove="ClientApp\**" />
     <Content Remove="client\**" />
-    <EmbeddedResource Remove="ClientApp\**" />
     <EmbeddedResource Remove="client\**" />
-    <None Remove="ClientApp\**" />
     <None Remove="client\**" />
   </ItemGroup>
 

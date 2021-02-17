@@ -52,51 +52,6 @@ namespace react_template_data.Migrations
                     b.ToTable("BackgroundJobs");
                 });
 
-            modelBuilder.Entity("react_template_data.Data.Master.Style", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<bool>("Default")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Dict")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("File")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Dict", "File")
-                        .IsUnique();
-
-                    b.ToTable("Styles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Active = true,
-                            Default = true,
-                            Dict = "default",
-                            File = "bundle.css"
-                        });
-                });
-
             modelBuilder.Entity("react_template_data.Data.Master.Unit", b =>
                 {
                     b.Property<int>("Id")
@@ -122,7 +77,7 @@ namespace react_template_data.Migrations
                     b.Property<DateTime>("LicenceSince")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
-                        .HasDefaultValue(new DateTime(2020, 11, 25, 14, 47, 47, 966, DateTimeKind.Utc).AddTicks(1290));
+                        .HasDefaultValue(new DateTime(2021, 2, 17, 20, 33, 5, 386, DateTimeKind.Utc).AddTicks(3041));
 
                     b.Property<DateTime?>("LicenceTo")
                         .HasColumnType("timestamp without time zone");
@@ -149,7 +104,7 @@ namespace react_template_data.Migrations
                             Active = true,
                             Database = "react-template-owner-dev",
                             LicenceNo = "default",
-                            LicenceSince = new DateTime(2020, 11, 25, 14, 47, 47, 974, DateTimeKind.Utc).AddTicks(7169),
+                            LicenceSince = new DateTime(2021, 2, 17, 20, 33, 5, 392, DateTimeKind.Utc).AddTicks(1603),
                             Name = "default"
                         });
                 });
@@ -169,20 +124,24 @@ namespace react_template_data.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("text");
 
-                    b.Property<int>("StyleId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("UnitId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StyleId");
-
-                    b.HasIndex("UnitId", "StyleId", "Path")
+                    b.HasIndex("UnitId", "Path")
                         .IsUnique();
 
                     b.ToTable("Urls");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = true,
+                            Path = "localhost",
+                            UnitId = 1
+                        });
                 });
 
             modelBuilder.Entity("react_template_data.Data.Master.BackgroundJob", b =>
@@ -196,12 +155,6 @@ namespace react_template_data.Migrations
 
             modelBuilder.Entity("react_template_data.Data.Master.Url", b =>
                 {
-                    b.HasOne("react_template_data.Data.Master.Style", "Style")
-                        .WithMany("Urls")
-                        .HasForeignKey("StyleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("react_template_data.Data.Master.Unit", "Unit")
                         .WithMany("Urls")
                         .HasForeignKey("UnitId")

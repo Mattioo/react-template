@@ -9149,38 +9149,37 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\m.korolow\\.nuget\\packages\\": {}
+    "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Repositories\\react-template\\source-code\\react-template-tests\\react-template-tests.csproj",
+      "projectUniqueName": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-tests\\react-template-tests.csproj",
       "projectName": "react-template-tests",
-      "projectPath": "C:\\Repositories\\react-template\\source-code\\react-template-tests\\react-template-tests.csproj",
-      "packagesPath": "C:\\Users\\m.korolow\\.nuget\\packages\\",
-      "outputPath": "C:\\Repositories\\react-template\\source-code\\react-template-tests\\obj\\",
+      "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-tests\\react-template-tests.csproj",
+      "packagesPath": "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\m.korolow\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+        "C:\\Users\\Mateusz Korolow\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Repositories\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
-              "projectPath": "C:\\Repositories\\react-template\\source-code\\react-template-data\\react-template-data.csproj"
+            "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
+              "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj"
             },
-            "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj": {
-              "projectPath": "C:\\Repositories\\react-template\\source-code\\react-template\\react-template.csproj"
+            "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj": {
+              "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj"
             }
           }
         }
@@ -9193,6 +9192,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
@@ -9233,7 +9233,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
