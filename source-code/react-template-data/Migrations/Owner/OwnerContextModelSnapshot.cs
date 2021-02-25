@@ -19,6 +19,102 @@ namespace react_template_data.Migrations.Owner
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("react_template_data.Data.Owner.NavbarElement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("Anonymous")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Order")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("#");
+
+                    b.Property<bool>("Visible")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(true);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("NavbarElements");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Active = false,
+                            Anonymous = false,
+                            Content = "Strona główna",
+                            Icon = "far fa-home",
+                            Name = "Home",
+                            Order = 1,
+                            Title = "Przejdź do strony głównej",
+                            Url = "#",
+                            Visible = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Active = false,
+                            Anonymous = false,
+                            Content = "Informacje",
+                            Icon = "far fa-info-circle",
+                            Name = "About",
+                            Order = 2,
+                            Title = "Przejdź do strony z informacjami",
+                            Url = "#info",
+                            Visible = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Active = false,
+                            Anonymous = false,
+                            Content = "Kontakt",
+                            Icon = "far fa-address-card",
+                            Name = "Contact",
+                            Order = 3,
+                            Title = "Przejdź do strony z danymi teleadresowymi",
+                            Url = "#contact",
+                            Visible = false
+                        });
+                });
+
             modelBuilder.Entity("react_template_data.Data.Owner.Pdf", b =>
                 {
                     b.Property<int>("Id")
@@ -152,26 +248,6 @@ namespace react_template_data.Migrations.Owner
                             Size = 0,
                             Title = "Wydruk"
                         });
-                });
-
-            modelBuilder.Entity("react_template_data.Data.Owner.Property", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Properties");
                 });
 
             modelBuilder.Entity("react_template_data.Data.Owner.Sms", b =>

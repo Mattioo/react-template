@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using react_template_data.Data.Master;
 using react_template_data.IoC;
 using System;
 using System.Linq;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yN/XpCEAH6oQKRxMT10xtxorf1aRQtru7giJTFDj/YWU7zYAh9VvYUWallkOvs1ShKkVpbNVP18ln12CfMKKAg==",
+  "dgSpecHash": "VuTEHPNzNd2WJEfdD1ATQ+nqD82fEjRyKsiRfx489vPVUWEQYg5Js3HS/f8eoNPcrZppWbwLKtnOwFFL6HOFRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
+  "projectFilePath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\dapper\\2.0.30\\dapper.2.0.30.nupkg.sha512",

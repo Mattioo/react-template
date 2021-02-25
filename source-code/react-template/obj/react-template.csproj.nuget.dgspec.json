@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj": {}
+    "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template\\react-template.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
+    "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
+        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
         "projectName": "react-template-data",
-        "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
+        "projectPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj",
         "packagesPath": "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\obj\\",
+        "outputPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mateusz Korolow\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -127,14 +127,14 @@
         }
       }
     },
-    "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj": {
+    "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
+        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
         "projectName": "react-template-notifications",
-        "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
+        "projectPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
         "packagesPath": "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\obj\\",
+        "outputPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mateusz Korolow\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -223,14 +223,14 @@
         }
       }
     },
-    "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj": {
+    "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template\\react-template.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj",
+        "projectUniqueName": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template\\react-template.csproj",
         "projectName": "react-template",
-        "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\react-template.csproj",
+        "projectPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template\\react-template.csproj",
         "packagesPath": "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template\\obj\\",
+        "outputPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mateusz Korolow\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -247,11 +247,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
-                "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj"
+              "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj": {
+                "projectPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-data\\react-template-data.csproj"
               },
-              "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj": {
-                "projectPath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj"
+              "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj": {
+                "projectPath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj"
               }
             }
           }

@@ -1,4 +1,5 @@
-import Actions from './actions';
+import HeaderActions from './Actions/header';
+import NavbarActions from './Actions/navbar';
 
 export function reducer(state, action) {
 
@@ -13,11 +14,14 @@ export function reducer(state, action) {
                 },
                 contrast: (storage && storage.getItem('contrast') === "true") || false,
                 fontSize: (storage && storage.getItem('fontSize')) || 100
+            },
+            navbar: {
+                path: '/'
             }
         }
     }
     switch (action.type) {
-        case Actions.CHANGE_LANGUAGE:
+        case HeaderActions.CHANGE_LANGUAGE:
             if (storage) {
                 storage.setItem('language', action.language);
             }
@@ -31,7 +35,7 @@ export function reducer(state, action) {
                     }
                 }
             };
-        case Actions.CHANGE_CONTRAST:
+        case HeaderActions.CHANGE_CONTRAST:
             if (storage) {
                 storage.setItem('contrast', action.contrast);
             }
@@ -42,7 +46,7 @@ export function reducer(state, action) {
                     contrast: action.contrast
                 }
             };
-        case Actions.CHANGE_FONT_SIZE:
+        case HeaderActions.CHANGE_FONT_SIZE:
             if (storage) {
                 storage.setItem('fontSize', action.fontSize);
             }
@@ -53,6 +57,13 @@ export function reducer(state, action) {
                     fontSize: action.fontSize
                 }
             };
+        case NavbarActions.CHANGE_PATH_IN_STATE:
+            return {
+                ...state,
+                navbar: {
+                    path: action.path
+                }
+            }
         default:
             return state;
     }

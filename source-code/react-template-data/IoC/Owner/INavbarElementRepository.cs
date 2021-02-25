@@ -2,7 +2,7 @@
 
 namespace react_template_data.IoC.Owner
 {
-    public interface IPropertyRepository : IOwnerRepository<Property>
+    public interface INavbarElementRepository : IOwnerRepository<NavbarElement>
     {
     }
 }

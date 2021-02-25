@@ -4,9 +4,9 @@ using react_template_data.IoC.Owner;
 
 namespace react_template_data.Repositories.Owner
 {
-    public class PropertyRepository : BaseRepository<Property>, IPropertyRepository
+    public class NavbarElementRepository : BaseRepository<NavbarElement>, INavbarElementRepository
     {
-        public PropertyRepository(OwnerContext context) : base(context)
+        public NavbarElementRepository(OwnerContext context) : base(context)
         { }
     }
 }

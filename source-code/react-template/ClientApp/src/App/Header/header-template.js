@@ -1,7 +1,7 @@
 import ReactFlagsSelect from 'react-flags-select';
 import './header.scss';
 
-const Header = (props) => {
+const HeaderTemplate = (props) => {
     return (
         <div className={props.contrast ? "header contrast" : "header"}>
             <div className='header-buttons'>
@@ -32,4 +32,4 @@ const Header = (props) => {
     );
 }
 
-export default Header;
+export default HeaderTemplate;

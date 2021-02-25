@@ -49,8 +49,7 @@ namespace react_template.Controllers
 
             if (await smtpConfigsRepository.Get(c => c.Active, cancellationToken) is Smtp config)
             {
-                IEmailNotificationModel email =
-                 NotificationModelFactory.CreateNotificationModel<IEmailNotificationModel>()
+                var email = NotificationModelFactory.CreateNotificationModel<IEmailNotificationModel>()
                     .SetConfiguration(config.Host, config.Port, config.Username, config.Password, (SecureSocketOptions)config.SecureSocketOption)
                     .SetAuthors("m.korolvv@gmail.com", "m.korolvv@gmail.com")
                     .SetRecipients("mateuszkorolow@gmail.com")

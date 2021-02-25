@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FqQV5V60QVXGLeEzP0+SSvoVceueIp3bVwN4QtOLwsVL3SJfmdrCs/FSDTn55huISpt+0EX5MGfrrdnyP8XRtg==",
+  "dgSpecHash": "QM2Ruf2dWbkHHOdLoDr3LaAmaONvwNHuekK/4kwAHiPgdMzRxCp8cijSSphsgva3ovPsZaGCVA7CfNwK9BvwyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mateusz Korolow\\Source\\Repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
+  "projectFilePath": "C:\\Users\\Mateusz Korolow\\source\\repos\\react-template\\source-code\\react-template-notifications\\react-template-notifications.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\mailkit\\2.10.0\\mailkit.2.10.0.nupkg.sha512",
     "C:\\Users\\Mateusz Korolow\\.nuget\\packages\\microsoft.extensions.configuration\\5.0.0\\microsoft.extensions.configuration.5.0.0.nupkg.sha512",
