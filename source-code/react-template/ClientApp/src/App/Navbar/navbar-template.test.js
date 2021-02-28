@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import Nav from './index';
+import { render } from '@testing-library/react';
+import Navbar from './navbar';
 
-test('Nav test', () => {
-    render(<Nav />);
+test('Navbar [test]', () => {
+    render(<Navbar />);
 });

@@ -1,0 +1,17 @@
+﻿%shadow {
+    -webkit-box-shadow: 0 5px 6px -6px black;
+    -moz-box-shadow: 0 5px 6px -6px black;
+    box-shadow: 0 5px 6px -6px black;
+}
+
+%disabledSelectingText {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+%disabledTapHighlightColor {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}

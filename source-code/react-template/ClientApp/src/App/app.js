@@ -7,9 +7,6 @@ const mapStateToProps = (state) => {
     };
 }
 
-const App = connect(
-    mapStateToProps,
-    null
-)(AppTemplate);
+const App = connect(mapStateToProps)(AppTemplate);
 
 export default App;

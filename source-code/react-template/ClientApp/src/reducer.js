@@ -1,5 +1,5 @@
-import HeaderActions from './Actions/header';
-import NavbarActions from './Actions/navbar';
+import HeaderActions from './actions/header';
+import NavbarActions from './actions/navbar';
 
 export function reducer(state, action) {
 
@@ -7,6 +7,9 @@ export function reducer(state, action) {
 
     if (state === undefined) {
         return {
+            app: {
+                styles: 'default'
+            },
             header: {
                 language: {
                     set: (storage && storage.getItem('language')) || 'PL',

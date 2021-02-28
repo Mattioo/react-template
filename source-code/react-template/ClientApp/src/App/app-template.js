@@ -4,8 +4,10 @@ import {
     Route
 } from "react-router-dom";
 
-import Header from './Header/header';
-import Navbar from './Navbar/navbar';
+import Header from './header/header';
+import Navbar from './navbar/navbar';
+
+import './app-styles.scss';
 
 const AppTemplate = (props) => {
     return (
@@ -14,17 +16,19 @@ const AppTemplate = (props) => {
             <Router>
                 <div style={{ fontSize: `${props.fontSize}%` }}>
                     <Navbar />
-                    <Switch>
-                        <Route path="/contact">
-                            <div>Kontakt</div>
-                        </Route>
-                        <Route path="/info">
-                            <div>Informacje</div>
-                        </Route>
-                        <Route path="/">
-                            <div>Strona główna</div>
-                        </Route>
-                    </Switch>
+                    <div className='container'>
+                        <Switch>
+                            <Route path="/contact">
+                                <div>Kontakt</div>
+                            </Route>
+                            <Route path="/info">
+                                <div>Informacje</div>
+                            </Route>
+                            <Route path="/">
+                                <div>Strona główna</div>
+                            </Route>
+                        </Switch>
+                    </div>
                 </div>
             </Router>
         </>

@@ -1,0 +1,40 @@
+﻿@import '../../static/scss/common.scss';
+@import '../../static/scss/variables.scss';
+
+.header {
+    @extend %shadow;
+    @extend %disabledSelectingText;
+    @extend %disabledTapHighlightColor;
+    background-color: #f0f0f0;
+    overflow: auto;
+    height: 100%;
+
+    .headerButtons {
+        display: inline-block;
+        float: left;
+        padding: 12px;
+
+        > * {
+            display: inline-block;
+            cursor: pointer;
+            margin: 5px;
+        }
+    }
+
+    .headerLanguage {
+        display: inline-block;
+        float: right;
+        cursor: pointer;
+        padding: 5px;
+
+        .headerLanguageList {
+            display: contents;
+        }
+    }
+
+    
+}
+
+.contrast {
+    background-color: $contrast-primary-color;
+}

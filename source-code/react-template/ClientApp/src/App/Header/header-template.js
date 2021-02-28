@@ -1,10 +1,10 @@
 import ReactFlagsSelect from 'react-flags-select';
-import './header.scss';
+import styles from './header-styles.module.scss';
 
 const HeaderTemplate = (props) => {
     return (
-        <div className={props.contrast ? "header contrast" : "header"}>
-            <div className='header-buttons'>
+        <div className={`${styles.header}${(props.contrast ? ' ' + styles.contrast : '')}`}>
+            <div className={styles.headerButtons}>
                 <div onClick={() => props.changeFontSize(props.fontSize - 10)}>
                     <strong>A-</strong>
                 </div>
@@ -17,7 +17,7 @@ const HeaderTemplate = (props) => {
                     <span>Wersja kontrastowa</span>
                 </div>
             </div>
-            <div className='header-language'>
+            <div className={styles.headerLanguage}>
                 <ReactFlagsSelect
                     selected={props.language.set}
                     onSelect={code => props.changeLanguage(code)}
@@ -25,7 +25,7 @@ const HeaderTemplate = (props) => {
                     showSelectedLabel={false}
                     fullWidth={false}
                     alignOptionsToRight={true}
-                    className='header-language-list'
+                    className={styles.headerLanguageList}
                 />
             </div>
         </div>

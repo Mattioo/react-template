@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+
 import HeaderTemplate from './header-template';
-import HeaderActions from '../../Actions/header';
+import HeaderActions from '../../actions/header';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         changeLanguage: (language) => {
-            return dispatch({ type: HeaderActions.CHANGE_LANGUAGE, language });
+            return dispatch({ type: HeaderActions.CHANGE_LANGUAGE, language: language });
         },
         toogleContrast: (value) => {
             return dispatch({ type: HeaderActions.CHANGE_CONTRAST, contrast: value });

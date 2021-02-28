@@ -2,8 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-import './navbar.scss';
-import logo from './logo.png';
+import styles from './navbar-styles.module.scss';
+
+import logo from '../../static/images/logo.png';
+import contrastLogo from '../../static/images/contrast-logo.png';
 
 const NavbarTemplate = (props) => {
 
@@ -11,37 +13,57 @@ const NavbarTemplate = (props) => {
     const { pathname } = props.location;
 
     useEffect(() => {
+        if (props.pathInState !== pathname) {
+            props.changePathInState(pathname);
+        }
+
         async function fetchData() {
             const response = await fetch(`/api/app/navbar?lang=${props.language}`);
             const data = await response.json();
             setNavbarList(data);
         }
-
-        if (props.pathInState !== pathname) {
-            props.changePathInState(pathname);
-        }
-        fetchData();   
+        fetchData();
     });
 
     function createNavbarElement(el) {
-        const disabledClass = `${(el.active ? '' : 'disabled')}` || undefined;
-        const choosedClass = `${(el.url !== pathname ? '' : 'choosed')}` || undefined;
-
         return (
-            <li key={el.name} title={el.title} className={disabledClass || choosedClass} onClick={el.active ? () => { props.changePathInState(el.url) } : undefined} onKeyDown={
-                (e) => { !el.active && e.key === 'Enter' && e.preventDefault(); }
-            }>
-                <Link to={`${el.url}`} className={disabledClass}>{el.content}</Link>
+            <li key={el.name} title={el.title} className={
+                !el.active ?
+                    styles.navbarDisabledElement :
+                    (
+                        el.url === pathname ?
+                            styles.navbarChoosedElement :
+                            undefined
+                    )
+            }
+                onClick={
+                    el.active ?
+                        () => { props.changePathInState(el.url) } :
+                        undefined
+                }
+                onKeyDown={
+                    (e) => { !el.active && e.key === 'Enter' && e.preventDefault(); }
+                }>
+                <Link to={`${el.url}`} className={
+                    !el.active ?
+                        styles.navbarDisabledLink :
+                        undefined
+                }>
+                    {el.content}
+                </Link>
             </li>
         );
     }
 
+    const navbarClass = `${styles.navbar}${(props.contrast ? ' ' + styles.contrast : '')}`;
     return (
-        <div className='navbar'>
-            <Link to='/'>
-                <img src={logo} alt='Logo' className='logo' />
-            </Link>           
-            <nav>              
+        <div className={navbarClass}>
+            <nav className={styles.navbarContent}>
+                <div className={styles.navbarLogo}>
+                    <Link to='/'>
+                        <img src={props.contrast ? contrastLogo : logo} alt='Logo' className={styles.navbarLogoImage} />
+                    </Link>
+                </div>           
                 <ul>
                     {navbarList.map(el => createNavbarElement(el))}
                 </ul>

@@ -1,19 +1,21 @@
 import { connect } from 'react-redux';
-import NavbarTemplate from './navbar-template';
-import NavbarActions from '../../Actions/navbar';
 import { withRouter } from 'react-router-dom';
+
+import NavbarTemplate from './navbar-template';
+import NavbarActions from '../../actions/navbar';
 
 const mapStateToProps = (state) => {
     return {
         pathInState: state.navbar.path,
-        language: state.header.language.set
+        language: state.header.language.set,
+        contrast: state.header.contrast
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         changePathInState: (path) => {
-            return dispatch({ type: NavbarActions.CHANGE_PATH_IN_STATE, path });
+            return dispatch({ type: NavbarActions.CHANGE_PATH_IN_STATE, path: path });
         }
     }
 }

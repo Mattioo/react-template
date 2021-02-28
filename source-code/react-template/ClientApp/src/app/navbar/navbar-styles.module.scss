@@ -1,0 +1,60 @@
+﻿@import '../../static/scss/common.scss';
+@import '../../static/scss/variables.scss';
+
+.navbar {
+    @extend %shadow;
+    @extend %disabledSelectingText;
+    @extend %disabledTapHighlightColor;
+
+    .navbarContent {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .navbarLogo {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .navbarLogoImage {
+        padding: 10px;
+        max-width: 120px;
+    }
+
+    .navbarDisabledLink {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .navbarDisabledElement {
+        cursor: not-allowed;
+    }
+
+    .navbarChoosedElement {
+        @extend %shadow;
+    }
+
+    ul {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: inline-flex;
+            cursor: pointer;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                padding: 15px;
+            }
+        }
+    }
+}
+
+.contrast {
+    background-color: #000000;
+    color: $contrast-primary-color;
+}
